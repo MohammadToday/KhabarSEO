@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Builds dist/khabar-seo-<version>.zip using .distignore. Usage: bin/build-zip
+set -euo pipefail
+cd "$(dirname "$0")/.."
+VERSION=$(sed -n 's/^ \* Version:[[:space:]]*//p' khabar-seo.php | head -1 | tr -d '\r')
+[ -n "$VERSION" ] || { echo "Cannot read version" >&2; exit 1; }
+php bin/build-mo.php || true          # keep .mo files current (exit 3 = untranslated strings, not fatal)
+rm -rf dist && mkdir -p dist/khabar-seo
+tar --exclude-from=.distignore -cf - . | tar -xf - -C dist/khabar-seo
+( cd dist && zip -rq "khabar-seo-${VERSION}.zip" khabar-seo )
+rm -rf dist/khabar-seo
+echo "Built dist/khabar-seo-${VERSION}.zip"

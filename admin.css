@@ -1,0 +1,52 @@
+/* KhabarSEO admin styles. Logical properties keep this correct in RTL without a separate file. */
+.khs-wrap { max-inline-size: 980px; }
+.khs-legend { color: #50575e; }
+.khs-section { margin-block: 1.5em; }
+.khs-section h2 { margin-block-end: .5em; }
+
+.khs-field { margin-block: 0 1.6em; padding-inline-start: 0; }
+.khs-field[hidden] { display: none; }
+.khs-label { display: inline-block; font-weight: 600; margin-block-end: .35em; }
+.khs-required { color: #b32d2e; }
+.khs-field .description { margin-block: .25em 0; max-inline-size: 60em; }
+.khs-guide { color: #3c434a; margin-block: .35em 0; max-inline-size: 60em; }
+.khs-guide--option { margin-inline-start: 1.7em; color: #50575e; }
+.khs-recommended { margin-block: .4em 0; }
+
+.khs-choice { border: 0; margin: 0; padding: 0; min-inline-size: 0; }
+.khs-choice legend { padding: 0; }
+.khs-option { margin-block: .6em 0; }
+.khs-option label { display: inline-flex; align-items: center; gap: .4em; }
+
+.khs-badge {
+	display: inline-block;
+	padding: 1px 8px;
+	border-radius: 999px;
+	background: var(--wp-admin-theme-color, #2271b1);
+	color: #fff;
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 1.7;
+	vertical-align: middle;
+}
+
+.khs-media__preview { margin-block: .4em; }
+.khs-media__img { display: block; max-inline-size: 150px; block-size: auto; border-radius: 3px; }
+
+.khs-steps { display: flex; flex-wrap: wrap; gap: .5em 1.5em; list-style: none; margin: 1em 0; padding: 0; counter-reset: khs; }
+.khs-steps li { counter-increment: khs; color: #646970; }
+.khs-steps li::before { content: counter(khs) ". "; }
+.khs-steps li.is-current { color: #1d2327; font-weight: 600; }
+.khs-card { background: #fff; border: 1px solid #c3c4c7; border-radius: 4px; padding: 1.2em 1.6em; max-inline-size: 760px; }
+.khs-actions { display: flex; flex-wrap: wrap; gap: .6em; align-items: center; }
+.khs-review th { inline-size: 40%; }
+
+.khs-level { display: inline-block; padding: 1px 8px; border-radius: 3px; font-size: 12px; font-weight: 600; }
+.khs-level--ok { background: #edfaef; color: #0a5c1a; }
+.khs-level--info { background: #f0f6fc; color: #0a4b78; }
+.khs-level--warn { background: #fcf9e8; color: #6e4e00; }
+.khs-level--fail { background: #fcf0f1; color: #8a1f23; }
+.khs-checks th[scope="row"] { inline-size: 22%; }
+.khs-scan th { inline-size: 28%; }
+.khs-copied { margin-inline-start: .6em; color: #0a5c1a; }
+.khs-wrap .notice.inline { margin-inline: 0; }
