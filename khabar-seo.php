@@ -3,24 +3,27 @@
  * Plugin Name:       KhabarSEO
  * Plugin URI:        https://github.com/MohammadToday/KhabarSEO
  * Description:       Lightweight, configurable SEO for news websites, built for Persian and other RTL publishers. No telemetry, no upsells.
- * Version:           0.1.0
+ * Version:           0.2.0
  * Requires at least: 6.5
  * Tested up to:      7.1
  * Requires PHP:      8.1
- * Author:            KhabarSEO contributors
+ * Author:            Mohammad Ahmadi Akbari
+ * Author URI:        https://github.com/MohammadToday
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       khabar-seo
  * Domain Path:       /languages
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 // This file must stay parseable on old PHP versions so the requirements notice can be shown.
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'KHS_VERSION', '0.1.0' );
+define( 'KHS_VERSION', '0.2.0' );
 define( 'KHS_FILE', __FILE__ );
 define( 'KHS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'KHS_URL', plugin_dir_url( __FILE__ ) );

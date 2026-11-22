@@ -6,7 +6,9 @@
  * so the pure logic can be checked in CI without a WordPress install.
  * (The full PHPUnit suite arrives in Phase 6.)
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 // phpcs:disable -- Test file with WordPress stubs.
@@ -72,6 +74,16 @@ function wp_attachment_is_image( $id ) {
 function wp_timezone() {
 	return new DateTimeZone( 'Asia/Tehran' );
 }
+function get_taxonomies( $args = array(), $output = 'names' ) {
+	return array(
+		'category' => (object) array( 'labels' => (object) array( 'name' => 'Categories' ) ),
+		'post_tag' => (object) array( 'labels' => (object) array( 'name' => 'Tags' ) ),
+	);
+}
+function esc_url_raw( $url, $protocols = null ) {
+	$url = trim( (string) $url );
+	return preg_match( '#^(https?)://#i', $url ) ? str_replace( ' ', '%20', $url ) : '';
+}
 function __( $text, $domain = '' ) {
 	return $text;
 }
@@ -89,7 +101,10 @@ use KhabarSEO\Core\Schema;
 use KhabarSEO\Core\Settings;
 use KhabarSEO\Core\Text;
 use KhabarSEO\Core\Time;
+use KhabarSEO\Core\Template;
 use KhabarSEO\Core\Url;
+use KhabarSEO\Output\Excerpt;
+use KhabarSEO\Output\Robots;
 
 $failures = 0;
 $passed   = 0;
@@ -294,6 +309,122 @@ check( 'findings dup canonical', true, in_array( 'dup_canonical', $codes, true )
 check( 'findings dup robots', true, in_array( 'dup_robots', $codes, true ) );
 check( 'findings dup og', true, in_array( 'dup_og', $codes, true ) );
 check( 'scan no head', array(), HeadScanner::parse( '<html></html>' )['title'] );
+
+// ---------------------------------------------------------------- Template engine (Part 1B).
+$zw   = "\u{200C}";
+$vars = array(
+	'title'    => "اخبار ورزشی امروز",
+	'sitename' => "خبر{$zw}نامه",
+	'tagline'  => '',
+	'page'     => '',
+	'category' => 'Sport',
+);
+check( 'tpl basic', "اخبار ورزشی امروز - خبر{$zw}نامه", Template::render( '%title% %sep% %sitename%', $vars, '-' ) );
+check( 'tpl empty page collapses', "اخبار ورزشی امروز - خبر{$zw}نامه", Template::render( '%title% %sep% %page% %sep% %sitename%', $vars, '-' ) );
+check( 'tpl empty tagline trailing sep', "خبر{$zw}نامه", Template::render( '%sitename% %sep% %tagline%', $vars, '-' ) );
+check( 'tpl leading sep removed', 'Sport', Template::render( '%sep% %category%', $vars, '|' ) );
+check( 'tpl pipe separator', 'Sport | x', Template::render( '%category% %sep% x', $vars, '|' ) );
+check( 'tpl middle dot', 'Sport · x', Template::render( '%category%%sep%x', $vars, '·' ) );
+check( 'tpl unknown kept', 'Sport %foo% 50%', Template::render( '%category% %foo% 50%', $vars, '-' ) );
+check( 'tpl zwnj preserved', true, false !== strpos( Template::render( '%sitename%', $vars, '-' ), $zw ) );
+check( 'tpl all empty', '', Template::render( '%tagline% %sep% %page%', $vars, '-' ) );
+check( 'tpl blank template', '', Template::render( '   ', $vars, '-' ) );
+check( 'tpl page present', 'T - Page 2 of 3 - S', Template::render( '%title% %sep% %page% %sep% %sitename%', array( 'title' => 'T', 'page' => 'Page 2 of 3', 'sitename' => 'S' ), '-' ) );
+$calls = 0;
+$lazy  = array(
+	'title'  => 'A',
+	'author' => static function () use ( &$calls ) {
+		++$calls;
+		return 'Writer';
+	},
+);
+Template::render( '%title% %sep% %sitename%', $lazy, '-' );
+check( 'tpl lazy: unused resolver not called', 0, $calls );
+Template::render( '%author% %author%', $lazy, '-' );
+check( 'tpl lazy: called once when used twice', 1, $calls );
+check( 'tpl value cannot inject separator', 'A B', Template::render( '%title%', array( 'title' => "A \u{E000} B" ), '-' ) );
+check( 'tpl unknown variables', array( '%foo%' ), Template::unknown_variables( '%title% %sep% %foo% %page%' ) );
+check( 'tpl uses', true, Template::uses( '%title% %excerpt%', 'excerpt' ) );
+
+// ---------------------------------------------------------------- Persian/ZWNJ description truncation.
+$desc = str_repeat( "خبرهای{$zw}مهم امروز را می{$zw}خوانید ", 15 );
+$cut  = Text::truncate( Text::plain( $desc ), 160 );
+check( 'desc truncate <= 160', true, Text::length( $cut ) <= 160 );
+check( 'desc truncate no dangling zwnj', 0, preg_match( '/\x{200C}…$/u', $cut ) );
+check( 'desc truncate does not split half-space word', 1, preg_match( '/(می\x{200C}خوانید|امروز|مهم|خبرهای\x{200C}مهم|را)…$/u', $cut ) );
+check( 'plain decodes entities', 'A & B "C"', Text::plain( 'A &amp; B <b>&quot;C&quot;</b>' ) );
+check( 'plain strips script', 'x y', Text::plain( 'x<script>alert(1)</script>y' ) );
+
+// ---------------------------------------------------------------- Excerpt hidden sections.
+$content = "<p>Visible</p>\n<!-- wp:khabar-seo/nosnippet -->\n<div data-nosnippet class=\"wp-block-khabar-seo-nosnippet\"><p>SECRET1</p></div>\n<!-- /wp:khabar-seo/nosnippet -->\n[khs_nosnippet]SECRET2[/khs_nosnippet] <span data-nosnippet>SECRET3</span> end";
+$clean   = Excerpt::strip_hidden( $content );
+check( 'excerpt strips hidden block', false, strpos( $clean, 'SECRET1' ) );
+check( 'excerpt strips shortcode', false, strpos( $clean, 'SECRET2' ) );
+check( 'excerpt strips data-nosnippet span', false, strpos( $clean, 'SECRET3' ) );
+check( 'excerpt keeps visible', true, false !== strpos( $clean, 'Visible' ) && false !== strpos( $clean, 'end' ) );
+
+// ---------------------------------------------------------------- Robots merge.
+$ours = array(
+	'noindex'           => false,
+	'nofollow'          => false,
+	'nosnippet'         => false,
+	'max-snippet'       => '-1',
+	'max-image-preview' => 'large',
+	'max-video-preview' => '-1',
+);
+check( 'robots default order', array( 'index' => true, 'follow' => true, 'max-image-preview' => 'large', 'max-snippet' => '-1', 'max-video-preview' => '-1' ), Robots::merge( array( 'max-image-preview' => 'large' ), $ours ) );
+$r = Robots::merge( array( 'noindex' => true, 'follow' => true ), $ours );
+check( 'robots core search noindex kept, no index', array( true, false, true ), array( isset( $r['noindex'] ), isset( $r['index'] ), isset( $r['follow'] ) ) );
+$r = Robots::merge( array( 'noindex' => true, 'nofollow' => true ), $ours );
+check( 'robots discouraged site keeps nofollow', array( false, true ), array( isset( $r['follow'] ), isset( $r['nofollow'] ) ) );
+$r = Robots::merge( array(), array_merge( $ours, array( 'nosnippet' => true ) ) );
+check( 'robots nosnippet drops max-snippet', array( true, false ), array( isset( $r['nosnippet'] ), isset( $r['max-snippet'] ) ) );
+$r = Robots::merge( array( 'max-image-preview' => 'large' ), array_merge( $ours, array( 'max-image-preview' => 'standard' ) ) );
+check( 'robots image preview most restrictive', 'standard', $r['max-image-preview'] );
+$r = Robots::merge( array( 'max-snippet' => '50' ), $ours );
+check( 'robots max-snippet most restrictive', '50', $r['max-snippet'] );
+$r = Robots::merge( array( 'none' => true ), $ours );
+check( 'robots none becomes noindex nofollow', array( true, true, false ), array( isset( $r['noindex'] ), isset( $r['nofollow'] ), isset( $r['none'] ) ) );
+$r = Robots::merge( array( 'noarchive' => true ), $ours );
+check( 'robots keeps foreign directives', true, $r['noarchive'] );
+
+// ---------------------------------------------------------------- Canonical helpers.
+check( 'strip utm_*', 'https://example.com/a?x=1', Url::strip_query_params( 'https://example.com/a?utm_source=t&x=1&UTM_Medium=m', array( 'utm_*' ) ) );
+check( 'strip fbclid keeps fragment', 'https://example.com/a#top', Url::strip_query_params( 'https://example.com/a?fbclid=abc#top', array( 'fbclid' ) ) );
+check( 'strip none', 'https://example.com/a?p=1', Url::strip_query_params( 'https://example.com/a?p=1', array( 'utm_*' ) ) );
+check( 'strip paged kept', 'https://example.com/?cat=3&paged=2', Url::strip_query_params( 'https://example.com/?cat=3&paged=2&gclid=x', array( 'gclid' ) ) );
+check( 'persian slug canonical uppercase hex', 'https://example.com/%D8%AE%D8%A8%D8%B1/', Url::normalize( 'https://example.com/%d8%ae%d8%a8%d8%b1/' ) );
+check( 'persian page 2 canonical', 'https://example.com/%D8%AE%D8%A8%D8%B1/page/2/', Url::normalize( "https://example.com/\u{062E}\u{0628}\u{0631}/page/2/" ) );
+
+// ---------------------------------------------------------------- Sanitizer (Part 1B types).
+$err = '';
+$f   = static function ( string $key, $raw ) use ( &$err ) {
+	return Sanitizer::sanitize_value( Schema::field( $key ), $raw, $err );
+};
+check( 'san max_snippet -1', -1, $f( 'robots.max_snippet', '-1' ) );
+check( 'san max_snippet clamp low', -1, $f( 'robots.max_snippet', '-5' ) );
+check( 'san max_snippet clamp error', 'range', $err );
+check( 'san max_snippet garbage default', -1, $f( 'robots.max_snippet', 'abc' ) );
+check( 'san template unknown var error', 'variables', ( $f( 'titles.home_title', '%sitename% %bogus%' ) || true ) ? $err : '' );
+check( 'san template strips tags', '%title% - x', $f( 'titles.home_title', '<b>%title%</b> - x' ) );
+check( 'san map drops defaults and unknown slugs', array( 'page' => '%title%' ), $f( 'titles.singular_title', array( 'post' => Schema::TPL_SINGULAR, 'page' => '%title%', 'evil' => 'x' ) ) );
+check( 'san map taxonomy', array( 'post_tag' => '%title% %sep% tags' ), $f( 'titles.term_title', array( 'post_tag' => '%title% %sep% tags', 'category' => Schema::TPL_LIST ) ) );
+check( 'san list', array( 'utm_*', 'fbclid', 'ref' ), $f( 'canonical.strip_params', "utm_*\nFBCLID, ref\n bad param \n<x>\nfbclid" ) );
+check( 'san url ok', 'https://example.com/x', Sanitizer::absolute_url( ' https://example.com/x ' ) );
+check( 'san url rejects js', '', Sanitizer::absolute_url( 'javascript:alert(1)' ) );
+check( 'san separator middle dot', '·', $f( 'titles.separator', '·' ) );
+check( 'san separator old bullet rejected', '-', $f( 'titles.separator', '•' ) );
+
+// ---------------------------------------------------------------- Migration v1 -> v2 and map settings.
+$m2 = Migrations::run( array( 'titles' => array( 'separator' => '•' ), 'state' => array( 'schema' => 1 ) ), 1 );
+check( 'migrate bullet to middle dot', '·', $m2['titles']['separator'] );
+check( 'migrate import bullet', '·', Migrations::migrate_flat( array( 'titles.separator' => '•' ), 1 )['titles.separator'] );
+Settings::reset();
+check( 'map default post', '%title% %sep% %sitename%', Settings::map_item( 'titles.singular_title', 'post' ) );
+Settings::update( array( 'titles.singular_title' => array( 'page' => '%title%' ) ) );
+check( 'map override page', '%title%', Settings::map_item( 'titles.singular_title', 'page' ) );
+check( 'map default term', Schema::TPL_LIST, Settings::map_item( 'titles.term_title', 'category' ) );
+check( 'settings size after defaults', true, Settings::stored_size() < 4096 );
 
 echo "\n$passed passed, $failures failed\n";
 exit( $failures > 0 ? 1 : 0 );

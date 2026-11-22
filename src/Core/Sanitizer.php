@@ -2,7 +2,9 @@
 /**
  * Schema-driven sanitization. Every value that reaches storage passes here.
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 namespace KhabarSEO\Core;
@@ -56,15 +58,7 @@ final class Sanitizer {
 				return self::to_bool( $raw );
 
 			case 'int':
-				$number = is_numeric( $raw ) ? (int) $raw : (int) $spec['default'];
-				if ( $spec['min'] > 0 || $spec['max'] > 0 ) {
-					$clamped = max( (int) $spec['min'], $spec['max'] > 0 ? min( $number, (int) $spec['max'] ) : $number );
-					if ( $clamped !== $number ) {
-						$error = 'range';
-					}
-					$number = $clamped;
-				}
-				return $number;
+				return self::integer( $spec, $raw, $error );
 
 			case 'choice':
 				$value = is_scalar( $raw ) ? (string) $raw : '';
@@ -89,16 +83,134 @@ final class Sanitizer {
 			case 'locale':
 				return self::locale( $raw, $error );
 
+			case 'template':
+				return self::template( $raw, (int) ( $spec['max'] ?? 300 ), $error );
+
+			case 'tpl_map':
+				return self::template_map( $spec, $raw, $error );
+
+			case 'list':
+				return self::token_list( $raw, (int) ( $spec['max'] ?? 40 ) );
+
 			case 'text':
 			default:
-				$text = is_scalar( $raw ) ? sanitize_text_field( (string) $raw ) : '';
-				$text = Text::normalize_space( $text );
-				if ( $spec['max'] > 0 && mb_strlen( $text, 'UTF-8' ) > (int) $spec['max'] ) {
-					$text  = mb_substr( $text, 0, (int) $spec['max'], 'UTF-8' );
-					$error = 'length';
-				}
-				return $text;
+				return self::text( $raw, (int) ( $spec['max'] ?? 0 ), $error );
 		}
+	}
+
+	/**
+	 * Single-line text.
+	 *
+	 * @param mixed  $raw   Raw value.
+	 * @param int    $max   Maximum characters (0 = unlimited).
+	 * @param string $error Error code.
+	 * @return string
+	 */
+	public static function text( $raw, int $max, string &$error = '' ): string {
+		$text = is_scalar( $raw ) ? sanitize_text_field( (string) $raw ) : '';
+		$text = Text::normalize_space( $text );
+		if ( $max > 0 && mb_strlen( $text, 'UTF-8' ) > $max ) {
+			$text  = mb_substr( $text, 0, $max, 'UTF-8' );
+			$error = 'length';
+		}
+		return $text;
+	}
+
+	/**
+	 * Integer clamped to the schema range (min/max null = unbounded).
+	 *
+	 * @param array  $spec  Field definition.
+	 * @param mixed  $raw   Raw value.
+	 * @param string $error Error code.
+	 * @return int
+	 */
+	private static function integer( array $spec, $raw, string &$error ): int {
+		$number = ( is_scalar( $raw ) && 1 === preg_match( '/^-?\d+$/', trim( (string) $raw ) ) ) ? (int) $raw : null;
+		if ( null === $number ) {
+			if ( null !== $raw && '' !== $raw ) {
+				$error = 'range';
+			}
+			return (int) $spec['default'];
+		}
+		$clamped = $number;
+		if ( null !== $spec['min'] ) {
+			$clamped = max( (int) $spec['min'], $clamped );
+		}
+		if ( null !== $spec['max'] ) {
+			$clamped = min( (int) $spec['max'], $clamped );
+		}
+		if ( $clamped !== $number ) {
+			$error = 'range';
+		}
+		return $clamped;
+	}
+
+	/**
+	 * Title or description template. Unknown variables are kept but reported.
+	 *
+	 * @param mixed  $raw   Raw value.
+	 * @param int    $max   Maximum characters.
+	 * @param string $error Error code.
+	 * @return string
+	 */
+	public static function template( $raw, int $max, string &$error = '' ): string {
+		$value = self::text( $raw, $max, $error );
+		if ( '' === $error && Template::unknown_variables( $value ) ) {
+			$error = 'variables';
+		}
+		return $value;
+	}
+
+	/**
+	 * Map of object slug => template. Entries equal to the default are dropped
+	 * to keep the autoloaded option small.
+	 *
+	 * @param array  $spec  Field definition.
+	 * @param mixed  $raw   Raw map.
+	 * @param string $error Error code.
+	 * @return array<string, string>
+	 */
+	private static function template_map( array $spec, $raw, string &$error ): array {
+		$allowed = 'taxonomies' === $spec['source'] ? array_keys( self::selectable_taxonomies() ) : array_keys( self::selectable_post_types() );
+		$out     = array();
+		foreach ( (array) $raw as $slug => $value ) {
+			if ( ! is_string( $slug ) || ! in_array( $slug, $allowed, true ) ) {
+				continue;
+			}
+			$item_error = '';
+			$template   = self::template( $value, (int) ( $spec['max'] ?? 300 ), $item_error );
+			if ( '' !== $item_error && '' === $error ) {
+				$error = $item_error;
+			}
+			if ( '' !== $template && $template !== $spec['item_default'] ) {
+				$out[ $slug ] = $template;
+			}
+		}
+		ksort( $out );
+		return $out;
+	}
+
+	/**
+	 * List of query-parameter names (letters, digits, _ - [ ] and a trailing *).
+	 *
+	 * @param mixed $raw Raw list (array or newline/comma separated string).
+	 * @param int   $max Maximum number of entries.
+	 * @return string[]
+	 */
+	public static function token_list( $raw, int $max ): array {
+		$items = is_array( $raw ) ? $raw : preg_split( '/[\r\n,]+/', is_scalar( $raw ) ? (string) $raw : '' );
+		$out   = array();
+		foreach ( (array) $items as $item ) {
+			$item = strtolower( trim( is_scalar( $item ) ? (string) $item : '' ) );
+			if ( '' === $item || 1 !== preg_match( '/^[a-z0-9_\-\[\]]+\*?$/', $item ) || in_array( $item, $out, true ) ) {
+				continue;
+			}
+			$out[] = $item;
+			if ( count( $out ) >= $max ) {
+				break;
+			}
+		}
+		return $out;
 	}
 
 	/**
@@ -132,7 +244,7 @@ final class Sanitizer {
 	}
 
 	/**
-	 * Post types that can be marked as news.
+	 * Post types that can be configured (public, without attachments).
 	 *
 	 * @return array<string, object>
 	 */
@@ -140,6 +252,23 @@ final class Sanitizer {
 		$types = get_post_types( array( 'public' => true ), 'objects' );
 		unset( $types['attachment'] );
 		return $types;
+	}
+
+	/**
+	 * Taxonomies that can be configured (public ones with archive pages).
+	 *
+	 * @return array<string, object>
+	 */
+	public static function selectable_taxonomies(): array {
+		$taxonomies = get_taxonomies(
+			array(
+				'public'             => true,
+				'publicly_queryable' => true,
+			),
+			'objects'
+		);
+		unset( $taxonomies['post_format'] );
+		return $taxonomies;
 	}
 
 	/**
@@ -212,5 +341,25 @@ final class Sanitizer {
 			return '';
 		}
 		return isset( $m[2] ) ? $m[1] . '_' . strtoupper( $m[2] ) : $m[1];
+	}
+
+	/**
+	 * Absolute http(s) URL or empty string.
+	 *
+	 * @param mixed  $raw   Raw value.
+	 * @param string $error Error code.
+	 * @return string
+	 */
+	public static function absolute_url( $raw, string &$error = '' ): string {
+		$value = is_scalar( $raw ) ? trim( (string) $raw ) : '';
+		if ( '' === $value ) {
+			return '';
+		}
+		$url = esc_url_raw( $value, array( 'http', 'https' ) );
+		if ( '' === $url || 1 !== preg_match( '#^https?://[^/\s]+#i', $url ) ) {
+			$error = 'format';
+			return '';
+		}
+		return $url;
 	}
 }

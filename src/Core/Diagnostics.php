@@ -4,7 +4,9 @@
  *
  * The report contains no URLs, e-mail addresses, keys or user data.
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 namespace KhabarSEO\Core;
@@ -53,6 +55,7 @@ final class Diagnostics {
 			self::check_dates(),
 			self::check_date_plugins(),
 			self::check_runtime(),
+			self::check_visibility(),
 			self::check_output(),
 			self::check_theme()
 		);
@@ -184,9 +187,10 @@ final class Diagnostics {
 		/* translators: 1: timezone, 2: January offset, 3: July offset, 4: PHP timezone database version. */
 		$detail = sprintf( __( '%1$s. Offset in January %2$s, in July %3$s. PHP timezone database %4$s.', 'khabar-seo' ), $tz['name'], $tz['jan'], $tz['jul'], $tz['tzdb'] );
 		$level  = 'ok';
-		if ( 'tehran_dst' === $tz['issue'] ) {
-			$level   = 'fail';
-			$detail .= ' ' . __( 'Iran no longer uses daylight saving time, so both offsets should be +03:30. Your server timezone data is outdated: ask your host to update PHP or tzdata, otherwise dates in structured data will be off by an hour.', 'khabar-seo' );
+		if ( 'fixed_offset' === $tz['issue'] ) {
+			$level = 'fail';
+			/* translators: %s: expected UTC offset such as +03:30. */
+			$detail .= ' ' . sprintf( __( 'This time zone no longer changes for summer, so both offsets should be %s. Your server time zone data is outdated: ask your host to update PHP or tzdata, otherwise machine-readable dates will be off by an hour.', 'khabar-seo' ), $tz['expected'] );
 		} elseif ( 'utc_default' === $tz['issue'] ) {
 			$level   = 'warn';
 			$detail .= ' ' . __( 'The timezone is UTC. Set your real timezone in Settings, General so published dates are correct.', 'khabar-seo' );
@@ -255,7 +259,7 @@ final class Diagnostics {
 	}
 
 	/**
-	 * Calendar plugins (for example WP-Parsidate).
+	 * Calendar plugins listed in data/conflicts.php (date_plugins).
 	 *
 	 * @return array
 	 */
@@ -318,6 +322,18 @@ final class Diagnostics {
 	}
 
 	/**
+	 * Settings, Reading: "Discourage search engines from indexing this site".
+	 *
+	 * @return array
+	 */
+	private static function check_visibility(): array {
+		if ( get_option( 'blog_public' ) ) {
+			return array( self::row( 'blog_public', __( 'Search engine visibility', 'khabar-seo' ), 'ok', __( 'Search engines may index this site.', 'khabar-seo' ) ) );
+		}
+		return array( self::row( 'blog_public', __( 'Search engine visibility', 'khabar-seo' ), 'fail', __( 'Settings, Reading asks search engines not to index this site, so WordPress sets every page to noindex, nofollow. KhabarSEO never overrides this. Untick that option when the site goes live.', 'khabar-seo' ) ) );
+	}
+
+	/**
 	 * Output state, kill switch and detected plugins.
 	 *
 	 * @return array
@@ -361,11 +377,18 @@ final class Diagnostics {
 			/* translators: %s: parent theme name. */
 			$detail .= ' ' . sprintf( __( '(child of %s)', 'khabar-seo' ), $theme->parent()->get( 'Name' ) );
 		}
+		$level = 'info';
+		if ( ! \KhabarSEO\Output\Head::theme_uses_document_title() ) {
+			$level   = 'warn';
+			$detail .= ' ' . ( Settings::is_on( 'advanced.legacy_title' )
+				? __( 'The theme has no title-tag support; KhabarSEO replaces wp_title() because the compatibility option is on. Check the result with Scan now.', 'khabar-seo' )
+				: __( 'The theme has no title-tag support and prints its own title, so KhabarSEO titles are not used. See Advanced, Theme compatibility.', 'khabar-seo' ) );
+		}
 		$hint = PluginDetector::theme_hint();
 		if ( $hint ) {
 			$detail .= ' ' . __( 'KhabarSEO has a compatibility hint for this theme (shown after a head scan).', 'khabar-seo' );
 		}
-		return array( self::row( 'theme', __( 'Active theme', 'khabar-seo' ), 'info', $detail ) );
+		return array( self::row( 'theme', __( 'Active theme', 'khabar-seo' ), $level, $detail ) );
 	}
 
 	/**

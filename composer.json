@@ -1,8 +1,19 @@
 {
-	"name": "khabar-seo/khabar-seo",
-	"description": "Lightweight, configurable SEO for news websites, built for Persian and other RTL publishers.",
+	"name": "mohammadtoday/khabar-seo",
+	"description": "Lightweight, configurable SEO for news websites, built Persian-first for RTL publishers and usable in any language.",
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",
+	"homepage": "https://github.com/MohammadToday/KhabarSEO",
+	"authors": [
+		{
+			"name": "Mohammad Ahmadi Akbari",
+			"homepage": "https://github.com/MohammadToday"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/MohammadToday/KhabarSEO/issues",
+		"source": "https://github.com/MohammadToday/KhabarSEO"
+	},
 	"require": {
 		"php": ">=8.1"
 	},
@@ -21,9 +32,12 @@
 		"lint": "find . -name '*.php' -not -path './vendor/*' -not -path './tools/*' -print0 | xargs -0 -n1 php -l > /dev/null",
 		"smoke": "php tests/smoke.php",
 		"phpcs": "phpcs",
-		"compat": "phpcs --standard=PHPCompatibilityWP --runtime-set testVersion 8.1-8.5 --extensions=php --ignore=tests,vendor,tools src data khabar-seo.php uninstall.php",
+		"compat": "phpcs --standard=PHPCompatibilityWP --runtime-set testVersion 8.1-8.5 --extensions=php --ignore=tests,vendor,tools src data assets khabar-seo.php uninstall.php",
+		"generality": "bash bin/check-generality",
 		"pot": "php bin/make-pot.php",
+		"po": "php bin/merge-po.php",
 		"mo": "php bin/build-mo.php",
-		"build": "bin/build-zip"
+		"build": "bin/build-zip",
+		"build-repo": "bin/build-repo-zip"
 	}
 }

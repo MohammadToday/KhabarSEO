@@ -7,7 +7,9 @@
  *
  * Call on or after the init action: the schema is cheap but reads site locale.
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 namespace KhabarSEO\Core;
@@ -103,6 +105,26 @@ final class Settings {
 	 */
 	public static function is_on( string $key ): bool {
 		return (bool) self::get( $key );
+	}
+
+	/**
+	 * One entry of a template map (for example the title template of "post"),
+	 * falling back to the schema item default.
+	 *
+	 * @param string $key  Map field key such as "titles.singular_title".
+	 * @param string $slug Post type or taxonomy slug.
+	 * @return string
+	 */
+	public static function map_item( string $key, string $slug ): string {
+		$spec = Schema::field( $key );
+		if ( null === $spec ) {
+			return '';
+		}
+		$map = self::get( $key );
+		if ( is_array( $map ) && isset( $map[ $slug ] ) && is_string( $map[ $slug ] ) && '' !== $map[ $slug ] ) {
+			return $map[ $slug ];
+		}
+		return (string) $spec['item_default'];
 	}
 
 	/**

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Fails when runtime code names a specific theme or plugin. Hints belong in data/conflicts.php only.
+# Usage: bin/check-generality
+set -u
+cd "$(dirname "$0")/.."
+PATTERN='\b(jannah|tielabs|parsidate|wp-jalali|yoast|wpseo|rank[ _-]?math|aioseo|all-in-one-seo|seopress|autodescription|seo framework|slim[ _-]?seo|smartcrawl|squirrly|jetpack|elementor|bricks|divi|astra|newspaper|jnews|twentytwenty[a-z]*|twenty twenty)\b'
+HITS=$(grep -rniE "$PATTERN" --include='*.php' --include='*.js' --include='*.css' --include='*.json' src assets khabar-seo.php uninstall.php 2>/dev/null || true)
+if [ -n "$HITS" ]; then
+	echo "Hardcoded theme/plugin names found outside data/, docs and tests:"
+	echo "$HITS"
+	exit 1
+fi
+echo "OK: no hardcoded theme or plugin names in runtime code."

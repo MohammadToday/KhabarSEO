@@ -3,7 +3,9 @@
  * URL normalization. One implementation for canonical, og:url, sitemaps and
  * redirects, so Persian (percent-encoded) slugs are encoded identically everywhere.
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 declare(strict_types=1);
@@ -102,6 +104,60 @@ final class Url {
 		$p   = self::parts( self::normalize( $url ) );
 		$out = '' === $p['path'] ? '/' : $p['path'];
 		return '' !== $p['query'] ? $out . '?' . $p['query'] : $out;
+	}
+
+	/**
+	 * Removes query parameters whose names match a pattern list. A trailing
+	 * "*" matches a prefix (utm_* removes utm_source, utm_medium, ...).
+	 * Matching is case-insensitive; other parameters keep their order.
+	 *
+	 * @param string   $url      URL.
+	 * @param string[] $patterns Parameter names or prefixes.
+	 * @return string
+	 */
+	public static function strip_query_params( string $url, array $patterns ): string {
+		$q = strpos( $url, '?' );
+		if ( false === $q || ! $patterns ) {
+			return $url;
+		}
+		$hash     = strpos( $url, '#', $q );
+		$fragment = false === $hash ? '' : substr( $url, $hash );
+		$query    = false === $hash ? substr( $url, $q + 1 ) : substr( $url, $q + 1, $hash - $q - 1 );
+		$keep     = array();
+		foreach ( explode( '&', $query ) as $pair ) {
+			if ( '' === $pair ) {
+				continue;
+			}
+			$name = strtolower( rawurldecode( explode( '=', $pair, 2 )[0] ) );
+			if ( ! self::matches_any( $name, $patterns ) ) {
+				$keep[] = $pair;
+			}
+		}
+		return substr( $url, 0, $q ) . ( $keep ? '?' . implode( '&', $keep ) : '' ) . $fragment;
+	}
+
+	/**
+	 * Whether a parameter name matches one of the patterns.
+	 *
+	 * @param string   $name     Lowercase parameter name.
+	 * @param string[] $patterns Patterns.
+	 * @return bool
+	 */
+	private static function matches_any( string $name, array $patterns ): bool {
+		foreach ( $patterns as $pattern ) {
+			$pattern = strtolower( (string) $pattern );
+			if ( '' === $pattern ) {
+				continue;
+			}
+			if ( '*' === substr( $pattern, -1 ) ) {
+				if ( 0 === strpos( $name, substr( $pattern, 0, -1 ) ) ) {
+					return true;
+				}
+			} elseif ( $name === $pattern ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

@@ -3,7 +3,9 @@
  * Text hygiene for Persian/RTL and other scripts. Uses mb_* and /u regexes;
  * never splits a UTF-8 sequence and never leaves a dangling ZWNJ.
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 declare(strict_types=1);
@@ -35,6 +37,21 @@ final class Text {
 		$text = (string) preg_replace( '/[\p{Cc}\p{Cs}]+/u', ' ', $text );
 		$text = (string) preg_replace( '/[\s\p{Z}]+/u', ' ', $text );
 		return trim( $text );
+	}
+
+	/**
+	 * Converts stored HTML-ish text (titles, names, descriptions) to plain
+	 * text: tags removed, entities decoded, whitespace normalized.
+	 *
+	 * @param string $html Input.
+	 * @return string
+	 */
+	public static function plain( string $html ): string {
+		$text = (string) preg_replace( '/<(script|style)\b[^>]*>.*?<\/\1>/is', ' ', $html );
+		// Pure helper (also used outside WordPress in tests); script/style were removed above.
+		$text = strip_tags( (string) preg_replace( '/<[^>]+>/', ' $0 ', $text ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions.strip_tags_strip_tags
+		$text = html_entity_decode( $text, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+		return self::normalize_space( $text );
 	}
 
 	/**

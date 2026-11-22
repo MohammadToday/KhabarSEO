@@ -1,13 +1,14 @@
-# Copyright (C) KhabarSEO contributors
+# Copyright (C) 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: KhabarSEO 0.1.0\n"
-"Report-Msgid-Bugs-To: https://github.com/OWNER/khabar-seo/issues\n"
+"Project-Id-Version: KhabarSEO 0.2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/MohammadToday/KhabarSEO/issues\n"
+"Last-Translator: KhabarSEO contributors\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: KhabarSEO contributors\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Domain: khabar-seo\n"
 
@@ -24,68 +25,68 @@ msgid "Jannah Theme Options, Single Post settings: turn off \"Open Graph meta\".
 msgstr ""
 
 #. translators: %s: recommended value.
-#: src/Admin/FieldRenderer.php:73
+#: src/Admin/FieldRenderer.php:127 src/Admin/FieldRenderer.php:165
 #, php-format
 msgid "Recommended: %s"
 msgstr ""
 
-#: src/Admin/FieldRenderer.php:109
+#: src/Admin/FieldRenderer.php:187
 msgid "Yes"
 msgstr ""
 
-#: src/Admin/FieldRenderer.php:109
+#: src/Admin/FieldRenderer.php:187
 msgid "No"
 msgstr ""
 
-#: src/Admin/FieldRenderer.php:116 src/Admin/FieldRenderer.php:118
+#: src/Admin/FieldRenderer.php:194 src/Admin/FieldRenderer.php:196 src/Core/Schema.php:850
 msgid "None"
 msgstr ""
 
-#: src/Admin/FieldRenderer.php:118
+#: src/Admin/FieldRenderer.php:196
 msgid "Image selected"
 msgstr ""
 
-#: src/Admin/FieldRenderer.php:195 src/Admin/FieldRenderer.php:218
+#: src/Admin/FieldRenderer.php:273 src/Admin/FieldRenderer.php:296
 msgid "Recommended"
 msgstr ""
 
-#: src/Admin/FieldRenderer.php:220
+#: src/Admin/FieldRenderer.php:298
 msgid "Recommended: off"
 msgstr ""
 
-#: src/Admin/FieldRenderer.php:275
+#: src/Admin/FieldRenderer.php:353
 msgid "Choose an image"
 msgstr ""
 
-#: src/Admin/FieldRenderer.php:276
+#: src/Admin/FieldRenderer.php:354
 msgid "Use this image"
 msgstr ""
 
-#: src/Admin/FieldRenderer.php:280
+#: src/Admin/FieldRenderer.php:358
 msgid "Select image"
 msgstr ""
 
-#: src/Admin/FieldRenderer.php:281
+#: src/Admin/FieldRenderer.php:359
 msgid "Remove image"
 msgstr ""
 
-#: src/Admin/Menu.php:59 src/Admin/Menu.php:60 src/Admin/SettingsPage.php:57 src/Core/Diagnostics.php:87
+#: src/Admin/Menu.php:61 src/Admin/Menu.php:62 src/Admin/Overrides.php:46 src/Admin/Overrides.php:232 src/Admin/SettingsPage.php:59 src/Core/Diagnostics.php:90
 msgid "KhabarSEO"
 msgstr ""
 
-#: src/Admin/Menu.php:69
+#: src/Admin/Menu.php:71
 msgid "KhabarSEO settings"
 msgstr ""
 
-#: src/Admin/Menu.php:70 src/Admin/Menu.php:129
+#: src/Admin/Menu.php:72 src/Admin/Menu.php:136
 msgid "Settings"
 msgstr ""
 
-#: src/Admin/Menu.php:77
+#: src/Admin/Menu.php:79
 msgid "KhabarSEO setup wizard"
 msgstr ""
 
-#: src/Admin/Menu.php:78 src/Admin/ToolsPage.php:41
+#: src/Admin/Menu.php:80 src/Admin/ToolsPage.php:41
 msgid "Setup wizard"
 msgstr ""
 
@@ -102,7 +103,7 @@ msgid "Start the setup wizard"
 msgstr ""
 
 #. translators: %s: names of other SEO plugins.
-#: src/Admin/Notices.php:66 src/Core/Diagnostics.php:340
+#: src/Admin/Notices.php:66 src/Core/Diagnostics.php:356
 #, php-format
 msgid "Another SEO plugin is active: %s."
 msgstr ""
@@ -121,207 +122,347 @@ msgstr ""
 msgid "Your server runs PHP %1$s, whose security support ends or ended on %2$s. Ask your host to upgrade PHP."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:51 src/Admin/Wizard.php:59
+#: src/Admin/Overrides.php:57
+msgid "title of this item"
+msgstr ""
+
+#: src/Admin/Overrides.php:58
+msgid "site name"
+msgstr ""
+
+#: src/Admin/Overrides.php:59
+msgid "site tagline"
+msgstr ""
+
+#: src/Admin/Overrides.php:60
+msgid "separator"
+msgstr ""
+
+#: src/Admin/Overrides.php:61
+msgid "first category"
+msgstr ""
+
+#: src/Admin/Overrides.php:62
+msgid "author name"
+msgstr ""
+
+#: src/Admin/Overrides.php:63
+msgid "publication date as shown on the site"
+msgstr ""
+
+#: src/Admin/Overrides.php:64
+msgid "\"Page 2 of 5\" beyond page 1"
+msgstr ""
+
+#: src/Admin/Overrides.php:65
+msgid "excerpt or summary"
+msgstr ""
+
+#: src/Admin/Overrides.php:71
+msgid "Variables:"
+msgstr ""
+
+#. translators: %d: number of characters. Keep the placeholder.
+#: src/Admin/Overrides.php:82
+#, php-format
+msgid "%d characters"
+msgstr ""
+
+#: src/Admin/Overrides.php:102
+msgid "KhabarSEO output is switched off."
+msgstr ""
+
+#: src/Admin/Overrides.php:102
+msgid "Values entered here are saved and used once it is on (see KhabarSEO, Status)."
+msgstr ""
+
+#: src/Admin/Overrides.php:105 src/Admin/Overrides.php:238
+msgid "SEO title"
+msgstr ""
+
+#: src/Admin/Overrides.php:113
+msgid "Leave empty to use the template shown in grey. Google may rewrite titles that do not match the headline; there is no length limit, long titles are shortened in results."
+msgstr ""
+
+#: src/Admin/Overrides.php:115 src/Admin/Overrides.php:248
+msgid "Meta description"
+msgstr ""
+
+#: src/Admin/Overrides.php:122
+msgid "Leave empty to use the excerpt. There is no length limit; search engines shorten long descriptions to fit the screen."
+msgstr ""
+
+#: src/Admin/Overrides.php:124 src/Admin/Overrides.php:256
+msgid "Canonical URL"
+msgstr ""
+
+#: src/Admin/Overrides.php:126
+msgid "Leave empty: the article points to its own address, which is right for almost every story. Only fill this in if this article is a copy of another page."
+msgstr ""
+
+#: src/Admin/Overrides.php:128
+msgid "Search engine rules for this item"
+msgstr ""
+
+#: src/Admin/Overrides.php:130
+msgid "Do not show in search results (noindex)"
+msgstr ""
+
+#: src/Admin/Overrides.php:131
+msgid "Do not follow links on this page (nofollow)"
+msgstr ""
+
+#: src/Admin/Overrides.php:132
+msgid "No text snippet in results (nosnippet)"
+msgstr ""
+
+#: src/Admin/Overrides.php:144
+msgid "Maximum snippet length (empty = site default)"
+msgstr ""
+
+#: src/Admin/Overrides.php:147
+msgid "nosnippet and max-snippet also shorten normal search snippets and limit AI features in search, not only one feature. To hide only a passage, wrap it in the \"Hidden from search snippets\" block or in [khs_nosnippet]...[/khs_nosnippet]."
+msgstr ""
+
+#: src/Admin/Overrides.php:243
+msgid "Leave empty to use the template shown in grey."
+msgstr ""
+
+#: src/Admin/Overrides.php:252
+msgid "Leave empty to use the term description above."
+msgstr ""
+
+#: src/Admin/Overrides.php:258
+msgid "Leave empty to use the address of this archive (with its page number on page 2 and later)."
+msgstr ""
+
+#: src/Admin/Overrides.php:261
+msgid "Use the rule from KhabarSEO, Indexing"
+msgstr ""
+
+#: src/Admin/Overrides.php:262
+msgid "Always index"
+msgstr ""
+
+#: src/Admin/Overrides.php:263
+msgid "Never index (noindex)"
+msgstr ""
+
+#: src/Admin/Overrides.php:265
+msgid "Search engines"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:53 src/Admin/Wizard.php:59
 msgid "You do not have permission to access this page."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:60
+#: src/Admin/SettingsPage.php:62
 msgid "KhabarSEO sections"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:103
+#: src/Admin/SettingsPage.php:106
 msgid "Choices marked \"Recommended\" are the best fit for most news sites."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:118
+#: src/Admin/SettingsPage.php:127
 msgid "Internal search results are always set to noindex, follow."
-msgstr ""
-
-#. translators: %s: field label.
-#: src/Admin/SettingsPage.php:152
-#, php-format
-msgid "%s: the value has an invalid format and was cleared."
-msgstr ""
-
-#. translators: %s: field label.
-#: src/Admin/SettingsPage.php:155
-#, php-format
-msgid "%s: the number was outside the allowed range and was adjusted."
-msgstr ""
-
-#. translators: %s: field label.
-#: src/Admin/SettingsPage.php:158
-#, php-format
-msgid "%s: the text was too long and was shortened."
 msgstr ""
 
 #. translators: %s: field label.
 #: src/Admin/SettingsPage.php:161
 #, php-format
+msgid "%s: the value has an invalid format and was cleared."
+msgstr ""
+
+#. translators: %s: field label.
+#: src/Admin/SettingsPage.php:164
+#, php-format
+msgid "%s: the number was outside the allowed range and was adjusted."
+msgstr ""
+
+#. translators: %s: field label.
+#: src/Admin/SettingsPage.php:167
+#, php-format
+msgid "%s: the text was too long and was shortened."
+msgstr ""
+
+#. translators: %s: field label.
+#: src/Admin/SettingsPage.php:170
+#, php-format
+msgid "%s: contains an unknown variable. It was saved but will appear as plain text."
+msgstr ""
+
+#. translators: %s: field label.
+#: src/Admin/SettingsPage.php:173
+#, php-format
 msgid "%s: the value was not valid and the default was used."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:172 src/Admin/StatusPage.php:192 src/Admin/ToolsPage.php:79 src/Admin/Wizard.php:162 src/Admin/Wizard.php:195
+#: src/Admin/SettingsPage.php:184 src/Admin/StatusPage.php:196 src/Admin/ToolsPage.php:79 src/Admin/Wizard.php:162 src/Admin/Wizard.php:195
 msgid "You do not have permission to do this."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:186
+#: src/Admin/SettingsPage.php:198
 msgid "Settings saved."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:188
+#: src/Admin/SettingsPage.php:200
 msgid "Settings were not saved: they exceed the 8 KB limit for autoloaded data."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:190
+#: src/Admin/SettingsPage.php:202
 msgid "Settings could not be saved."
 msgstr ""
 
-#: src/Admin/StatusPage.php:38
+#: src/Admin/StatusPage.php:40
 msgid "Checks"
 msgstr ""
 
-#: src/Admin/StatusPage.php:40
+#: src/Admin/StatusPage.php:42
 msgid "Check"
 msgstr ""
 
-#: src/Admin/StatusPage.php:41
+#: src/Admin/StatusPage.php:43
 msgid "Result"
 msgstr ""
 
-#: src/Admin/StatusPage.php:42
+#: src/Admin/StatusPage.php:44
 msgid "Details"
 msgstr ""
 
-#: src/Admin/StatusPage.php:56
+#: src/Admin/StatusPage.php:58
 msgid "Diagnostics"
 msgstr ""
 
-#: src/Admin/StatusPage.php:57
+#: src/Admin/StatusPage.php:59
 msgid "Paste this into a bug report. It contains no web addresses, keys or personal data."
 msgstr ""
 
-#: src/Admin/StatusPage.php:59
+#: src/Admin/StatusPage.php:61
 msgid "Copy diagnostics"
 msgstr ""
 
-#: src/Admin/StatusPage.php:60
+#: src/Admin/StatusPage.php:62
 msgid "Copied"
 msgstr ""
 
-#: src/Admin/StatusPage.php:69
+#: src/Admin/StatusPage.php:71
 msgid "Rendered head scan"
 msgstr ""
 
-#: src/Admin/StatusPage.php:70
+#: src/Admin/StatusPage.php:72
 msgid "Requests your home page and your newest news post from this server and lists the SEO tags found in the page head. Run it before switching KhabarSEO on to see which tags your theme or plugins already add."
 msgstr ""
 
-#: src/Admin/StatusPage.php:74
+#: src/Admin/StatusPage.php:76
 msgid "Scan now"
 msgstr ""
 
 #. translators: %s: date and time of the last scan.
-#: src/Admin/StatusPage.php:82
+#: src/Admin/StatusPage.php:84
 #, php-format
 msgid "Last scan: %s"
 msgstr ""
 
-#: src/Admin/StatusPage.php:85
+#: src/Admin/StatusPage.php:87 src/Core/Schema.php:527
 msgid "Home page"
 msgstr ""
 
-#: src/Admin/StatusPage.php:86
+#: src/Admin/StatusPage.php:88
 msgid "Newest news post"
 msgstr ""
 
-#: src/Admin/StatusPage.php:107
+#: src/Admin/StatusPage.php:109
 msgid "Title tags"
 msgstr ""
 
-#: src/Admin/StatusPage.php:108
+#: src/Admin/StatusPage.php:110
 msgid "Canonical links"
 msgstr ""
 
-#: src/Admin/StatusPage.php:109
+#: src/Admin/StatusPage.php:111
 msgid "Robots meta tags"
 msgstr ""
 
-#: src/Admin/StatusPage.php:110
-msgid "Open Graph properties"
-msgstr ""
-
-#: src/Admin/StatusPage.php:111
-msgid "X (Twitter) card tags"
-msgstr ""
-
 #: src/Admin/StatusPage.php:112
-msgid "JSON-LD blocks"
+msgid "Meta descriptions"
 msgstr ""
 
 #: src/Admin/StatusPage.php:113
+msgid "Open Graph properties"
+msgstr ""
+
+#: src/Admin/StatusPage.php:114
+msgid "X (Twitter) card tags"
+msgstr ""
+
+#: src/Admin/StatusPage.php:115
+msgid "JSON-LD blocks"
+msgstr ""
+
+#: src/Admin/StatusPage.php:116
 msgid "Generator tags"
 msgstr ""
 
-#: src/Admin/StatusPage.php:129
+#: src/Admin/StatusPage.php:132
 msgid "To avoid duplicate Open Graph tags, turn off the Open Graph option in your theme settings or in the plugin that adds them before switching KhabarSEO on."
 msgstr ""
 
-#: src/Admin/StatusPage.php:130
+#: src/Admin/StatusPage.php:133
 msgid "What to switch off:"
 msgstr ""
 
 #. translators: %s: number of tags found.
-#: src/Admin/StatusPage.php:146
+#: src/Admin/StatusPage.php:150
 #, php-format
 msgid "This tag appears %s times, but a page should have exactly one."
 msgstr ""
 
 #. translators: %s: Open Graph property name.
-#: src/Admin/StatusPage.php:149
+#: src/Admin/StatusPage.php:153
 #, php-format
 msgid "The Open Graph property %s appears more than once."
 msgstr ""
 
-#: src/Admin/StatusPage.php:151
+#: src/Admin/StatusPage.php:155
 msgid "No canonical link was found."
 msgstr ""
 
-#: src/Admin/StatusPage.php:153
+#: src/Admin/StatusPage.php:157
 msgid "No robots meta tag was found (search engine defaults apply)."
 msgstr ""
 
 #. translators: %s: number of Open Graph properties.
-#: src/Admin/StatusPage.php:156
+#: src/Admin/StatusPage.php:160
 #, php-format
 msgid "Open Graph tags are already present (%s properties)."
 msgstr ""
 
 #. translators: %s: number of JSON-LD blocks.
-#: src/Admin/StatusPage.php:159
+#: src/Admin/StatusPage.php:163
 #, php-format
 msgid "Structured data (JSON-LD) is already present (%s blocks)."
 msgstr ""
 
-#: src/Admin/StatusPage.php:174
+#: src/Admin/StatusPage.php:178
 msgid "The PHP DOM extension is missing, so the head cannot be parsed."
 msgstr ""
 
 #. translators: %d: HTTP status code.
-#: src/Admin/StatusPage.php:177
+#: src/Admin/StatusPage.php:181
 #, php-format
 msgid "The page answered with HTTP status %d."
 msgstr ""
 
-#: src/Admin/StatusPage.php:179
+#: src/Admin/StatusPage.php:183
 msgid "The address is not on this site, so it was not requested."
 msgstr ""
 
-#: src/Admin/StatusPage.php:181
+#: src/Admin/StatusPage.php:185
 msgid "The page could not be requested from this server (a firewall, basic authentication or DNS may block loopback requests)."
 msgstr ""
 
-#: src/Admin/StatusPage.php:207
+#: src/Admin/StatusPage.php:211
 msgid "Scan finished."
 msgstr ""
 
@@ -461,716 +602,1113 @@ msgstr ""
 msgid "The setup could not be completed."
 msgstr ""
 
-#: src/Core/Diagnostics.php:31
-msgid "OK"
+#: src/Content/NoSnippet.php:43
+msgid "Hidden from search snippets (data-nosnippet)"
 msgstr ""
 
 #: src/Core/Diagnostics.php:33
-msgid "Warning"
+msgid "OK"
 msgstr ""
 
 #: src/Core/Diagnostics.php:35
-msgid "Problem"
+msgid "Warning"
 msgstr ""
 
 #: src/Core/Diagnostics.php:37
+msgid "Problem"
+msgstr ""
+
+#: src/Core/Diagnostics.php:39
 msgid "Info"
 msgstr ""
 
 #. translators: 1: plugin version, 2: settings schema version.
-#: src/Core/Diagnostics.php:86
+#: src/Core/Diagnostics.php:89
 #, php-format
 msgid "Version %1$s, settings schema %2$d (beta)."
 msgstr ""
 
 #. translators: 1: PHP version, 2: end-of-life date.
-#: src/Core/Diagnostics.php:99
+#: src/Core/Diagnostics.php:102
 #, php-format
 msgid "PHP %1$s reached end of life on %2$s and no longer gets security fixes. Ask your host to upgrade."
 msgstr ""
 
 #. translators: 1: PHP version, 2: end-of-life date.
-#: src/Core/Diagnostics.php:102
+#: src/Core/Diagnostics.php:105
 #, php-format
 msgid "PHP %1$s reaches end of life on %2$s. Plan an upgrade."
 msgstr ""
 
 #. translators: 1: PHP version, 2: end-of-life date.
-#: src/Core/Diagnostics.php:105
+#: src/Core/Diagnostics.php:108
 #, php-format
 msgid "PHP %1$s, supported until %2$s."
 msgstr ""
 
 #. translators: %s: PHP version.
-#: src/Core/Diagnostics.php:108
+#: src/Core/Diagnostics.php:111
 #, php-format
 msgid "PHP %s (not in the end-of-life table)."
 msgstr ""
 
-#: src/Core/Diagnostics.php:110
+#: src/Core/Diagnostics.php:113
 msgid "PHP version"
 msgstr ""
 
 #. translators: %s: WordPress version.
-#: src/Core/Diagnostics.php:122
+#: src/Core/Diagnostics.php:125
 #, php-format
 msgid "WordPress %s."
 msgstr ""
 
 #. translators: 1: WordPress version, 2: highest tested version.
-#: src/Core/Diagnostics.php:128
+#: src/Core/Diagnostics.php:131
 #, php-format
 msgid "WordPress %1$s is newer than the tested version (%2$s). Report any problem."
 msgstr ""
 
-#: src/Core/Diagnostics.php:130
+#: src/Core/Diagnostics.php:133
 msgid "WordPress version"
 msgstr ""
 
-#: src/Core/Diagnostics.php:141 src/Core/Diagnostics.php:142
+#: src/Core/Diagnostics.php:144 src/Core/Diagnostics.php:145
 msgid "PHP mbstring"
 msgstr ""
 
-#: src/Core/Diagnostics.php:141 src/Core/Diagnostics.php:144 src/Core/Diagnostics.php:147
+#: src/Core/Diagnostics.php:144 src/Core/Diagnostics.php:147 src/Core/Diagnostics.php:150
 msgid "Available."
 msgstr ""
 
-#: src/Core/Diagnostics.php:142
+#: src/Core/Diagnostics.php:145
 msgid "Missing. Required for correct Persian/RTL text handling."
 msgstr ""
 
-#: src/Core/Diagnostics.php:144 src/Core/Diagnostics.php:145
+#: src/Core/Diagnostics.php:147 src/Core/Diagnostics.php:148
 msgid "PHP DOM"
 msgstr ""
 
-#: src/Core/Diagnostics.php:145
+#: src/Core/Diagnostics.php:148
 msgid "Missing. The rendered head scan cannot run."
 msgstr ""
 
-#: src/Core/Diagnostics.php:147 src/Core/Diagnostics.php:148
+#: src/Core/Diagnostics.php:150 src/Core/Diagnostics.php:151
 msgid "PHP intl"
 msgstr ""
 
-#: src/Core/Diagnostics.php:148
+#: src/Core/Diagnostics.php:151
 msgid "Missing. Internationalized domain names are not converted to ASCII (only matters for non-ASCII domains)."
 msgstr ""
 
-#: src/Core/Diagnostics.php:161
+#: src/Core/Diagnostics.php:164
 msgid "Plain permalinks (?p=ID)."
 msgstr ""
 
 #. translators: %s: permalink structure such as /%postname%/.
-#: src/Core/Diagnostics.php:164
+#: src/Core/Diagnostics.php:167
 #, php-format
 msgid "Structure %s"
 msgstr ""
 
-#: src/Core/Diagnostics.php:165
+#: src/Core/Diagnostics.php:168
 msgid "with trailing slash."
 msgstr ""
 
-#: src/Core/Diagnostics.php:165
+#: src/Core/Diagnostics.php:168
 msgid "without trailing slash."
 msgstr ""
 
-#: src/Core/Diagnostics.php:169
+#: src/Core/Diagnostics.php:172
 msgid "Subdirectory install."
 msgstr ""
 
-#: src/Core/Diagnostics.php:172
+#: src/Core/Diagnostics.php:175
 msgid "Multisite."
 msgstr ""
 
-#: src/Core/Diagnostics.php:174
+#: src/Core/Diagnostics.php:177
 msgid "Permalinks"
 msgstr ""
 
 #. translators: 1: timezone, 2: January offset, 3: July offset, 4: PHP timezone database version.
-#: src/Core/Diagnostics.php:185
+#: src/Core/Diagnostics.php:188
 #, php-format
 msgid "%1$s. Offset in January %2$s, in July %3$s. PHP timezone database %4$s."
 msgstr ""
 
-#: src/Core/Diagnostics.php:189
-msgid "Iran no longer uses daylight saving time, so both offsets should be +03:30. Your server timezone data is outdated: ask your host to update PHP or tzdata, otherwise dates in structured data will be off by an hour."
+#. translators: %s: expected UTC offset such as +03:30.
+#: src/Core/Diagnostics.php:193
+#, php-format
+msgid "This time zone no longer changes for summer, so both offsets should be %s. Your server time zone data is outdated: ask your host to update PHP or tzdata, otherwise machine-readable dates will be off by an hour."
 msgstr ""
 
-#: src/Core/Diagnostics.php:192
+#: src/Core/Diagnostics.php:196
 msgid "The timezone is UTC. Set your real timezone in Settings, General so published dates are correct."
 msgstr ""
 
-#: src/Core/Diagnostics.php:194
+#: src/Core/Diagnostics.php:198
 msgid "Timezone"
 msgstr ""
 
-#: src/Core/Diagnostics.php:211 src/Core/Diagnostics.php:215
+#: src/Core/Diagnostics.php:215 src/Core/Diagnostics.php:219
 msgid "Date functions"
 msgstr ""
 
-#: src/Core/Diagnostics.php:211
+#: src/Core/Diagnostics.php:215
 msgid "wp_date() returns standard Gregorian ISO dates."
 msgstr ""
 
 #. translators: 1: value from PHP, 2: value from wp_date().
-#: src/Core/Diagnostics.php:214
+#: src/Core/Diagnostics.php:218
 #, php-format
 msgid "A plugin or theme converts dates (calendar or digits). PHP gives %1$s but wp_date() gives %2$s. KhabarSEO bypasses these functions for machine-readable dates."
 msgstr ""
 
-#: src/Core/Diagnostics.php:231 src/Core/Diagnostics.php:250 src/Core/Diagnostics.php:252
+#: src/Core/Diagnostics.php:235 src/Core/Diagnostics.php:254 src/Core/Diagnostics.php:256
 msgid "Machine date check"
 msgstr ""
 
-#: src/Core/Diagnostics.php:231
+#: src/Core/Diagnostics.php:235
 msgid "No published post to check yet."
 msgstr ""
 
 #. translators: 1: ISO date emitted by KhabarSEO, 2: value of get_the_date().
-#: src/Core/Diagnostics.php:249
+#: src/Core/Diagnostics.php:253
 #, php-format
 msgid "Newest post: KhabarSEO emits %1$s, identical to the stored GMT time. get_the_date() shows %2$s."
 msgstr ""
 
-#: src/Core/Diagnostics.php:252
+#: src/Core/Diagnostics.php:256
 msgid "The ISO date built from the newest post does not match its stored GMT time."
 msgstr ""
 
-#: src/Core/Diagnostics.php:269
+#: src/Core/Diagnostics.php:273
 msgid "Detected. Its behavior is not verified: KhabarSEO still bypasses date functions for machine-readable dates."
 msgstr ""
 
-#: src/Core/Diagnostics.php:278
+#: src/Core/Diagnostics.php:282
 msgid "Date conversion is on: KhabarSEO never uses the converted date functions for machine-readable dates."
 msgstr ""
 
-#: src/Core/Diagnostics.php:279
+#: src/Core/Diagnostics.php:283
 msgid "Date conversion is off."
 msgstr ""
 
-#: src/Core/Diagnostics.php:283
+#: src/Core/Diagnostics.php:287
 msgid "It also converts permalinks and date archives to the Jalali calendar, and your permalink structure contains date parts, so URLs and canonical values may use Jalali numbers. Consider a permalink structure without dates."
 msgstr ""
 
-#: src/Core/Diagnostics.php:285
+#: src/Core/Diagnostics.php:289
 msgid "It also converts permalinks and archives, but your permalink structure has no date parts, so post URLs are not affected."
 msgstr ""
 
-#: src/Core/Diagnostics.php:302
+#: src/Core/Diagnostics.php:306
 msgid "Persistent object cache"
 msgstr ""
 
-#: src/Core/Diagnostics.php:304 src/Core/Diagnostics.php:329
+#: src/Core/Diagnostics.php:308 src/Core/Diagnostics.php:345
 msgid "Active."
 msgstr ""
 
-#: src/Core/Diagnostics.php:304
+#: src/Core/Diagnostics.php:308
 msgid "Not active. This is fine; KhabarSEO does not require one."
 msgstr ""
 
-#: src/Core/Diagnostics.php:308
+#: src/Core/Diagnostics.php:312
 msgid "WP-Cron"
 msgstr ""
 
-#: src/Core/Diagnostics.php:310
+#: src/Core/Diagnostics.php:314
 msgid "Disabled in wp-config.php (a system cron should call it)."
 msgstr ""
 
-#: src/Core/Diagnostics.php:310
+#: src/Core/Diagnostics.php:314
 msgid "Traffic-triggered (default)."
 msgstr ""
 
 #. translators: 1: current size in bytes, 2: maximum size in bytes.
-#: src/Core/Diagnostics.php:315
+#: src/Core/Diagnostics.php:319
 #, php-format
 msgid "%1$d of %2$d bytes used."
 msgstr ""
 
-#: src/Core/Diagnostics.php:316
+#: src/Core/Diagnostics.php:320
 msgid "Autoloaded settings size"
 msgstr ""
 
-#: src/Core/Diagnostics.php:329 src/Core/Diagnostics.php:343
+#: src/Core/Diagnostics.php:331 src/Core/Diagnostics.php:333
+msgid "Search engine visibility"
+msgstr ""
+
+#: src/Core/Diagnostics.php:331
+msgid "Search engines may index this site."
+msgstr ""
+
+#: src/Core/Diagnostics.php:333
+msgid "Settings, Reading asks search engines not to index this site, so WordPress sets every page to noindex, nofollow. KhabarSEO never overrides this. Untick that option when the site goes live."
+msgstr ""
+
+#: src/Core/Diagnostics.php:345 src/Core/Diagnostics.php:359
 msgid "Front-end output"
 msgstr ""
 
-#: src/Core/Diagnostics.php:334
+#: src/Core/Diagnostics.php:350
 msgid "The KHS_DISABLE constant is set in wp-config.php."
 msgstr ""
 
-#: src/Core/Diagnostics.php:336
+#: src/Core/Diagnostics.php:352
 msgid "The setup wizard has not been finished."
 msgstr ""
 
-#: src/Core/Diagnostics.php:343
+#: src/Core/Diagnostics.php:359
 msgid "Inactive."
 msgstr ""
 
 #. translators: %s: parent theme name.
-#: src/Core/Diagnostics.php:362
+#: src/Core/Diagnostics.php:378
 #, php-format
 msgid "(child of %s)"
 msgstr ""
 
-#: src/Core/Diagnostics.php:366
+#: src/Core/Diagnostics.php:384
+msgid "The theme has no title-tag support; KhabarSEO replaces wp_title() because the compatibility option is on. Check the result with Scan now."
+msgstr ""
+
+#: src/Core/Diagnostics.php:385
+msgid "The theme has no title-tag support and prints its own title, so KhabarSEO titles are not used. See Advanced, Theme compatibility."
+msgstr ""
+
+#: src/Core/Diagnostics.php:389
 msgid "KhabarSEO has a compatibility hint for this theme (shown after a head scan)."
 msgstr ""
 
-#: src/Core/Diagnostics.php:368
+#: src/Core/Diagnostics.php:391
 msgid "Active theme"
 msgstr ""
 
-#: src/Core/Schema.php:361
+#: src/Core/Schema.php:507
 msgid "Setup"
 msgstr ""
 
-#: src/Core/Schema.php:362
+#: src/Core/Schema.php:508
 msgid "Titles & Meta"
 msgstr ""
 
-#: src/Core/Schema.php:363
+#: src/Core/Schema.php:509
 msgid "Indexing & Archives"
 msgstr ""
 
-#: src/Core/Schema.php:364
+#: src/Core/Schema.php:510
 msgid "Social"
 msgstr ""
 
-#: src/Core/Schema.php:365
+#: src/Core/Schema.php:511
 msgid "Advanced"
 msgstr ""
 
-#: src/Core/Schema.php:366
+#: src/Core/Schema.php:512
 msgid "Tools"
 msgstr ""
 
-#: src/Core/Schema.php:367
+#: src/Core/Schema.php:513
 msgid "Status"
 msgstr ""
 
-#: src/Core/Schema.php:378
+#: src/Core/Schema.php:524
 msgid "Publication"
 msgstr ""
 
-#: src/Core/Schema.php:379 src/Core/Schema.php:400
+#: src/Core/Schema.php:525 src/Core/Schema.php:567
 msgid "Language and news content"
 msgstr ""
 
-#: src/Core/Schema.php:380
+#: src/Core/Schema.php:526
 msgid "Title format"
 msgstr ""
 
-#: src/Core/Schema.php:381
-msgid "Archives"
-msgstr ""
-
-#: src/Core/Schema.php:382
-msgid "Defaults"
-msgstr ""
-
-#: src/Core/Schema.php:383
-msgid "Link previews"
-msgstr ""
-
-#: src/Core/Schema.php:384
-msgid "Data"
-msgstr ""
-
-#: src/Core/Schema.php:396
-msgid "Your publication"
-msgstr ""
-
-#: src/Core/Schema.php:397
-msgid "Tell search engines who you are. The name must match how your publication appears, or will appear, in Google News / Publisher Center."
-msgstr ""
-
-#: src/Core/Schema.php:401
-msgid "We detected these from your site language. Change them if they are wrong."
-msgstr ""
-
-#: src/Core/Schema.php:404
-msgid "Indexing"
-msgstr ""
-
-#: src/Core/Schema.php:405
-msgid "Choose which archive pages search engines may index. The recommended choices suit most news sites."
-msgstr ""
-
-#: src/Core/Schema.php:408
-msgid "Titles and social previews"
-msgstr ""
-
-#: src/Core/Schema.php:409
-msgid "Set the title separator and the defaults used when a link is shared on social networks or Telegram."
-msgstr ""
-
-#: src/Core/Schema.php:412
-msgid "Review and finish"
-msgstr ""
-
-#: src/Core/Schema.php:413
-msgid "Check your answers. Finishing applies the \"News site, recommended\" preset and switches KhabarSEO on. You can edit everything later."
-msgstr ""
-
-#: src/Core/Schema.php:445
-msgid "Publication name"
-msgstr ""
-
-#: src/Core/Schema.php:446
-msgid "Exactly as it appears, or will appear, on Google News / Publisher Center."
-msgstr ""
-
-#: src/Core/Schema.php:447
-msgid "Google compares this name with your Publisher Center listing, so spelling, spacing and script must be identical. Leave out text in parentheses."
-msgstr ""
-
-#: src/Core/Schema.php:450
-msgid "Alternate name (optional)"
-msgstr ""
-
-#: src/Core/Schema.php:451
-msgid "A second name readers use, such as an abbreviation or the name in another script."
-msgstr ""
-
-#: src/Core/Schema.php:452
-msgid "Used later as the website alternate name in structured data. Leave empty if you have none."
-msgstr ""
-
-#: src/Core/Schema.php:455
-msgid "Language code"
-msgstr ""
-
-#: src/Core/Schema.php:456
-msgid "Two- or three-letter ISO 639 code, for example fa or en. Empty means: detect from the site language."
-msgstr ""
-
-#: src/Core/Schema.php:457
-msgid "Used for structured data and the news sitemap. The detected value is almost always right."
-msgstr ""
-
-#: src/Core/Schema.php:460
-msgid "Locale for link previews"
-msgstr ""
-
-#: src/Core/Schema.php:461
-msgid "Format language_COUNTRY, for example fa_IR or en_US. Empty means: detect from the site language."
-msgstr ""
-
-#: src/Core/Schema.php:462
-msgid "Sent as og:locale so social networks and Telegram know the language of your pages."
-msgstr ""
-
-#: src/Core/Schema.php:465
-msgid "News post types"
-msgstr ""
-
-#: src/Core/Schema.php:466
-msgid "Content types that are published as news articles."
-msgstr ""
-
-#: src/Core/Schema.php:467
-msgid "Posts are news by default. Add another type only if it holds dated, bylined reports. Leave static pages out."
-msgstr ""
-
-#: src/Core/Schema.php:470
-msgid "Title separator"
-msgstr ""
-
-#: src/Core/Schema.php:471
-msgid "The symbol between the article title and the site name."
-msgstr ""
-
-#: src/Core/Schema.php:472
-msgid "This is cosmetic: search engines treat all of these the same. A plain hyphen is the safest in right-to-left text."
-msgstr ""
-
-#: src/Core/Schema.php:474
-msgid "Hyphen ( - )"
-msgstr ""
-
-#: src/Core/Schema.php:475
-msgid "En dash ( – )"
-msgstr ""
-
-#: src/Core/Schema.php:476
-msgid "Vertical bar ( | )"
-msgstr ""
-
-#: src/Core/Schema.php:477
-msgid "Bullet ( • )"
-msgstr ""
-
-#: src/Core/Schema.php:481
-msgid "Tag pages"
-msgstr ""
-
-#: src/Core/Schema.php:482
-msgid "Tag archives often become thin copies of category pages."
-msgstr ""
-
-#: src/Core/Schema.php:483
-msgid "Tags with only one or two articles add little value, so the middle option is best for most news sites."
-msgstr ""
-
-#: src/Core/Schema.php:486
-msgid "Do not index tag pages"
-msgstr ""
-
-#: src/Core/Schema.php:487
-msgid "Keeps all tag pages out of search. Choose this if you use tags loosely."
-msgstr ""
-
-#: src/Core/Schema.php:490
-msgid "Index only tags with enough articles"
-msgstr ""
-
-#: src/Core/Schema.php:491
-msgid "Tags with several articles work as useful topic hubs; near-empty ones are kept out."
-msgstr ""
-
-#: src/Core/Schema.php:494
-msgid "Index all tag pages"
-msgstr ""
-
-#: src/Core/Schema.php:495
-msgid "Risky for news sites: many tags hold only one or two articles and can lower overall quality."
-msgstr ""
-
-#: src/Core/Schema.php:500
-msgid "Minimum articles for an indexable tag"
-msgstr ""
-
-#: src/Core/Schema.php:501
-msgid "Tags with fewer published articles are set to noindex."
-msgstr ""
-
-#: src/Core/Schema.php:502
-msgid "Three is a good balance between useful hubs and thin pages."
-msgstr ""
-
-#: src/Core/Schema.php:505
-msgid "Category pages"
-msgstr ""
-
-#: src/Core/Schema.php:506
-msgid "Categories are your main topic hubs."
-msgstr ""
-
-#: src/Core/Schema.php:507
-msgid "Indexing them lets readers find your coverage of a topic from search."
-msgstr ""
-
-#: src/Core/Schema.php:510
-msgid "Index category pages"
-msgstr ""
-
-#: src/Core/Schema.php:511
-msgid "Categories usually deserve to appear in search as topic landing pages."
-msgstr ""
-
-#: src/Core/Schema.php:514
-msgid "Do not index category pages"
-msgstr ""
-
-#: src/Core/Schema.php:515
-msgid "Choose this only if categories are internal and not meant as public landing pages."
-msgstr ""
-
-#: src/Core/Schema.php:520
-msgid "Author pages"
-msgstr ""
-
-#: src/Core/Schema.php:521
-msgid "Author pages show who is behind your reporting."
-msgstr ""
-
-#: src/Core/Schema.php:522
-msgid "Showing real authors supports reader trust. Authors without articles stay out of search."
-msgstr ""
-
-#: src/Core/Schema.php:525
-msgid "Index authors who have published articles"
-msgstr ""
-
-#: src/Core/Schema.php:526
-msgid "Makes your bylines discoverable while keeping empty profiles out."
+#: src/Core/Schema.php:528
+msgid "Articles, pages and other content"
 msgstr ""
 
 #: src/Core/Schema.php:529
-msgid "Do not index author pages"
+msgid "Categories, tags and other taxonomies"
 msgstr ""
 
 #: src/Core/Schema.php:530
-msgid "Choose this if you prefer not to expose author profiles to search."
+msgid "Archives"
+msgstr ""
+
+#: src/Core/Schema.php:531
+msgid "Author, date and content type archives"
+msgstr ""
+
+#: src/Core/Schema.php:532
+msgid "Search results and missing pages"
+msgstr ""
+
+#: src/Core/Schema.php:533
+msgid "Automatic descriptions"
+msgstr ""
+
+#: src/Core/Schema.php:534
+msgid "Search snippets"
 msgstr ""
 
 #: src/Core/Schema.php:535
-msgid "Date archives"
+msgid "Canonical URLs"
 msgstr ""
 
 #: src/Core/Schema.php:536
-msgid "Pages that list articles by year, month or day."
+msgid "Defaults"
 msgstr ""
 
 #: src/Core/Schema.php:537
-msgid "They repeat content found elsewhere on your site, so keeping them out of search is better."
+msgid "Link previews"
 msgstr ""
 
-#: src/Core/Schema.php:540
-msgid "Do not index date archives"
+#: src/Core/Schema.php:538
+msgid "Theme compatibility"
 msgstr ""
 
-#: src/Core/Schema.php:541
-msgid "Avoids duplicate listings of the same articles."
-msgstr ""
-
-#: src/Core/Schema.php:544
-msgid "Index date archives"
-msgstr ""
-
-#: src/Core/Schema.php:545
-msgid "Rarely useful; only if readers browse your news by date."
+#: src/Core/Schema.php:539
+msgid "Data"
 msgstr ""
 
 #: src/Core/Schema.php:550
-msgid "Attachment pages"
+msgid "Open Graph and X (Twitter) tags are output from version 0.3 on. You can prepare the settings now."
 msgstr ""
 
 #: src/Core/Schema.php:551
-msgid "The page WordPress can create for each uploaded image or file."
+msgid "These rules apply to every indexable page. They also limit what AI features in search can show from your pages."
 msgstr ""
 
-#: src/Core/Schema.php:552
-msgid "These pages are thin. Redirecting visitors to the article keeps all authority in one place."
+#: src/Core/Schema.php:563
+msgid "Your publication"
 msgstr ""
 
-#: src/Core/Schema.php:555
-msgid "Redirect to the parent article"
+#: src/Core/Schema.php:564
+msgid "Tell search engines who you are. The name must match how your publication appears, or will appear, in Google News / Publisher Center."
 msgstr ""
 
-#: src/Core/Schema.php:556
-msgid "Visitors and search engines land on the real article instead of a bare image page."
-msgstr ""
-
-#: src/Core/Schema.php:559
-msgid "Leave WordPress behavior unchanged"
-msgstr ""
-
-#: src/Core/Schema.php:560
-msgid "The result then depends on your WordPress version and settings."
-msgstr ""
-
-#: src/Core/Schema.php:565
-msgid "Page 2 and later of lists"
-msgstr ""
-
-#: src/Core/Schema.php:566
-msgid "Category, tag and author lists that continue on further pages."
-msgstr ""
-
-#: src/Core/Schema.php:567
-msgid "Each page lists different articles, so letting them be indexed helps older stories get discovered."
-msgstr ""
-
-#: src/Core/Schema.php:570
-msgid "Index page 2 and later"
+#: src/Core/Schema.php:568
+msgid "We detected these from your site language. Change them if they are wrong."
 msgstr ""
 
 #: src/Core/Schema.php:571
-msgid "Each page points to itself as canonical and can be crawled normally."
+msgid "Indexing"
 msgstr ""
 
-#: src/Core/Schema.php:574
-msgid "Set page 2 and later to noindex"
+#: src/Core/Schema.php:572
+msgid "Choose which archive pages search engines may index. The recommended choices suit most news sites."
 msgstr ""
 
 #: src/Core/Schema.php:575
-msgid "Keeps deep pages out of search but can make older articles harder to discover."
+msgid "Titles and social previews"
+msgstr ""
+
+#: src/Core/Schema.php:576
+msgid "Set the title separator and the defaults used when a link is shared on social networks or Telegram."
+msgstr ""
+
+#: src/Core/Schema.php:579
+msgid "Review and finish"
 msgstr ""
 
 #: src/Core/Schema.php:580
-msgid "Output Open Graph tags"
+msgid "Check your answers. Finishing applies the \"News site, recommended\" preset and switches KhabarSEO on. You can edit everything later."
 msgstr ""
 
-#: src/Core/Schema.php:581
-msgid "Tags that Facebook, Telegram and LinkedIn use to build link previews."
-msgstr ""
-
-#: src/Core/Schema.php:582
-msgid "Turn off only if your theme already outputs them and you cannot disable the theme version."
-msgstr ""
-
-#: src/Core/Schema.php:585
-msgid "Output X (Twitter) card tags"
-msgstr ""
-
-#: src/Core/Schema.php:586
-msgid "Tags that X uses to build link previews."
-msgstr ""
-
-#: src/Core/Schema.php:587
-msgid "Keep this on unless your theme already outputs them."
-msgstr ""
-
-#: src/Core/Schema.php:590
-msgid "Default social image"
-msgstr ""
-
-#: src/Core/Schema.php:591
-msgid "Used when an article has no suitable image. At least 1200 px wide is recommended."
-msgstr ""
-
-#: src/Core/Schema.php:592
-msgid "Use a photo or neutral artwork, not your logo. Google Discover prefers large, representative images."
-msgstr ""
-
-#: src/Core/Schema.php:595
-msgid "X (Twitter) card type"
-msgstr ""
-
-#: src/Core/Schema.php:596
-msgid "How links to your articles look on X."
-msgstr ""
-
-#: src/Core/Schema.php:597
-msgid "The large image card gives news headlines more visual weight."
-msgstr ""
-
-#: src/Core/Schema.php:600
-msgid "Large image card"
-msgstr ""
-
-#: src/Core/Schema.php:601
-msgid "Shows a wide image above the headline. Best for news."
-msgstr ""
-
-#: src/Core/Schema.php:604
-msgid "Small card"
-msgstr ""
-
-#: src/Core/Schema.php:605
-msgid "Shows a small thumbnail beside the text. Useful if your images are small."
-msgstr ""
-
-#: src/Core/Schema.php:610
-msgid "X (Twitter) account"
-msgstr ""
-
-#: src/Core/Schema.php:611
-msgid "Optional, for example @yournews."
-msgstr ""
-
-#: src/Core/Schema.php:612
-msgid "Adds your publication account to link previews."
-msgstr ""
-
-#: src/Core/Schema.php:615
-msgid "Keep my data when the plugin is deleted"
-msgstr ""
-
-#: src/Core/Schema.php:616
-msgid "Settings and logs stay in the database after deletion."
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:613
+#, php-format
+msgid "Lists continue on page 2, 3 and so on. %s adds \"Page 2 of 5\" there, so each page has its own title; it is empty on page 1."
 msgstr ""
 
 #: src/Core/Schema.php:617
+msgid "Publication name"
+msgstr ""
+
+#: src/Core/Schema.php:618
+msgid "Exactly as it appears, or will appear, in Google News Publisher Center."
+msgstr ""
+
+#: src/Core/Schema.php:619
+msgid "Google compares this name with your Publisher Center listing, so spelling, spacing and script must be identical. Leave out text in parentheses."
+msgstr ""
+
+#: src/Core/Schema.php:622
+msgid "Alternate name (optional)"
+msgstr ""
+
+#: src/Core/Schema.php:623
+msgid "A second name readers use, such as an abbreviation or the name in another script."
+msgstr ""
+
+#: src/Core/Schema.php:624
+msgid "Used later as the website alternate name in structured data. Leave empty if you have none."
+msgstr ""
+
+#: src/Core/Schema.php:627
+msgid "Language code"
+msgstr ""
+
+#: src/Core/Schema.php:628
+msgid "Two- or three-letter ISO 639 code, for example fa or en. Empty means: detect from the site language."
+msgstr ""
+
+#: src/Core/Schema.php:629
+msgid "Used for structured data and the news sitemap. The detected value is almost always right."
+msgstr ""
+
+#: src/Core/Schema.php:632
+msgid "Locale for link previews"
+msgstr ""
+
+#: src/Core/Schema.php:633
+msgid "Format language_COUNTRY, for example fa_IR or en_US. Empty means: detect from the site language."
+msgstr ""
+
+#: src/Core/Schema.php:634
+msgid "Sent as og:locale so social networks and Telegram know the language of your pages."
+msgstr ""
+
+#: src/Core/Schema.php:637
+msgid "News post types"
+msgstr ""
+
+#: src/Core/Schema.php:638
+msgid "Content types that are published as news articles."
+msgstr ""
+
+#: src/Core/Schema.php:639
+msgid "Posts are news by default. Add another type only if it holds dated, bylined reports. Leave static pages out."
+msgstr ""
+
+#: src/Core/Schema.php:642
+msgid "Title separator"
+msgstr ""
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:643
+#, php-format
+msgid "The symbol that %s stands for, between the article title and the site name."
+msgstr ""
+
+#: src/Core/Schema.php:644
+msgid "This is cosmetic: Google mentions hyphens, colons and pipes as typical delimiters. A plain hyphen is the safest in right-to-left text."
+msgstr ""
+
+#: src/Core/Schema.php:646
+msgid "Hyphen ( - )"
+msgstr ""
+
+#: src/Core/Schema.php:647
+msgid "En dash ( – )"
+msgstr ""
+
+#: src/Core/Schema.php:648
+msgid "Vertical bar ( | )"
+msgstr ""
+
+#: src/Core/Schema.php:649
+msgid "Middle dot ( · )"
+msgstr ""
+
+#: src/Core/Schema.php:653
+msgid "Home page title"
+msgstr ""
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:654
+#, php-format
+msgid "On the home page, %s is the site name."
+msgstr ""
+
+#: src/Core/Schema.php:655
+msgid "Your name plus your tagline tells searchers who you are. If the tagline is empty, only the name is used."
+msgstr ""
+
+#: src/Core/Schema.php:658
+msgid "Home page description"
+msgstr ""
+
+#: src/Core/Schema.php:659
+msgid "Shown under your home page in search results, if the search engine uses it."
+msgstr ""
+
+#: src/Core/Schema.php:660
+msgid "Describe your coverage in one or two plain sentences, for example the topics and region you report on."
+msgstr ""
+
+#: src/Core/Schema.php:663
+msgid "Title template per content type"
+msgstr ""
+
+#: src/Core/Schema.php:664
+msgid "Used for each article, page or other content item. A title written in the editor box replaces it for that item."
+msgstr ""
+
+#: src/Core/Schema.php:665
+msgid "Put the article title first and the site name last: readers see the story first, and the name still identifies you. Google rewrites titles that look like boilerplate."
+msgstr ""
+
+#: src/Core/Schema.php:668
+msgid "Description template per content type"
+msgstr ""
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:669
+#, php-format
+msgid "%s is the excerpt, or the start of the text when automatic descriptions are on."
+msgstr ""
+
+#: src/Core/Schema.php:670
+msgid "A short summary that matches the article works best. Identical descriptions on every page do not help."
+msgstr ""
+
+#: src/Core/Schema.php:673
+msgid "Title template per taxonomy"
+msgstr ""
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:674
+#, php-format
+msgid "For category, tag and other taxonomy pages. %s is the term name."
+msgstr ""
+
+#: src/Core/Schema.php:678
+msgid "Description template per taxonomy"
+msgstr ""
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:679
+#, php-format
+msgid "%s is the term description you write in WordPress."
+msgstr ""
+
+#: src/Core/Schema.php:680
+msgid "Write a description for your main categories; it helps readers understand what the section covers."
+msgstr ""
+
+#: src/Core/Schema.php:683
+msgid "Author page title"
+msgstr ""
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:684
+#, php-format
+msgid "%s is the author display name."
+msgstr ""
+
+#: src/Core/Schema.php:688
+msgid "Author page description"
+msgstr ""
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:689
+#, php-format
+msgid "%s is the biographical info from the user profile."
+msgstr ""
+
+#: src/Core/Schema.php:690
+msgid "A real biography supports reader trust in your reporting."
+msgstr ""
+
+#: src/Core/Schema.php:693
+msgid "Content type archive title"
+msgstr ""
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:694
+#, php-format
+msgid "Lists of one content type (if your site has them). %s is the content type name."
+msgstr ""
+
+#: src/Core/Schema.php:698
+msgid "Date archive title"
+msgstr ""
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:699
+#, php-format
+msgid "%s is the year, month or day in your site date format."
+msgstr ""
+
+#: src/Core/Schema.php:703
+msgid "Search results title"
+msgstr ""
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:704
+#, php-format
+msgid "%s is \"Search results for\" plus the search terms."
+msgstr ""
+
+#: src/Core/Schema.php:705
+msgid "Search result pages are never indexed, so this title is only seen by visitors."
+msgstr ""
+
+#: src/Core/Schema.php:708
+msgid "Title of missing pages (404)"
+msgstr ""
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:709
+#, php-format
+msgid "%s is \"Page not found\"."
+msgstr ""
+
+#: src/Core/Schema.php:710
+msgid "Missing pages answer with status 404 and are never indexed; the title only helps visitors."
+msgstr ""
+
+#: src/Core/Schema.php:713
+msgid "When an article has no excerpt"
+msgstr ""
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:714
+#, php-format
+msgid "Decides what %s contains for articles without a written excerpt."
+msgstr ""
+
+#: src/Core/Schema.php:715
+msgid "Google encourages generated descriptions for large sites where writing each one by hand is impossible. Sections hidden from snippets are never used."
+msgstr ""
+
+#: src/Core/Schema.php:718
+msgid "Use the start of the article text"
+msgstr ""
+
+#: src/Core/Schema.php:719
+msgid "Every article gets a description that matches its content, even when editors are in a hurry."
+msgstr ""
+
+#: src/Core/Schema.php:722
+msgid "Only use excerpts written by editors"
+msgstr ""
+
+#: src/Core/Schema.php:723
+msgid "Articles without an excerpt get no description; search engines then pick text from the page themselves."
+msgstr ""
+
+#: src/Core/Schema.php:728
+msgid "Length of automatic descriptions (characters)"
+msgstr ""
+
+#: src/Core/Schema.php:729
+msgid "Only used when KhabarSEO builds a description from the article text. Text is cut at a word boundary."
+msgstr ""
+
+#: src/Core/Schema.php:730
+msgid "There is no length limit for descriptions; search engines shorten them to fit the screen. This only keeps automatic descriptions to a sensible size."
+msgstr ""
+
+#: src/Core/Schema.php:733
+msgid "Tag pages"
+msgstr ""
+
+#: src/Core/Schema.php:734
+msgid "Tag archives often become thin copies of category pages."
+msgstr ""
+
+#: src/Core/Schema.php:735
+msgid "Tags with only one or two articles add little value, so the middle option is best for most news sites."
+msgstr ""
+
+#: src/Core/Schema.php:738
+msgid "Do not index tag pages"
+msgstr ""
+
+#: src/Core/Schema.php:739
+msgid "Keeps all tag pages out of search. Choose this if you use tags loosely."
+msgstr ""
+
+#: src/Core/Schema.php:742
+msgid "Index only tags with enough articles"
+msgstr ""
+
+#: src/Core/Schema.php:743
+msgid "Tags with several articles work as useful topic hubs; near-empty ones are kept out."
+msgstr ""
+
+#: src/Core/Schema.php:746
+msgid "Index all tag pages"
+msgstr ""
+
+#: src/Core/Schema.php:747
+msgid "Risky for news sites: many tags hold only one or two articles and can lower overall quality."
+msgstr ""
+
+#: src/Core/Schema.php:752
+msgid "Minimum articles for an indexable tag"
+msgstr ""
+
+#: src/Core/Schema.php:753
+msgid "Tags with fewer published articles are set to noindex."
+msgstr ""
+
+#: src/Core/Schema.php:754
+msgid "Three is a good balance between useful hubs and thin pages."
+msgstr ""
+
+#: src/Core/Schema.php:757
+msgid "Category pages"
+msgstr ""
+
+#: src/Core/Schema.php:758
+msgid "Categories are your main topic hubs. This also applies to other public taxonomies except tags."
+msgstr ""
+
+#: src/Core/Schema.php:759
+msgid "Indexing them lets readers find your coverage of a topic from search."
+msgstr ""
+
+#: src/Core/Schema.php:762
+msgid "Index category pages"
+msgstr ""
+
+#: src/Core/Schema.php:763
+msgid "Categories usually deserve to appear in search as topic landing pages."
+msgstr ""
+
+#: src/Core/Schema.php:766
+msgid "Do not index category pages"
+msgstr ""
+
+#: src/Core/Schema.php:767
+msgid "Choose this only if categories are internal and not meant as public landing pages."
+msgstr ""
+
+#: src/Core/Schema.php:772
+msgid "Author pages"
+msgstr ""
+
+#: src/Core/Schema.php:773
+msgid "Author pages show who is behind your reporting."
+msgstr ""
+
+#: src/Core/Schema.php:774
+msgid "Showing real authors supports reader trust. Authors without articles stay out of search."
+msgstr ""
+
+#: src/Core/Schema.php:777
+msgid "Index authors who have published articles"
+msgstr ""
+
+#: src/Core/Schema.php:778
+msgid "Makes your bylines discoverable while keeping empty profiles out."
+msgstr ""
+
+#: src/Core/Schema.php:781
+msgid "Do not index author pages"
+msgstr ""
+
+#: src/Core/Schema.php:782
+msgid "Choose this if you prefer not to expose author profiles to search."
+msgstr ""
+
+#: src/Core/Schema.php:787
+msgid "Date archives"
+msgstr ""
+
+#: src/Core/Schema.php:788
+msgid "Pages that list articles by year, month or day."
+msgstr ""
+
+#: src/Core/Schema.php:789
+msgid "They repeat content found elsewhere on your site, so keeping them out of search is better."
+msgstr ""
+
+#: src/Core/Schema.php:792
+msgid "Do not index date archives"
+msgstr ""
+
+#: src/Core/Schema.php:793
+msgid "Avoids duplicate listings of the same articles."
+msgstr ""
+
+#: src/Core/Schema.php:796
+msgid "Index date archives"
+msgstr ""
+
+#: src/Core/Schema.php:797
+msgid "Rarely useful; only if readers browse your news by date."
+msgstr ""
+
+#: src/Core/Schema.php:802
+msgid "Attachment pages"
+msgstr ""
+
+#: src/Core/Schema.php:803
+msgid "The page WordPress can create for each uploaded image or file. When one is shown, it is always set to noindex."
+msgstr ""
+
+#: src/Core/Schema.php:804
+msgid "These pages are thin. Redirecting visitors to the article keeps all authority in one place."
+msgstr ""
+
+#: src/Core/Schema.php:807
+msgid "Redirect to the parent article"
+msgstr ""
+
+#: src/Core/Schema.php:808
+msgid "Visitors and search engines land on the published article. Files without a published article keep the WordPress behavior."
+msgstr ""
+
+#: src/Core/Schema.php:811
+msgid "Leave WordPress behavior unchanged"
+msgstr ""
+
+#: src/Core/Schema.php:812
+msgid "WordPress either shows the attachment page or sends visitors to the file, depending on its \"attachment pages\" setting."
+msgstr ""
+
+#: src/Core/Schema.php:817
+msgid "Page 2 and later of lists"
+msgstr ""
+
+#: src/Core/Schema.php:818
+msgid "Category, tag, author and home page lists that continue on further pages."
+msgstr ""
+
+#: src/Core/Schema.php:819
+msgid "Google advises giving each page its own canonical URL, never page 1. Indexable deep pages help older stories get discovered."
+msgstr ""
+
+#: src/Core/Schema.php:822
+msgid "Index page 2 and later"
+msgstr ""
+
+#: src/Core/Schema.php:823
+msgid "Each page points to itself as canonical and can be crawled normally."
+msgstr ""
+
+#: src/Core/Schema.php:826
+msgid "Set page 2 and later to noindex"
+msgstr ""
+
+#: src/Core/Schema.php:827
+msgid "Keeps deep pages out of search but can make older articles harder to discover."
+msgstr ""
+
+#: src/Core/Schema.php:832
+msgid "Maximum snippet length (max-snippet)"
+msgstr ""
+
+#: src/Core/Schema.php:833
+msgid "-1 lets the search engine choose; 0 shows no text snippet; another number is a character limit."
+msgstr ""
+
+#: src/Core/Schema.php:834
+msgid "Limits also apply to normal search snippets and AI features. Keep -1 unless you have a legal or business reason."
+msgstr ""
+
+#: src/Core/Schema.php:837
+msgid "Image preview size (max-image-preview)"
+msgstr ""
+
+#: src/Core/Schema.php:838
+msgid "The largest image preview search engines may show for your pages."
+msgstr ""
+
+#: src/Core/Schema.php:839
+msgid "Google Discover recommends large previews; smaller previews make news cards less visible."
+msgstr ""
+
+#: src/Core/Schema.php:842
+msgid "Large"
+msgstr ""
+
+#: src/Core/Schema.php:843
+msgid "Allows large images, as used by Google Discover."
+msgstr ""
+
+#: src/Core/Schema.php:846
+msgid "Standard"
+msgstr ""
+
+#: src/Core/Schema.php:847
+msgid "Only a default-size preview."
+msgstr ""
+
+#: src/Core/Schema.php:851
+msgid "No image preview at all."
+msgstr ""
+
+#: src/Core/Schema.php:856
+msgid "Maximum video preview (max-video-preview, seconds)"
+msgstr ""
+
+#: src/Core/Schema.php:857
+msgid "-1 means no limit; 0 allows at most a still image."
+msgstr ""
+
+#: src/Core/Schema.php:858
+msgid "Keep -1 so video reports can show a preview."
+msgstr ""
+
+#: src/Core/Schema.php:861
+msgid "Tracking parameters removed from canonical URLs"
+msgstr ""
+
+#: src/Core/Schema.php:862
+msgid "One per line. A trailing * matches a prefix, for example utm_*."
+msgstr ""
+
+#: src/Core/Schema.php:863
+msgid "Campaign tags must never become part of a canonical URL. Canonicals are built from the real article address, so this mainly cleans URLs entered by hand."
+msgstr ""
+
+#: src/Core/Schema.php:866
+msgid "Also output a canonical on noindex pages"
+msgstr ""
+
+#: src/Core/Schema.php:867
+msgid "By default, pages set to noindex get no canonical link."
+msgstr ""
+
+#: src/Core/Schema.php:868
+msgid "A canonical says \"index this URL\", which contradicts noindex. Leave this off unless a search engine tool asks for it."
+msgstr ""
+
+#: src/Core/Schema.php:871
+msgid "Output Open Graph tags"
+msgstr ""
+
+#: src/Core/Schema.php:872
+msgid "Tags that Facebook, Telegram and LinkedIn use to build link previews."
+msgstr ""
+
+#: src/Core/Schema.php:873
+msgid "Turn off only if your theme already outputs them and you cannot disable the theme version."
+msgstr ""
+
+#: src/Core/Schema.php:876
+msgid "Output X (Twitter) card tags"
+msgstr ""
+
+#: src/Core/Schema.php:877
+msgid "Tags that X uses to build link previews."
+msgstr ""
+
+#: src/Core/Schema.php:878
+msgid "Keep this on unless your theme already outputs them."
+msgstr ""
+
+#: src/Core/Schema.php:881
+msgid "Default social image"
+msgstr ""
+
+#: src/Core/Schema.php:882
+msgid "Used when an article has no suitable image. At least 1200 px wide is recommended."
+msgstr ""
+
+#: src/Core/Schema.php:883
+msgid "Use a photo or neutral artwork, not your logo. Google Discover prefers large, representative images."
+msgstr ""
+
+#: src/Core/Schema.php:886
+msgid "X (Twitter) card type"
+msgstr ""
+
+#: src/Core/Schema.php:887
+msgid "How links to your articles look on X."
+msgstr ""
+
+#: src/Core/Schema.php:888
+msgid "The large image card gives news headlines more visual weight."
+msgstr ""
+
+#: src/Core/Schema.php:891
+msgid "Large image card"
+msgstr ""
+
+#: src/Core/Schema.php:892
+msgid "Shows a wide image above the headline. Best for news."
+msgstr ""
+
+#: src/Core/Schema.php:895
+msgid "Small card"
+msgstr ""
+
+#: src/Core/Schema.php:896
+msgid "Shows a small thumbnail beside the text. Useful if your images are small."
+msgstr ""
+
+#: src/Core/Schema.php:901
+msgid "X (Twitter) account"
+msgstr ""
+
+#: src/Core/Schema.php:902
+msgid "Optional, for example @yournews."
+msgstr ""
+
+#: src/Core/Schema.php:903
+msgid "Adds your publication account to link previews."
+msgstr ""
+
+#: src/Core/Schema.php:906
+msgid "Control titles in themes without title-tag support"
+msgstr ""
+
+#: src/Core/Schema.php:907
+msgid "Only matters for older themes that print the title themselves with wp_title(). The Status page tells you if yours does."
+msgstr ""
+
+#: src/Core/Schema.php:908
+msgid "Such themes often add the site name again after wp_title(), which would show it twice. Turn this on only after checking the result with Status, Scan now."
+msgstr ""
+
+#: src/Core/Schema.php:911
+msgid "Keep my data when the plugin is deleted"
+msgstr ""
+
+#: src/Core/Schema.php:912
+msgid "Settings and logs stay in the database after deletion."
+msgstr ""
+
+#: src/Core/Schema.php:913
 msgid "Keeping data protects you from accidental loss. Turn it off to remove everything when the plugin is deleted."
+msgstr ""
+
+#. translators: %s: search terms.
+#: src/Output/Context.php:312
+#, php-format
+msgid "Search results for “%s”"
+msgstr ""
+
+#: src/Output/Context.php:314
+msgid "Page not found"
+msgstr ""
+
+#. translators: 1: current page number, 2: total number of pages.
+#: src/Output/Context.php:405
+#, php-format
+msgid "Page %1$s of %2$s"
+msgstr ""
+
+#: assets/blocks/nosnippet/block.json
+msgctxt "block title"
+msgid "Hidden from search snippets"
+msgstr ""
+
+#: assets/blocks/nosnippet/block.json
+msgctxt "block description"
+msgid "Search engines will not quote the blocks inside in result snippets (data-nosnippet). Use it for sensitive or paywalled passages."
+msgstr ""
+
+#: assets/blocks/nosnippet/block.json
+msgctxt "block keyword"
+msgid "nosnippet"
+msgstr ""
+
+#: assets/blocks/nosnippet/block.json
+msgctxt "block keyword"
+msgid "snippet"
+msgstr ""
+
+#: assets/blocks/nosnippet/block.json
+msgctxt "block keyword"
+msgid "seo"
 msgstr ""

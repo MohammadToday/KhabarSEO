@@ -2,7 +2,9 @@
 /**
  * Status tab: environment checks, rendered-head scan, diagnostics report.
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 namespace KhabarSEO\Admin;
@@ -107,6 +109,7 @@ final class StatusPage {
 			__( 'Title tags', 'khabar-seo' )            => (string) count( $parsed['title'] ?? array() ),
 			__( 'Canonical links', 'khabar-seo' )       => implode( ' | ', (array) ( $parsed['canonical'] ?? array() ) ),
 			__( 'Robots meta tags', 'khabar-seo' )      => implode( ' | ', (array) ( $parsed['robots'] ?? array() ) ),
+			__( 'Meta descriptions', 'khabar-seo' )     => (string) count( (array) ( $parsed['description'] ?? array() ) ),
 			__( 'Open Graph properties', 'khabar-seo' ) => (string) count( (array) ( $parsed['og'] ?? array() ) ),
 			__( 'X (Twitter) card tags', 'khabar-seo' ) => (string) count( (array) ( $parsed['twitter'] ?? array() ) ),
 			__( 'JSON-LD blocks', 'khabar-seo' )        => (string) ( $parsed['jsonld']['count'] ?? 0 ) . ( ! empty( $parsed['jsonld']['types'] ) ? ' (' . implode( ', ', $parsed['jsonld']['types'] ) . ')' : '' ),
@@ -142,6 +145,7 @@ final class StatusPage {
 			case 'dup_title':
 			case 'dup_canonical':
 			case 'dup_robots':
+			case 'dup_description':
 				/* translators: %s: number of tags found. */
 				return sprintf( __( 'This tag appears %s times, but a page should have exactly one.', 'khabar-seo' ), $finding['detail'] );
 			case 'dup_og':

@@ -4,9 +4,12 @@
  * export/import and reset are all derived from this single class.
  *
  * Definitions contain no translated strings so front-end requests never load
- * translations. UI strings live in ui() and are only built in the admin.
+ * translations to read a default. UI strings live in ui() and are only built
+ * in the admin.
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 namespace KhabarSEO\Core;
@@ -21,7 +24,17 @@ final class Schema {
 	/**
 	 * Schema version. Bump together with a new Migrations step.
 	 */
-	public const VERSION = 1;
+	public const VERSION = 2;
+
+	/**
+	 * Default title template for singular content (post title first, site name last).
+	 */
+	public const TPL_SINGULAR = '%title% %sep% %sitename%';
+
+	/**
+	 * Default title template for lists (archives, search), with the page number.
+	 */
+	public const TPL_LIST = '%title% %sep% %page% %sep% %sitename%';
 
 	/**
 	 * Memoized definitions.
@@ -40,9 +53,10 @@ final class Schema {
 	/**
 	 * Field definitions keyed by "group.name".
 	 *
-	 * Field keys: type, default, tab, section, wizard (step number, 0 = none),
-	 * min, max, required, recommended, depends (key => value), dynamic, internal,
-	 * options (choice values, in display order).
+	 * Keys: type, default, tab, section, wizard (step, 0 = none), min, max
+	 * (null = unbounded), required, recommended, depends (key => value),
+	 * dynamic, internal, options (choice values in display order),
+	 * source (post_types|taxonomies for tpl_map) and item_default (tpl_map).
 	 *
 	 * @return array<string, array>
 	 */
@@ -52,23 +66,37 @@ final class Schema {
 		}
 
 		$base = array(
-			'type'        => 'text',
-			'default'     => '',
-			'tab'         => '',
-			'section'     => '',
-			'wizard'      => 0,
-			'min'         => 0,
-			'max'         => 0,
-			'required'    => false,
-			'recommended' => null,
-			'depends'     => null,
-			'dynamic'     => '',
-			'internal'    => false,
-			'options'     => array(),
+			'type'         => 'text',
+			'default'      => '',
+			'tab'          => '',
+			'section'      => '',
+			'wizard'       => 0,
+			'min'          => null,
+			'max'          => null,
+			'required'     => false,
+			'recommended'  => null,
+			'depends'      => null,
+			'dynamic'      => '',
+			'internal'     => false,
+			'options'      => array(),
+			'source'       => '',
+			'item_default' => '',
 		);
 
+		$tpl = static function ( string $tab, string $section, string $fallback, string $type = 'template' ): array {
+			return array(
+				'type'        => $type,
+				'tab'         => $tab,
+				'section'     => $section,
+				'default'     => $fallback,
+				'recommended' => $fallback,
+				'max'         => 300,
+			);
+		};
+
 		$raw = array(
-			'site.publication_name'   => array(
+			// Setup.
+			'site.publication_name'    => array(
 				'type'     => 'text',
 				'tab'      => 'setup',
 				'section'  => 'publication',
@@ -76,44 +104,110 @@ final class Schema {
 				'max'      => 120,
 				'required' => true,
 			),
-			'site.alternate_name'     => array(
+			'site.alternate_name'      => array(
 				'type'    => 'text',
 				'tab'     => 'setup',
 				'section' => 'publication',
 				'wizard'  => 1,
 				'max'     => 120,
 			),
-			'site.language'           => array(
+			'site.language'            => array(
 				'type'    => 'lang',
 				'tab'     => 'setup',
 				'section' => 'content',
 				'wizard'  => 2,
 				'dynamic' => 'language',
 			),
-			'site.locale'             => array(
+			'site.locale'              => array(
 				'type'    => 'locale',
 				'tab'     => 'setup',
 				'section' => 'content',
 				'wizard'  => 2,
 				'dynamic' => 'locale',
 			),
-			'site.news_post_types'    => array(
+			'site.news_post_types'     => array(
 				'type'    => 'post_types',
 				'tab'     => 'setup',
 				'section' => 'content',
 				'wizard'  => 2,
 				'default' => array( 'post' ),
 			),
-			'titles.separator'        => array(
+
+			// Titles & Meta.
+			'titles.separator'         => array(
 				'type'        => 'choice',
 				'tab'         => 'titles',
 				'section'     => 'format',
 				'wizard'      => 4,
 				'default'     => '-',
 				'recommended' => '-',
-				'options'     => array( '-', '–', '|', '•' ),
+				'options'     => array( '-', '–', '|', '·' ),
 			),
-			'indexing.tags'           => array(
+			'titles.home_title'        => $tpl( 'titles', 'home', '%sitename% %sep% %tagline%' ),
+			'titles.home_desc'         => $tpl( 'titles', 'home', '%tagline%' ),
+			'titles.singular_title'    => array_merge(
+				$tpl( 'titles', 'singular', '', 'tpl_map' ),
+				array(
+					'default'      => array(),
+					'recommended'  => null,
+					'source'       => 'post_types',
+					'item_default' => self::TPL_SINGULAR,
+				)
+			),
+			'titles.singular_desc'     => array_merge(
+				$tpl( 'titles', 'singular', '', 'tpl_map' ),
+				array(
+					'default'      => array(),
+					'recommended'  => null,
+					'source'       => 'post_types',
+					'item_default' => '%excerpt%',
+				)
+			),
+			'titles.term_title'        => array_merge(
+				$tpl( 'titles', 'terms', '', 'tpl_map' ),
+				array(
+					'default'      => array(),
+					'recommended'  => null,
+					'source'       => 'taxonomies',
+					'item_default' => self::TPL_LIST,
+				)
+			),
+			'titles.term_desc'         => array_merge(
+				$tpl( 'titles', 'terms', '', 'tpl_map' ),
+				array(
+					'default'      => array(),
+					'recommended'  => null,
+					'source'       => 'taxonomies',
+					'item_default' => '%excerpt%',
+				)
+			),
+			'titles.author_title'      => $tpl( 'titles', 'archive_titles', self::TPL_LIST ),
+			'titles.author_desc'       => $tpl( 'titles', 'archive_titles', '%excerpt%' ),
+			'titles.archive_title'     => $tpl( 'titles', 'archive_titles', self::TPL_LIST ),
+			'titles.date_title'        => $tpl( 'titles', 'archive_titles', self::TPL_LIST ),
+			'titles.search_title'      => $tpl( 'titles', 'special', self::TPL_LIST ),
+			'titles.notfound_title'    => $tpl( 'titles', 'special', self::TPL_SINGULAR ),
+			'titles.desc_fallback'     => array(
+				'type'        => 'choice',
+				'tab'         => 'titles',
+				'section'     => 'descriptions',
+				'default'     => 'auto',
+				'recommended' => 'auto',
+				'options'     => array( 'auto', 'manual' ),
+			),
+			'titles.desc_length'       => array(
+				'type'        => 'int',
+				'tab'         => 'titles',
+				'section'     => 'descriptions',
+				'default'     => 160,
+				'recommended' => 160,
+				'min'         => 50,
+				'max'         => 400,
+				'depends'     => array( 'titles.desc_fallback' => 'auto' ),
+			),
+
+			// Indexing & Archives.
+			'indexing.tags'            => array(
 				'type'        => 'choice',
 				'tab'         => 'indexing',
 				'section'     => 'archives',
@@ -122,7 +216,7 @@ final class Schema {
 				'recommended' => 'min_posts',
 				'options'     => array( 'noindex_all', 'min_posts', 'index_all' ),
 			),
-			'indexing.tag_min_posts'  => array(
+			'indexing.tag_min_posts'   => array(
 				'type'        => 'int',
 				'tab'         => 'indexing',
 				'section'     => 'archives',
@@ -133,7 +227,7 @@ final class Schema {
 				'max'         => 50,
 				'depends'     => array( 'indexing.tags' => 'min_posts' ),
 			),
-			'indexing.categories'     => array(
+			'indexing.categories'      => array(
 				'type'        => 'choice',
 				'tab'         => 'indexing',
 				'section'     => 'archives',
@@ -142,7 +236,7 @@ final class Schema {
 				'recommended' => 'index',
 				'options'     => array( 'index', 'noindex' ),
 			),
-			'indexing.authors'        => array(
+			'indexing.authors'         => array(
 				'type'        => 'choice',
 				'tab'         => 'indexing',
 				'section'     => 'archives',
@@ -151,7 +245,7 @@ final class Schema {
 				'recommended' => 'with_posts',
 				'options'     => array( 'with_posts', 'noindex' ),
 			),
-			'indexing.date'           => array(
+			'indexing.date'            => array(
 				'type'        => 'choice',
 				'tab'         => 'indexing',
 				'section'     => 'archives',
@@ -160,7 +254,7 @@ final class Schema {
 				'recommended' => 'noindex',
 				'options'     => array( 'noindex', 'index' ),
 			),
-			'indexing.attachment'     => array(
+			'indexing.attachment'      => array(
 				'type'        => 'choice',
 				'tab'         => 'indexing',
 				'section'     => 'archives',
@@ -169,7 +263,7 @@ final class Schema {
 				'recommended' => 'redirect',
 				'options'     => array( 'redirect', 'leave' ),
 			),
-			'indexing.pagination'     => array(
+			'indexing.pagination'      => array(
 				'type'        => 'choice',
 				'tab'         => 'indexing',
 				'section'     => 'archives',
@@ -178,28 +272,71 @@ final class Schema {
 				'recommended' => 'index_self',
 				'options'     => array( 'index_self', 'noindex' ),
 			),
-			'social.og_enabled'       => array(
+			'robots.max_snippet'       => array(
+				'type'        => 'int',
+				'tab'         => 'indexing',
+				'section'     => 'snippets',
+				'default'     => -1,
+				'recommended' => -1,
+				'min'         => -1,
+				'max'         => 10000,
+			),
+			'robots.max_image_preview' => array(
+				'type'        => 'choice',
+				'tab'         => 'indexing',
+				'section'     => 'snippets',
+				'default'     => 'large',
+				'recommended' => 'large',
+				'options'     => array( 'large', 'standard', 'none' ),
+			),
+			'robots.max_video_preview' => array(
+				'type'        => 'int',
+				'tab'         => 'indexing',
+				'section'     => 'snippets',
+				'default'     => -1,
+				'recommended' => -1,
+				'min'         => -1,
+				'max'         => 36000,
+			),
+			'canonical.strip_params'   => array(
+				'type'        => 'list',
+				'tab'         => 'indexing',
+				'section'     => 'canonical',
+				'default'     => array( 'utm_*', 'fbclid', 'gclid', 'yclid', 'msclkid', 'mc_cid', 'mc_eid' ),
+				'recommended' => null,
+				'max'         => 40,
+			),
+			'canonical.on_noindex'     => array(
+				'type'        => 'bool',
+				'tab'         => 'indexing',
+				'section'     => 'canonical',
+				'default'     => false,
+				'recommended' => false,
+			),
+
+			// Social (output arrives in Part 1C).
+			'social.og_enabled'        => array(
 				'type'        => 'bool',
 				'tab'         => 'social',
 				'section'     => 'cards',
 				'default'     => true,
 				'recommended' => true,
 			),
-			'social.twitter_enabled'  => array(
+			'social.twitter_enabled'   => array(
 				'type'        => 'bool',
 				'tab'         => 'social',
 				'section'     => 'cards',
 				'default'     => true,
 				'recommended' => true,
 			),
-			'social.default_image_id' => array(
+			'social.default_image_id'  => array(
 				'type'    => 'media',
 				'tab'     => 'social',
 				'section' => 'defaults',
 				'wizard'  => 4,
 				'default' => 0,
 			),
-			'social.twitter_card'     => array(
+			'social.twitter_card'      => array(
 				'type'        => 'choice',
 				'tab'         => 'social',
 				'section'     => 'cards',
@@ -208,35 +345,45 @@ final class Schema {
 				'recommended' => 'summary_large_image',
 				'options'     => array( 'summary_large_image', 'summary' ),
 			),
-			'social.twitter_site'     => array(
+			'social.twitter_site'      => array(
 				'type'    => 'handle',
 				'tab'     => 'social',
 				'section' => 'cards',
 				'wizard'  => 4,
 			),
-			'advanced.keep_data'      => array(
+
+			// Advanced.
+			'advanced.legacy_title'    => array(
+				'type'        => 'bool',
+				'tab'         => 'advanced',
+				'section'     => 'compat',
+				'default'     => false,
+				'recommended' => false,
+			),
+			'advanced.keep_data'       => array(
 				'type'        => 'bool',
 				'tab'         => 'advanced',
 				'section'     => 'data',
 				'default'     => true,
 				'recommended' => true,
 			),
+
 			// Internal state (never rendered, exported or imported).
-			'state.schema'            => array(
+			'state.schema'             => array(
 				'type'     => 'int',
 				'default'  => 0,
 				'internal' => true,
 			),
-			'state.plugin'            => array(
+			'state.plugin'             => array(
 				'type'     => 'text',
 				'internal' => true,
 			),
-			'state.wizard_done'       => array(
+			'state.wizard_done'        => array(
 				'type'     => 'bool',
 				'default'  => false,
 				'internal' => true,
 			),
-			'state.wizard_time'       => array(
+			'state.wizard_time'        => array(
 				'type'     => 'int',
 				'default'  => 0,
 				'internal' => true,
@@ -341,9 +488,8 @@ final class Schema {
 	 * @return array<string, string> Tab id => label.
 	 */
 	public static function visible_tabs(): array {
-		$labels = self::tab_labels();
-		$tabs   = array();
-		foreach ( $labels as $id => $label ) {
+		$tabs = array();
+		foreach ( self::tab_labels() as $id => $label ) {
 			if ( 'tools' === $id || 'status' === $id || self::tab_fields( $id ) ) {
 				$tabs[ $id ] = $label;
 			}
@@ -375,13 +521,34 @@ final class Schema {
 	 */
 	public static function section_labels(): array {
 		return array(
-			'publication' => __( 'Publication', 'khabar-seo' ),
-			'content'     => __( 'Language and news content', 'khabar-seo' ),
-			'format'      => __( 'Title format', 'khabar-seo' ),
-			'archives'    => __( 'Archives', 'khabar-seo' ),
-			'defaults'    => __( 'Defaults', 'khabar-seo' ),
-			'cards'       => __( 'Link previews', 'khabar-seo' ),
-			'data'        => __( 'Data', 'khabar-seo' ),
+			'publication'    => __( 'Publication', 'khabar-seo' ),
+			'content'        => __( 'Language and news content', 'khabar-seo' ),
+			'format'         => __( 'Title format', 'khabar-seo' ),
+			'home'           => __( 'Home page', 'khabar-seo' ),
+			'singular'       => __( 'Articles, pages and other content', 'khabar-seo' ),
+			'terms'          => __( 'Categories, tags and other taxonomies', 'khabar-seo' ),
+			'archives'       => __( 'Archives', 'khabar-seo' ),
+			'archive_titles' => __( 'Author, date and content type archives', 'khabar-seo' ),
+			'special'        => __( 'Search results and missing pages', 'khabar-seo' ),
+			'descriptions'   => __( 'Automatic descriptions', 'khabar-seo' ),
+			'snippets'       => __( 'Search snippets', 'khabar-seo' ),
+			'canonical'      => __( 'Canonical URLs', 'khabar-seo' ),
+			'defaults'       => __( 'Defaults', 'khabar-seo' ),
+			'cards'          => __( 'Link previews', 'khabar-seo' ),
+			'compat'         => __( 'Theme compatibility', 'khabar-seo' ),
+			'data'           => __( 'Data', 'khabar-seo' ),
+		);
+	}
+
+	/**
+	 * Intro paragraph per section (admin only, optional).
+	 *
+	 * @return array<string, string>
+	 */
+	public static function section_intros(): array {
+		return array(
+			'cards'    => __( 'Open Graph and X (Twitter) tags are output from version 0.3 on. You can prepare the settings now.', 'khabar-seo' ),
+			'snippets' => __( 'These rules apply to every indexable page. They also limit what AI features in search can show from your pages.', 'khabar-seo' ),
 		);
 	}
 
@@ -425,11 +592,15 @@ final class Schema {
 		if ( null === self::$ui ) {
 			self::$ui = self::build_ui();
 		}
-		return self::$ui[ $key ] ?? array(
-			'label'   => $key,
-			'help'    => '',
-			'guide'   => '',
-			'options' => array(),
+		$ui = self::$ui[ $key ] ?? array( 'label' => $key );
+		return array_merge(
+			array(
+				'label'   => $key,
+				'help'    => '',
+				'guide'   => '',
+				'options' => array(),
+			),
+			$ui
 		);
 	}
 
@@ -439,45 +610,126 @@ final class Schema {
 	 * @return array<string, array>
 	 */
 	private static function build_ui(): array {
+		$list_guide = sprintf( /* translators: %s: template variable name, keep it as is. */ __( 'Lists continue on page 2, 3 and so on. %s adds "Page 2 of 5" there, so each page has its own title; it is empty on page 1.', 'khabar-seo' ), '%page%' );
 
 		return array(
-			'site.publication_name'   => array(
+			'site.publication_name'    => array(
 				'label' => __( 'Publication name', 'khabar-seo' ),
-				'help'  => __( 'Exactly as it appears, or will appear, on Google News / Publisher Center.', 'khabar-seo' ),
+				'help'  => __( 'Exactly as it appears, or will appear, in Google News Publisher Center.', 'khabar-seo' ),
 				'guide' => __( 'Google compares this name with your Publisher Center listing, so spelling, spacing and script must be identical. Leave out text in parentheses.', 'khabar-seo' ),
 			),
-			'site.alternate_name'     => array(
+			'site.alternate_name'      => array(
 				'label' => __( 'Alternate name (optional)', 'khabar-seo' ),
 				'help'  => __( 'A second name readers use, such as an abbreviation or the name in another script.', 'khabar-seo' ),
 				'guide' => __( 'Used later as the website alternate name in structured data. Leave empty if you have none.', 'khabar-seo' ),
 			),
-			'site.language'           => array(
+			'site.language'            => array(
 				'label' => __( 'Language code', 'khabar-seo' ),
 				'help'  => __( 'Two- or three-letter ISO 639 code, for example fa or en. Empty means: detect from the site language.', 'khabar-seo' ),
 				'guide' => __( 'Used for structured data and the news sitemap. The detected value is almost always right.', 'khabar-seo' ),
 			),
-			'site.locale'             => array(
+			'site.locale'              => array(
 				'label' => __( 'Locale for link previews', 'khabar-seo' ),
 				'help'  => __( 'Format language_COUNTRY, for example fa_IR or en_US. Empty means: detect from the site language.', 'khabar-seo' ),
 				'guide' => __( 'Sent as og:locale so social networks and Telegram know the language of your pages.', 'khabar-seo' ),
 			),
-			'site.news_post_types'    => array(
+			'site.news_post_types'     => array(
 				'label' => __( 'News post types', 'khabar-seo' ),
 				'help'  => __( 'Content types that are published as news articles.', 'khabar-seo' ),
 				'guide' => __( 'Posts are news by default. Add another type only if it holds dated, bylined reports. Leave static pages out.', 'khabar-seo' ),
 			),
-			'titles.separator'        => array(
+			'titles.separator'         => array(
 				'label'   => __( 'Title separator', 'khabar-seo' ),
-				'help'    => __( 'The symbol between the article title and the site name.', 'khabar-seo' ),
-				'guide'   => __( 'This is cosmetic: search engines treat all of these the same. A plain hyphen is the safest in right-to-left text.', 'khabar-seo' ),
+				'help'    => sprintf( /* translators: %s: template variable name, keep it as is. */ __( 'The symbol that %s stands for, between the article title and the site name.', 'khabar-seo' ), '%sep%' ),
+				'guide'   => __( 'This is cosmetic: Google mentions hyphens, colons and pipes as typical delimiters. A plain hyphen is the safest in right-to-left text.', 'khabar-seo' ),
 				'options' => array(
 					'-' => array( 'label' => __( 'Hyphen ( - )', 'khabar-seo' ) ),
 					'–' => array( 'label' => __( 'En dash ( – )', 'khabar-seo' ) ),
 					'|' => array( 'label' => __( 'Vertical bar ( | )', 'khabar-seo' ) ),
-					'•' => array( 'label' => __( 'Bullet ( • )', 'khabar-seo' ) ),
+					'·' => array( 'label' => __( 'Middle dot ( · )', 'khabar-seo' ) ),
 				),
 			),
-			'indexing.tags'           => array(
+			'titles.home_title'        => array(
+				'label' => __( 'Home page title', 'khabar-seo' ),
+				'help'  => sprintf( /* translators: %s: template variable name, keep it as is. */ __( 'On the home page, %s is the site name.', 'khabar-seo' ), '%title%' ),
+				'guide' => __( 'Your name plus your tagline tells searchers who you are. If the tagline is empty, only the name is used.', 'khabar-seo' ),
+			),
+			'titles.home_desc'         => array(
+				'label' => __( 'Home page description', 'khabar-seo' ),
+				'help'  => __( 'Shown under your home page in search results, if the search engine uses it.', 'khabar-seo' ),
+				'guide' => __( 'Describe your coverage in one or two plain sentences, for example the topics and region you report on.', 'khabar-seo' ),
+			),
+			'titles.singular_title'    => array(
+				'label' => __( 'Title template per content type', 'khabar-seo' ),
+				'help'  => __( 'Used for each article, page or other content item. A title written in the editor box replaces it for that item.', 'khabar-seo' ),
+				'guide' => __( 'Put the article title first and the site name last: readers see the story first, and the name still identifies you. Google rewrites titles that look like boilerplate.', 'khabar-seo' ),
+			),
+			'titles.singular_desc'     => array(
+				'label' => __( 'Description template per content type', 'khabar-seo' ),
+				'help'  => sprintf( /* translators: %s: template variable name, keep it as is. */ __( '%s is the excerpt, or the start of the text when automatic descriptions are on.', 'khabar-seo' ), '%excerpt%' ),
+				'guide' => __( 'A short summary that matches the article works best. Identical descriptions on every page do not help.', 'khabar-seo' ),
+			),
+			'titles.term_title'        => array(
+				'label' => __( 'Title template per taxonomy', 'khabar-seo' ),
+				'help'  => sprintf( /* translators: %s: template variable name, keep it as is. */ __( 'For category, tag and other taxonomy pages. %s is the term name.', 'khabar-seo' ), '%title%' ),
+				'guide' => $list_guide,
+			),
+			'titles.term_desc'         => array(
+				'label' => __( 'Description template per taxonomy', 'khabar-seo' ),
+				'help'  => sprintf( /* translators: %s: template variable name, keep it as is. */ __( '%s is the term description you write in WordPress.', 'khabar-seo' ), '%excerpt%' ),
+				'guide' => __( 'Write a description for your main categories; it helps readers understand what the section covers.', 'khabar-seo' ),
+			),
+			'titles.author_title'      => array(
+				'label' => __( 'Author page title', 'khabar-seo' ),
+				'help'  => sprintf( /* translators: %s: template variable name, keep it as is. */ __( '%s is the author display name.', 'khabar-seo' ), '%title%' ),
+				'guide' => $list_guide,
+			),
+			'titles.author_desc'       => array(
+				'label' => __( 'Author page description', 'khabar-seo' ),
+				'help'  => sprintf( /* translators: %s: template variable name, keep it as is. */ __( '%s is the biographical info from the user profile.', 'khabar-seo' ), '%excerpt%' ),
+				'guide' => __( 'A real biography supports reader trust in your reporting.', 'khabar-seo' ),
+			),
+			'titles.archive_title'     => array(
+				'label' => __( 'Content type archive title', 'khabar-seo' ),
+				'help'  => sprintf( /* translators: %s: template variable name, keep it as is. */ __( 'Lists of one content type (if your site has them). %s is the content type name.', 'khabar-seo' ), '%title%' ),
+				'guide' => $list_guide,
+			),
+			'titles.date_title'        => array(
+				'label' => __( 'Date archive title', 'khabar-seo' ),
+				'help'  => sprintf( /* translators: %s: template variable name, keep it as is. */ __( '%s is the year, month or day in your site date format.', 'khabar-seo' ), '%title%' ),
+				'guide' => $list_guide,
+			),
+			'titles.search_title'      => array(
+				'label' => __( 'Search results title', 'khabar-seo' ),
+				'help'  => sprintf( /* translators: %s: template variable name, keep it as is. */ __( '%s is "Search results for" plus the search terms.', 'khabar-seo' ), '%title%' ),
+				'guide' => __( 'Search result pages are never indexed, so this title is only seen by visitors.', 'khabar-seo' ),
+			),
+			'titles.notfound_title'    => array(
+				'label' => __( 'Title of missing pages (404)', 'khabar-seo' ),
+				'help'  => sprintf( /* translators: %s: template variable name, keep it as is. */ __( '%s is "Page not found".', 'khabar-seo' ), '%title%' ),
+				'guide' => __( 'Missing pages answer with status 404 and are never indexed; the title only helps visitors.', 'khabar-seo' ),
+			),
+			'titles.desc_fallback'     => array(
+				'label'   => __( 'When an article has no excerpt', 'khabar-seo' ),
+				'help'    => sprintf( /* translators: %s: template variable name, keep it as is. */ __( 'Decides what %s contains for articles without a written excerpt.', 'khabar-seo' ), '%excerpt%' ),
+				'guide'   => __( 'Google encourages generated descriptions for large sites where writing each one by hand is impossible. Sections hidden from snippets are never used.', 'khabar-seo' ),
+				'options' => array(
+					'auto'   => array(
+						'label' => __( 'Use the start of the article text', 'khabar-seo' ),
+						'guide' => __( 'Every article gets a description that matches its content, even when editors are in a hurry.', 'khabar-seo' ),
+					),
+					'manual' => array(
+						'label' => __( 'Only use excerpts written by editors', 'khabar-seo' ),
+						'guide' => __( 'Articles without an excerpt get no description; search engines then pick text from the page themselves.', 'khabar-seo' ),
+					),
+				),
+			),
+			'titles.desc_length'       => array(
+				'label' => __( 'Length of automatic descriptions (characters)', 'khabar-seo' ),
+				'help'  => __( 'Only used when KhabarSEO builds a description from the article text. Text is cut at a word boundary.', 'khabar-seo' ),
+				'guide' => __( 'There is no length limit for descriptions; search engines shorten them to fit the screen. This only keeps automatic descriptions to a sensible size.', 'khabar-seo' ),
+			),
+			'indexing.tags'            => array(
 				'label'   => __( 'Tag pages', 'khabar-seo' ),
 				'help'    => __( 'Tag archives often become thin copies of category pages.', 'khabar-seo' ),
 				'guide'   => __( 'Tags with only one or two articles add little value, so the middle option is best for most news sites.', 'khabar-seo' ),
@@ -496,14 +748,14 @@ final class Schema {
 					),
 				),
 			),
-			'indexing.tag_min_posts'  => array(
+			'indexing.tag_min_posts'   => array(
 				'label' => __( 'Minimum articles for an indexable tag', 'khabar-seo' ),
 				'help'  => __( 'Tags with fewer published articles are set to noindex.', 'khabar-seo' ),
 				'guide' => __( 'Three is a good balance between useful hubs and thin pages.', 'khabar-seo' ),
 			),
-			'indexing.categories'     => array(
+			'indexing.categories'      => array(
 				'label'   => __( 'Category pages', 'khabar-seo' ),
-				'help'    => __( 'Categories are your main topic hubs.', 'khabar-seo' ),
+				'help'    => __( 'Categories are your main topic hubs. This also applies to other public taxonomies except tags.', 'khabar-seo' ),
 				'guide'   => __( 'Indexing them lets readers find your coverage of a topic from search.', 'khabar-seo' ),
 				'options' => array(
 					'index'   => array(
@@ -516,7 +768,7 @@ final class Schema {
 					),
 				),
 			),
-			'indexing.authors'        => array(
+			'indexing.authors'         => array(
 				'label'   => __( 'Author pages', 'khabar-seo' ),
 				'help'    => __( 'Author pages show who is behind your reporting.', 'khabar-seo' ),
 				'guide'   => __( 'Showing real authors supports reader trust. Authors without articles stay out of search.', 'khabar-seo' ),
@@ -531,7 +783,7 @@ final class Schema {
 					),
 				),
 			),
-			'indexing.date'           => array(
+			'indexing.date'            => array(
 				'label'   => __( 'Date archives', 'khabar-seo' ),
 				'help'    => __( 'Pages that list articles by year, month or day.', 'khabar-seo' ),
 				'guide'   => __( 'They repeat content found elsewhere on your site, so keeping them out of search is better.', 'khabar-seo' ),
@@ -546,25 +798,25 @@ final class Schema {
 					),
 				),
 			),
-			'indexing.attachment'     => array(
+			'indexing.attachment'      => array(
 				'label'   => __( 'Attachment pages', 'khabar-seo' ),
-				'help'    => __( 'The page WordPress can create for each uploaded image or file.', 'khabar-seo' ),
+				'help'    => __( 'The page WordPress can create for each uploaded image or file. When one is shown, it is always set to noindex.', 'khabar-seo' ),
 				'guide'   => __( 'These pages are thin. Redirecting visitors to the article keeps all authority in one place.', 'khabar-seo' ),
 				'options' => array(
 					'redirect' => array(
 						'label' => __( 'Redirect to the parent article', 'khabar-seo' ),
-						'guide' => __( 'Visitors and search engines land on the real article instead of a bare image page.', 'khabar-seo' ),
+						'guide' => __( 'Visitors and search engines land on the published article. Files without a published article keep the WordPress behavior.', 'khabar-seo' ),
 					),
 					'leave'    => array(
 						'label' => __( 'Leave WordPress behavior unchanged', 'khabar-seo' ),
-						'guide' => __( 'The result then depends on your WordPress version and settings.', 'khabar-seo' ),
+						'guide' => __( 'WordPress either shows the attachment page or sends visitors to the file, depending on its "attachment pages" setting.', 'khabar-seo' ),
 					),
 				),
 			),
-			'indexing.pagination'     => array(
+			'indexing.pagination'      => array(
 				'label'   => __( 'Page 2 and later of lists', 'khabar-seo' ),
-				'help'    => __( 'Category, tag and author lists that continue on further pages.', 'khabar-seo' ),
-				'guide'   => __( 'Each page lists different articles, so letting them be indexed helps older stories get discovered.', 'khabar-seo' ),
+				'help'    => __( 'Category, tag, author and home page lists that continue on further pages.', 'khabar-seo' ),
+				'guide'   => __( 'Google advises giving each page its own canonical URL, never page 1. Indexable deep pages help older stories get discovered.', 'khabar-seo' ),
 				'options' => array(
 					'index_self' => array(
 						'label' => __( 'Index page 2 and later', 'khabar-seo' ),
@@ -576,22 +828,61 @@ final class Schema {
 					),
 				),
 			),
-			'social.og_enabled'       => array(
+			'robots.max_snippet'       => array(
+				'label' => __( 'Maximum snippet length (max-snippet)', 'khabar-seo' ),
+				'help'  => __( '-1 lets the search engine choose; 0 shows no text snippet; another number is a character limit.', 'khabar-seo' ),
+				'guide' => __( 'Limits also apply to normal search snippets and AI features. Keep -1 unless you have a legal or business reason.', 'khabar-seo' ),
+			),
+			'robots.max_image_preview' => array(
+				'label'   => __( 'Image preview size (max-image-preview)', 'khabar-seo' ),
+				'help'    => __( 'The largest image preview search engines may show for your pages.', 'khabar-seo' ),
+				'guide'   => __( 'Google Discover recommends large previews; smaller previews make news cards less visible.', 'khabar-seo' ),
+				'options' => array(
+					'large'    => array(
+						'label' => __( 'Large', 'khabar-seo' ),
+						'guide' => __( 'Allows large images, as used by Google Discover.', 'khabar-seo' ),
+					),
+					'standard' => array(
+						'label' => __( 'Standard', 'khabar-seo' ),
+						'guide' => __( 'Only a default-size preview.', 'khabar-seo' ),
+					),
+					'none'     => array(
+						'label' => __( 'None', 'khabar-seo' ),
+						'guide' => __( 'No image preview at all.', 'khabar-seo' ),
+					),
+				),
+			),
+			'robots.max_video_preview' => array(
+				'label' => __( 'Maximum video preview (max-video-preview, seconds)', 'khabar-seo' ),
+				'help'  => __( '-1 means no limit; 0 allows at most a still image.', 'khabar-seo' ),
+				'guide' => __( 'Keep -1 so video reports can show a preview.', 'khabar-seo' ),
+			),
+			'canonical.strip_params'   => array(
+				'label' => __( 'Tracking parameters removed from canonical URLs', 'khabar-seo' ),
+				'help'  => __( 'One per line. A trailing * matches a prefix, for example utm_*.', 'khabar-seo' ),
+				'guide' => __( 'Campaign tags must never become part of a canonical URL. Canonicals are built from the real article address, so this mainly cleans URLs entered by hand.', 'khabar-seo' ),
+			),
+			'canonical.on_noindex'     => array(
+				'label' => __( 'Also output a canonical on noindex pages', 'khabar-seo' ),
+				'help'  => __( 'By default, pages set to noindex get no canonical link.', 'khabar-seo' ),
+				'guide' => __( 'A canonical says "index this URL", which contradicts noindex. Leave this off unless a search engine tool asks for it.', 'khabar-seo' ),
+			),
+			'social.og_enabled'        => array(
 				'label' => __( 'Output Open Graph tags', 'khabar-seo' ),
 				'help'  => __( 'Tags that Facebook, Telegram and LinkedIn use to build link previews.', 'khabar-seo' ),
 				'guide' => __( 'Turn off only if your theme already outputs them and you cannot disable the theme version.', 'khabar-seo' ),
 			),
-			'social.twitter_enabled'  => array(
+			'social.twitter_enabled'   => array(
 				'label' => __( 'Output X (Twitter) card tags', 'khabar-seo' ),
 				'help'  => __( 'Tags that X uses to build link previews.', 'khabar-seo' ),
 				'guide' => __( 'Keep this on unless your theme already outputs them.', 'khabar-seo' ),
 			),
-			'social.default_image_id' => array(
+			'social.default_image_id'  => array(
 				'label' => __( 'Default social image', 'khabar-seo' ),
 				'help'  => __( 'Used when an article has no suitable image. At least 1200 px wide is recommended.', 'khabar-seo' ),
 				'guide' => __( 'Use a photo or neutral artwork, not your logo. Google Discover prefers large, representative images.', 'khabar-seo' ),
 			),
-			'social.twitter_card'     => array(
+			'social.twitter_card'      => array(
 				'label'   => __( 'X (Twitter) card type', 'khabar-seo' ),
 				'help'    => __( 'How links to your articles look on X.', 'khabar-seo' ),
 				'guide'   => __( 'The large image card gives news headlines more visual weight.', 'khabar-seo' ),
@@ -606,12 +897,17 @@ final class Schema {
 					),
 				),
 			),
-			'social.twitter_site'     => array(
+			'social.twitter_site'      => array(
 				'label' => __( 'X (Twitter) account', 'khabar-seo' ),
 				'help'  => __( 'Optional, for example @yournews.', 'khabar-seo' ),
 				'guide' => __( 'Adds your publication account to link previews.', 'khabar-seo' ),
 			),
-			'advanced.keep_data'      => array(
+			'advanced.legacy_title'    => array(
+				'label' => __( 'Control titles in themes without title-tag support', 'khabar-seo' ),
+				'help'  => __( 'Only matters for older themes that print the title themselves with wp_title(). The Status page tells you if yours does.', 'khabar-seo' ),
+				'guide' => __( 'Such themes often add the site name again after wp_title(), which would show it twice. Turn this on only after checking the result with Status, Scan now.', 'khabar-seo' ),
+			),
+			'advanced.keep_data'       => array(
 				'label' => __( 'Keep my data when the plugin is deleted', 'khabar-seo' ),
 				'help'  => __( 'Settings and logs stay in the database after deletion.', 'khabar-seo' ),
 				'guide' => __( 'Keeping data protects you from accidental loss. Turn it off to remove everything when the plugin is deleted.', 'khabar-seo' ),

@@ -12,7 +12,7 @@ body:
     id: scan
     attributes:
       label: Result of Status, Scan now
-      description: Copy the table (title, canonical, robots, Open Graph, JSON-LD counts) for the home page and a news post.
+      description: Copy the table (title, description, canonical, robots, Open Graph, JSON-LD counts) for the home page and a news post.
     validations:
       required: true
   - type: textarea

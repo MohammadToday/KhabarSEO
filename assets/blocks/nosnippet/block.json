@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "khabar-seo/nosnippet",
+	"title": "Hidden from search snippets",
+	"category": "text",
+	"icon": "hidden",
+	"description": "Search engines will not quote the blocks inside in result snippets (data-nosnippet). Use it for sensitive or paywalled passages.",
+	"keywords": [ "nosnippet", "snippet", "seo" ],
+	"textdomain": "khabar-seo",
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js"
+}

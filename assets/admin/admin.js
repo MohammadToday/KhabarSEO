@@ -120,3 +120,28 @@
 		initCopy();
 	} );
 }() );
+
+/* Character counters for override fields (advisory only, no limits). */
+( function () {
+	'use strict';
+	function init() {
+		document.querySelectorAll( '[data-khs-count-for]' ).forEach( function ( counter ) {
+			var input = document.getElementById( counter.getAttribute( 'data-khs-count-for' ) );
+			var label = counter.getAttribute( 'data-khs-count-label' ) || '%d';
+			if ( ! input ) {
+				return;
+			}
+			function update() {
+				var length = Array.from( input.value ).length;
+				counter.textContent = label.replace( '%d', String( length ) );
+			}
+			input.addEventListener( 'input', update );
+			update();
+		} );
+	}
+	if ( document.readyState !== 'loading' ) {
+		init();
+	} else {
+		document.addEventListener( 'DOMContentLoaded', init );
+	}
+}() );

@@ -4,17 +4,23 @@
  *
  * Front-end output is OFF until the setup wizard has finished, and stays off
  * while another SEO plugin is active or the KHS_DISABLE constant is true.
- * Part 1B/1C modules hook into the khs_output_ready action.
+ * Output modules hook into the khs_output_ready action.
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 namespace KhabarSEO;
 
 use KhabarSEO\Admin\Menu;
+use KhabarSEO\Admin\Overrides;
 use KhabarSEO\Conflicts\PluginDetector;
+use KhabarSEO\Content\NoSnippet;
 use KhabarSEO\Core\Installer;
+use KhabarSEO\Core\Meta;
 use KhabarSEO\Core\Settings;
+use KhabarSEO\Output\Frontend;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -50,10 +56,16 @@ final class Plugin {
 
 		add_action( 'khs_settings_updated', array( self::class, 'flush_state' ) );
 		add_action( 'wp_initialize_site', array( Installer::class, 'on_new_site' ) );
+		add_action( 'khs_output_ready', array( Frontend::class, 'register' ) );
+
+		// Content helpers and meta keys work whatever the output state.
+		Meta::register();
+		NoSnippet::register();
 
 		if ( is_admin() ) {
 			Installer::maybe_upgrade();
 			( new Menu() )->register();
+			( new Overrides() )->register();
 		}
 
 		if ( self::output_state()['active'] ) {

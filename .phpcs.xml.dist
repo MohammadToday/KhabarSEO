@@ -22,7 +22,11 @@
 
 	<!-- PSR-4 class files are named after the class, not hyphenated. -->
 	<rule ref="WordPress.Files.FileName.InvalidClassFileName"><exclude-pattern>/src/</exclude-pattern></rule>
-	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase"><exclude-pattern>/src/</exclude-pattern></rule>
+	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+		<exclude-pattern>/src/</exclude-pattern>
+		<!-- WordPress requires the name index.asset.php next to a block script. -->
+		<exclude-pattern>/assets/blocks/</exclude-pattern>
+	</rule>
 
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>

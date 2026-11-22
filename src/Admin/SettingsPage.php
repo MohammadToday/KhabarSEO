@@ -3,7 +3,9 @@
  * Tabbed settings panel. Every tab except Tools and Status is generated from
  * the schema; saving only touches the fields that were rendered on the tab.
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 namespace KhabarSEO\Admin;
@@ -99,8 +101,12 @@ final class SettingsPage {
 			$sections[ Schema::field( $key )['section'] ][] = $key;
 		}
 		$labels = Schema::section_labels();
+		$intros = Schema::section_intros();
 
 		echo '<p class="khs-legend">' . esc_html__( 'Choices marked "Recommended" are the best fit for most news sites.', 'khabar-seo' ) . '</p>';
+		if ( 'titles' === $tab ) {
+			echo '<p class="description khs-vars-box">' . Overrides::variables_help() . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in variables_help().
+		}
 		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="khs-form">';
 		echo '<input type="hidden" name="action" value="khs_save_settings" />';
 		echo '<input type="hidden" name="tab" value="' . esc_attr( $tab ) . '" />';
@@ -109,6 +115,9 @@ final class SettingsPage {
 		foreach ( $sections as $section => $keys ) {
 			echo '<section class="khs-section">';
 			echo '<h2>' . esc_html( $labels[ $section ] ?? $section ) . '</h2>';
+			if ( isset( $intros[ $section ] ) ) {
+				echo '<p class="description">' . esc_html( $intros[ $section ] ) . '</p>';
+			}
 			foreach ( $keys as $key ) {
 				FieldRenderer::render( $key );
 			}
@@ -156,6 +165,9 @@ final class SettingsPage {
 			case 'length':
 				/* translators: %s: field label. */
 				return sprintf( __( '%s: the text was too long and was shortened.', 'khabar-seo' ), $label );
+			case 'variables':
+				/* translators: %s: field label. */
+				return sprintf( __( '%s: contains an unknown variable. It was saved but will appear as plain text.', 'khabar-seo' ), $label );
 		}
 		/* translators: %s: field label. */
 		return sprintf( __( '%s: the value was not valid and the default was used.', 'khabar-seo' ), $label );

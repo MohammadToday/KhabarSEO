@@ -50,3 +50,13 @@
 .khs-scan th { inline-size: 28%; }
 .khs-copied { margin-inline-start: .6em; color: #0a5c1a; }
 .khs-wrap .notice.inline { margin-inline: 0; }
+
+/* Part 1B: templates, maps and override fields. */
+.khs-template { font-family: inherit; }
+.khs-map__table th { inline-size: 30%; padding-block: 8px; }
+.khs-map__table td { padding-block: 6px; }
+.khs-vars code { font-size: 12px; }
+.khs-vars-box { max-inline-size: 70em; }
+.khs-count { display: inline-block; margin-inline-start: .5em; color: #50575e; font-size: 12px; }
+.khs-metabox .khs-label { display: inline-block; margin-block-end: .25em; }
+.khs-metabox .khs-choice { margin-block-start: 1em; }

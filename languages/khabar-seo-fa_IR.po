@@ -1,13 +1,14 @@
-# Copyright (C) KhabarSEO contributors
+# Copyright (C) 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: KhabarSEO 0.1.0\n"
-"Report-Msgid-Bugs-To: https://github.com/OWNER/khabar-seo/issues\n"
+"Project-Id-Version: KhabarSEO 0.2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/MohammadToday/KhabarSEO/issues\n"
+"Last-Translator: KhabarSEO contributors\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language-Team: Persian\n"
+"Language-Team: KhabarSEO contributors (Persian)\n"
 "Language: fa_IR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Domain: khabar-seo\n"
@@ -25,68 +26,68 @@ msgid "Jannah Theme Options, Single Post settings: turn off \"Open Graph meta\".
 msgstr "در گزینه‌های پوستهٔ Jannah، بخش تنظیمات نوشتهٔ تکی: گزینهٔ «Open Graph meta» را خاموش کنید. Jannah فقط برای افزونه‌هایی که می‌شناسد آن را خودکار غیرفعال می‌کند."
 
 #. translators: %s: recommended value.
-#: src/Admin/FieldRenderer.php:73
+#: src/Admin/FieldRenderer.php:127 src/Admin/FieldRenderer.php:165
 #, php-format
 msgid "Recommended: %s"
 msgstr "پیشنهادی: %s"
 
-#: src/Admin/FieldRenderer.php:109
+#: src/Admin/FieldRenderer.php:187
 msgid "Yes"
 msgstr "بله"
 
-#: src/Admin/FieldRenderer.php:109
+#: src/Admin/FieldRenderer.php:187
 msgid "No"
 msgstr "خیر"
 
-#: src/Admin/FieldRenderer.php:116 src/Admin/FieldRenderer.php:118
+#: src/Admin/FieldRenderer.php:194 src/Admin/FieldRenderer.php:196 src/Core/Schema.php:850
 msgid "None"
 msgstr "هیچ‌کدام"
 
-#: src/Admin/FieldRenderer.php:118
+#: src/Admin/FieldRenderer.php:196
 msgid "Image selected"
 msgstr "تصویر انتخاب شد"
 
-#: src/Admin/FieldRenderer.php:195 src/Admin/FieldRenderer.php:218
+#: src/Admin/FieldRenderer.php:273 src/Admin/FieldRenderer.php:296
 msgid "Recommended"
 msgstr "پیشنهادی"
 
-#: src/Admin/FieldRenderer.php:220
+#: src/Admin/FieldRenderer.php:298
 msgid "Recommended: off"
 msgstr "پیشنهادی: خاموش"
 
-#: src/Admin/FieldRenderer.php:275
+#: src/Admin/FieldRenderer.php:353
 msgid "Choose an image"
 msgstr "انتخاب تصویر"
 
-#: src/Admin/FieldRenderer.php:276
+#: src/Admin/FieldRenderer.php:354
 msgid "Use this image"
 msgstr "استفاده از این تصویر"
 
-#: src/Admin/FieldRenderer.php:280
+#: src/Admin/FieldRenderer.php:358
 msgid "Select image"
 msgstr "انتخاب تصویر"
 
-#: src/Admin/FieldRenderer.php:281
+#: src/Admin/FieldRenderer.php:359
 msgid "Remove image"
 msgstr "حذف تصویر"
 
-#: src/Admin/Menu.php:59 src/Admin/Menu.php:60 src/Admin/SettingsPage.php:57 src/Core/Diagnostics.php:87
+#: src/Admin/Menu.php:61 src/Admin/Menu.php:62 src/Admin/Overrides.php:46 src/Admin/Overrides.php:232 src/Admin/SettingsPage.php:59 src/Core/Diagnostics.php:90
 msgid "KhabarSEO"
 msgstr "KhabarSEO"
 
-#: src/Admin/Menu.php:69
+#: src/Admin/Menu.php:71
 msgid "KhabarSEO settings"
 msgstr "تنظیمات KhabarSEO"
 
-#: src/Admin/Menu.php:70 src/Admin/Menu.php:129
+#: src/Admin/Menu.php:72 src/Admin/Menu.php:136
 msgid "Settings"
 msgstr "تنظیمات"
 
-#: src/Admin/Menu.php:77
+#: src/Admin/Menu.php:79
 msgid "KhabarSEO setup wizard"
 msgstr "راهنمای راه‌اندازی KhabarSEO"
 
-#: src/Admin/Menu.php:78 src/Admin/ToolsPage.php:41
+#: src/Admin/Menu.php:80 src/Admin/ToolsPage.php:41
 msgid "Setup wizard"
 msgstr "راهنمای راه‌اندازی"
 
@@ -103,7 +104,7 @@ msgid "Start the setup wizard"
 msgstr "شروع راهنمای راه‌اندازی"
 
 #. translators: %s: names of other SEO plugins.
-#: src/Admin/Notices.php:66 src/Core/Diagnostics.php:340
+#: src/Admin/Notices.php:66 src/Core/Diagnostics.php:356
 #, php-format
 msgid "Another SEO plugin is active: %s."
 msgstr "افزونهٔ سئوی دیگری فعال است: %s."
@@ -122,207 +123,347 @@ msgstr "ثابت KHS_DISABLE در wp-config.php تنظیم شده است، بن�
 msgid "Your server runs PHP %1$s, whose security support ends or ended on %2$s. Ask your host to upgrade PHP."
 msgstr "سرور شما از PHP %1$s استفاده می‌کند که پشتیبانی امنیتی آن در %2$s به پایان می‌رسد یا رسیده است. از میزبان خود بخواهید PHP را ارتقا دهد."
 
-#: src/Admin/SettingsPage.php:51 src/Admin/Wizard.php:59
+#: src/Admin/Overrides.php:57
+msgid "title of this item"
+msgstr "عنوان همین مورد"
+
+#: src/Admin/Overrides.php:58
+msgid "site name"
+msgstr "نام سایت"
+
+#: src/Admin/Overrides.php:59
+msgid "site tagline"
+msgstr "شعار سایت"
+
+#: src/Admin/Overrides.php:60
+msgid "separator"
+msgstr "جداکننده"
+
+#: src/Admin/Overrides.php:61
+msgid "first category"
+msgstr "نخستین دسته"
+
+#: src/Admin/Overrides.php:62
+msgid "author name"
+msgstr "نام نویسنده"
+
+#: src/Admin/Overrides.php:63
+msgid "publication date as shown on the site"
+msgstr "تاریخ انتشار به شکلی که در سایت نمایش داده می‌شود"
+
+#: src/Admin/Overrides.php:64
+msgid "\"Page 2 of 5\" beyond page 1"
+msgstr "«صفحهٔ ۲ از ۵» از صفحهٔ دوم به بعد"
+
+#: src/Admin/Overrides.php:65
+msgid "excerpt or summary"
+msgstr "چکیده یا خلاصه"
+
+#: src/Admin/Overrides.php:71
+msgid "Variables:"
+msgstr "متغیرها:"
+
+#. translators: %d: number of characters. Keep the placeholder.
+#: src/Admin/Overrides.php:82
+#, php-format
+msgid "%d characters"
+msgstr "%d نویسه"
+
+#: src/Admin/Overrides.php:102
+msgid "KhabarSEO output is switched off."
+msgstr "خروجی KhabarSEO خاموش است."
+
+#: src/Admin/Overrides.php:102
+msgid "Values entered here are saved and used once it is on (see KhabarSEO, Status)."
+msgstr "مقدارهایی که اینجا وارد می‌کنید ذخیره می‌شوند و پس از روشن شدن افزونه به‌کار می‌روند (KhabarSEO ← وضعیت را ببینید)."
+
+#: src/Admin/Overrides.php:105 src/Admin/Overrides.php:238
+msgid "SEO title"
+msgstr "عنوان سئو"
+
+#: src/Admin/Overrides.php:113
+msgid "Leave empty to use the template shown in grey. Google may rewrite titles that do not match the headline; there is no length limit, long titles are shortened in results."
+msgstr "برای استفاده از الگوی خاکستری، خالی بگذارید. گوگل ممکن است عنوانی را که با تیتر یکی نیست بازنویسی کند؛ محدودیت طولی وجود ندارد و عنوان‌های بلند در نتایج کوتاه می‌شوند."
+
+#: src/Admin/Overrides.php:115 src/Admin/Overrides.php:248
+msgid "Meta description"
+msgstr "توضیحات متا"
+
+#: src/Admin/Overrides.php:122
+msgid "Leave empty to use the excerpt. There is no length limit; search engines shorten long descriptions to fit the screen."
+msgstr "برای استفاده از چکیده، خالی بگذارید. محدودیت طولی وجود ندارد؛ موتورهای جست‌وجو توضیحات بلند را به اندازهٔ صفحه کوتاه می‌کنند."
+
+#: src/Admin/Overrides.php:124 src/Admin/Overrides.php:256
+msgid "Canonical URL"
+msgstr "نشانی canonical"
+
+#: src/Admin/Overrides.php:126
+msgid "Leave empty: the article points to its own address, which is right for almost every story. Only fill this in if this article is a copy of another page."
+msgstr "خالی بگذارید: مقاله به نشانی خودش اشاره می‌کند که تقریباً برای همهٔ خبرها درست است. فقط اگر این مقاله رونوشت صفحهٔ دیگری است آن را پر کنید."
+
+#: src/Admin/Overrides.php:128
+msgid "Search engine rules for this item"
+msgstr "قواعد موتور جست‌وجو برای این مورد"
+
+#: src/Admin/Overrides.php:130
+msgid "Do not show in search results (noindex)"
+msgstr "در نتایج جست‌وجو نمایش داده نشود (noindex)"
+
+#: src/Admin/Overrides.php:131
+msgid "Do not follow links on this page (nofollow)"
+msgstr "پیوندهای این صفحه دنبال نشوند (nofollow)"
+
+#: src/Admin/Overrides.php:132
+msgid "No text snippet in results (nosnippet)"
+msgstr "بدون بُرش متنی در نتایج (nosnippet)"
+
+#: src/Admin/Overrides.php:144
+msgid "Maximum snippet length (empty = site default)"
+msgstr "بیشترین طول بُرش متنی (خالی = پیش‌فرض سایت)"
+
+#: src/Admin/Overrides.php:147
+msgid "nosnippet and max-snippet also shorten normal search snippets and limit AI features in search, not only one feature. To hide only a passage, wrap it in the \"Hidden from search snippets\" block or in [khs_nosnippet]...[/khs_nosnippet]."
+msgstr "nosnippet و max-snippet بُرش‌های عادی جست‌وجو را هم کوتاه می‌کنند و قابلیت‌های هوش مصنوعی جست‌وجو را هم محدود می‌کنند، نه فقط یک قابلیت را. برای پنهان کردن فقط یک بخش، آن را درون بلوک «پنهان از بُرش‌های جست‌وجو» یا میان [khs_nosnippet]...[/khs_nosnippet] بگذارید."
+
+#: src/Admin/Overrides.php:243
+msgid "Leave empty to use the template shown in grey."
+msgstr "برای استفاده از الگوی خاکستری، خالی بگذارید."
+
+#: src/Admin/Overrides.php:252
+msgid "Leave empty to use the term description above."
+msgstr "برای استفاده از توضیح همین اصطلاح در بالا، خالی بگذارید."
+
+#: src/Admin/Overrides.php:258
+msgid "Leave empty to use the address of this archive (with its page number on page 2 and later)."
+msgstr "برای استفاده از نشانی همین بایگانی (با شمارهٔ صفحه از صفحهٔ دوم به بعد)، خالی بگذارید."
+
+#: src/Admin/Overrides.php:261
+msgid "Use the rule from KhabarSEO, Indexing"
+msgstr "قاعدهٔ KhabarSEO ← ایندکس به‌کار رود"
+
+#: src/Admin/Overrides.php:262
+msgid "Always index"
+msgstr "همیشه ایندکس شود"
+
+#: src/Admin/Overrides.php:263
+msgid "Never index (noindex)"
+msgstr "هرگز ایندکس نشود (noindex)"
+
+#: src/Admin/Overrides.php:265
+msgid "Search engines"
+msgstr "موتورهای جست‌وجو"
+
+#: src/Admin/SettingsPage.php:53 src/Admin/Wizard.php:59
 msgid "You do not have permission to access this page."
 msgstr "شما اجازهٔ دسترسی به این صفحه را ندارید."
 
-#: src/Admin/SettingsPage.php:60
+#: src/Admin/SettingsPage.php:62
 msgid "KhabarSEO sections"
 msgstr "بخش‌های KhabarSEO"
 
-#: src/Admin/SettingsPage.php:103
+#: src/Admin/SettingsPage.php:106
 msgid "Choices marked \"Recommended\" are the best fit for most news sites."
 msgstr "گزینه‌های دارای نشان «پیشنهادی» برای بیشتر سایت‌های خبری بهترین انتخاب هستند."
 
-#: src/Admin/SettingsPage.php:118
+#: src/Admin/SettingsPage.php:127
 msgid "Internal search results are always set to noindex, follow."
 msgstr "نتیجه‌های جست‌وجوی داخلی همیشه روی noindex, follow تنظیم می‌شوند."
 
 #. translators: %s: field label.
-#: src/Admin/SettingsPage.php:152
+#: src/Admin/SettingsPage.php:161
 #, php-format
 msgid "%s: the value has an invalid format and was cleared."
 msgstr "%s: قالب مقدار نامعتبر بود و پاک شد."
 
 #. translators: %s: field label.
-#: src/Admin/SettingsPage.php:155
+#: src/Admin/SettingsPage.php:164
 #, php-format
 msgid "%s: the number was outside the allowed range and was adjusted."
 msgstr "%s: عدد خارج از محدودهٔ مجاز بود و اصلاح شد."
 
 #. translators: %s: field label.
-#: src/Admin/SettingsPage.php:158
+#: src/Admin/SettingsPage.php:167
 #, php-format
 msgid "%s: the text was too long and was shortened."
 msgstr "%s: متن بیش از حد طولانی بود و کوتاه شد."
 
 #. translators: %s: field label.
-#: src/Admin/SettingsPage.php:161
+#: src/Admin/SettingsPage.php:170
+#, php-format
+msgid "%s: contains an unknown variable. It was saved but will appear as plain text."
+msgstr "%s: یک متغیر ناشناخته دارد. ذخیره شد اما به‌صورت متن ساده نمایش داده می‌شود."
+
+#. translators: %s: field label.
+#: src/Admin/SettingsPage.php:173
 #, php-format
 msgid "%s: the value was not valid and the default was used."
 msgstr "%s: مقدار معتبر نبود و مقدار پیش‌فرض به‌کار رفت."
 
-#: src/Admin/SettingsPage.php:172 src/Admin/StatusPage.php:192 src/Admin/ToolsPage.php:79 src/Admin/Wizard.php:162 src/Admin/Wizard.php:195
+#: src/Admin/SettingsPage.php:184 src/Admin/StatusPage.php:196 src/Admin/ToolsPage.php:79 src/Admin/Wizard.php:162 src/Admin/Wizard.php:195
 msgid "You do not have permission to do this."
 msgstr "شما اجازهٔ انجام این کار را ندارید."
 
-#: src/Admin/SettingsPage.php:186
+#: src/Admin/SettingsPage.php:198
 msgid "Settings saved."
 msgstr "تنظیمات ذخیره شد."
 
-#: src/Admin/SettingsPage.php:188
+#: src/Admin/SettingsPage.php:200
 msgid "Settings were not saved: they exceed the 8 KB limit for autoloaded data."
 msgstr "تنظیمات ذخیره نشد: حجم آن‌ها از حد ۸ کیلوبایت برای داده‌های بارگذاری خودکار بیشتر است."
 
-#: src/Admin/SettingsPage.php:190
+#: src/Admin/SettingsPage.php:202
 msgid "Settings could not be saved."
 msgstr "ذخیرهٔ تنظیمات ممکن نبود."
 
-#: src/Admin/StatusPage.php:38
+#: src/Admin/StatusPage.php:40
 msgid "Checks"
 msgstr "بررسی‌ها"
 
-#: src/Admin/StatusPage.php:40
+#: src/Admin/StatusPage.php:42
 msgid "Check"
 msgstr "مورد بررسی"
 
-#: src/Admin/StatusPage.php:41
+#: src/Admin/StatusPage.php:43
 msgid "Result"
 msgstr "نتیجه"
 
-#: src/Admin/StatusPage.php:42
+#: src/Admin/StatusPage.php:44
 msgid "Details"
 msgstr "جزئیات"
 
-#: src/Admin/StatusPage.php:56
+#: src/Admin/StatusPage.php:58
 msgid "Diagnostics"
 msgstr "اطلاعات عیب‌یابی"
 
-#: src/Admin/StatusPage.php:57
+#: src/Admin/StatusPage.php:59
 msgid "Paste this into a bug report. It contains no web addresses, keys or personal data."
 msgstr "این متن را در گزارش خطا بچسبانید. نشانی وب، کلید یا اطلاعات شخصی ندارد."
 
-#: src/Admin/StatusPage.php:59
+#: src/Admin/StatusPage.php:61
 msgid "Copy diagnostics"
 msgstr "کپی اطلاعات عیب‌یابی"
 
-#: src/Admin/StatusPage.php:60
+#: src/Admin/StatusPage.php:62
 msgid "Copied"
 msgstr "کپی شد"
 
-#: src/Admin/StatusPage.php:69
+#: src/Admin/StatusPage.php:71
 msgid "Rendered head scan"
 msgstr "بررسی بخش head صفحه"
 
-#: src/Admin/StatusPage.php:70
+#: src/Admin/StatusPage.php:72
 msgid "Requests your home page and your newest news post from this server and lists the SEO tags found in the page head. Run it before switching KhabarSEO on to see which tags your theme or plugins already add."
 msgstr "صفحهٔ اصلی و تازه‌ترین نوشتهٔ خبری شما را از همین سرور درخواست می‌کند و برچسب‌های سئوی موجود در head صفحه را فهرست می‌کند. پیش از روشن کردن KhabarSEO آن را اجرا کنید تا ببینید پوسته یا افزونه‌هایتان از قبل چه برچسب‌هایی اضافه می‌کنند."
 
-#: src/Admin/StatusPage.php:74
+#: src/Admin/StatusPage.php:76
 msgid "Scan now"
 msgstr "همین حالا بررسی کن"
 
 #. translators: %s: date and time of the last scan.
-#: src/Admin/StatusPage.php:82
+#: src/Admin/StatusPage.php:84
 #, php-format
 msgid "Last scan: %s"
 msgstr "آخرین بررسی: %s"
 
-#: src/Admin/StatusPage.php:85
+#: src/Admin/StatusPage.php:87 src/Core/Schema.php:527
 msgid "Home page"
 msgstr "صفحهٔ اصلی"
 
-#: src/Admin/StatusPage.php:86
+#: src/Admin/StatusPage.php:88
 msgid "Newest news post"
 msgstr "تازه‌ترین نوشتهٔ خبری"
 
-#: src/Admin/StatusPage.php:107
+#: src/Admin/StatusPage.php:109
 msgid "Title tags"
 msgstr "برچسب‌های title"
 
-#: src/Admin/StatusPage.php:108
+#: src/Admin/StatusPage.php:110
 msgid "Canonical links"
 msgstr "پیوندهای canonical"
 
-#: src/Admin/StatusPage.php:109
+#: src/Admin/StatusPage.php:111
 msgid "Robots meta tags"
 msgstr "برچسب‌های متای robots"
 
-#: src/Admin/StatusPage.php:110
+#: src/Admin/StatusPage.php:112
+msgid "Meta descriptions"
+msgstr "توضیحات متا"
+
+#: src/Admin/StatusPage.php:113
 msgid "Open Graph properties"
 msgstr "ویژگی‌های Open Graph"
 
-#: src/Admin/StatusPage.php:111
+#: src/Admin/StatusPage.php:114
 msgid "X (Twitter) card tags"
 msgstr "برچسب‌های کارت X (توییتر)"
 
-#: src/Admin/StatusPage.php:112
+#: src/Admin/StatusPage.php:115
 msgid "JSON-LD blocks"
 msgstr "بلوک‌های JSON-LD"
 
-#: src/Admin/StatusPage.php:113
+#: src/Admin/StatusPage.php:116
 msgid "Generator tags"
 msgstr "برچسب‌های generator"
 
-#: src/Admin/StatusPage.php:129
+#: src/Admin/StatusPage.php:132
 msgid "To avoid duplicate Open Graph tags, turn off the Open Graph option in your theme settings or in the plugin that adds them before switching KhabarSEO on."
 msgstr "برای جلوگیری از برچسب‌های تکراری Open Graph، پیش از روشن کردن KhabarSEO گزینهٔ Open Graph را در تنظیمات پوسته یا در افزونه‌ای که آن را اضافه می‌کند خاموش کنید."
 
-#: src/Admin/StatusPage.php:130
+#: src/Admin/StatusPage.php:133
 msgid "What to switch off:"
 msgstr "چه چیزی را خاموش کنید:"
 
 #. translators: %s: number of tags found.
-#: src/Admin/StatusPage.php:146
+#: src/Admin/StatusPage.php:150
 #, php-format
 msgid "This tag appears %s times, but a page should have exactly one."
 msgstr "این برچسب %s بار آمده است، در حالی که هر صفحه باید دقیقاً یک بار آن را داشته باشد."
 
 #. translators: %s: Open Graph property name.
-#: src/Admin/StatusPage.php:149
+#: src/Admin/StatusPage.php:153
 #, php-format
 msgid "The Open Graph property %s appears more than once."
 msgstr "ویژگی Open Graph با نام %s بیش از یک بار آمده است."
 
-#: src/Admin/StatusPage.php:151
+#: src/Admin/StatusPage.php:155
 msgid "No canonical link was found."
 msgstr "هیچ پیوند canonical پیدا نشد."
 
-#: src/Admin/StatusPage.php:153
+#: src/Admin/StatusPage.php:157
 msgid "No robots meta tag was found (search engine defaults apply)."
 msgstr "هیچ برچسب متای robots پیدا نشد (پیش‌فرض‌های موتور جست‌وجو اعمال می‌شود)."
 
 #. translators: %s: number of Open Graph properties.
-#: src/Admin/StatusPage.php:156
+#: src/Admin/StatusPage.php:160
 #, php-format
 msgid "Open Graph tags are already present (%s properties)."
 msgstr "برچسب‌های Open Graph از قبل وجود دارند (%s ویژگی)."
 
 #. translators: %s: number of JSON-LD blocks.
-#: src/Admin/StatusPage.php:159
+#: src/Admin/StatusPage.php:163
 #, php-format
 msgid "Structured data (JSON-LD) is already present (%s blocks)."
 msgstr "داده‌های ساخت‌یافتهٔ JSON-LD از قبل وجود دارند (%s بلوک)."
 
-#: src/Admin/StatusPage.php:174
+#: src/Admin/StatusPage.php:178
 msgid "The PHP DOM extension is missing, so the head cannot be parsed."
 msgstr "افزونهٔ DOM در PHP موجود نیست، بنابراین head قابل تجزیه نیست."
 
 #. translators: %d: HTTP status code.
-#: src/Admin/StatusPage.php:177
+#: src/Admin/StatusPage.php:181
 #, php-format
 msgid "The page answered with HTTP status %d."
 msgstr "صفحه با وضعیت HTTP ‏%d پاسخ داد."
 
-#: src/Admin/StatusPage.php:179
+#: src/Admin/StatusPage.php:183
 msgid "The address is not on this site, so it was not requested."
 msgstr "این نشانی متعلق به این سایت نیست، بنابراین درخواست نشد."
 
-#: src/Admin/StatusPage.php:181
+#: src/Admin/StatusPage.php:185
 msgid "The page could not be requested from this server (a firewall, basic authentication or DNS may block loopback requests)."
 msgstr "درخواست صفحه از این سرور ممکن نبود (فایروال، احراز هویت ساده یا DNS ممکن است درخواست‌های loopback را مسدود کنند)."
 
-#: src/Admin/StatusPage.php:207
+#: src/Admin/StatusPage.php:211
 msgid "Scan finished."
 msgstr "بررسی تمام شد."
 
@@ -462,717 +603,1113 @@ msgstr "راه‌اندازی تمام شد. پیکربندی «سایت خبر�
 msgid "The setup could not be completed."
 msgstr "راه‌اندازی کامل نشد."
 
-#: src/Core/Diagnostics.php:31
+#: src/Content/NoSnippet.php:43
+msgid "Hidden from search snippets (data-nosnippet)"
+msgstr "پنهان از بُرش‌های جست‌وجو (data-nosnippet)"
+
+#: src/Core/Diagnostics.php:33
 msgid "OK"
 msgstr "خوب"
 
-#: src/Core/Diagnostics.php:33
+#: src/Core/Diagnostics.php:35
 msgid "Warning"
 msgstr "هشدار"
 
-#: src/Core/Diagnostics.php:35
+#: src/Core/Diagnostics.php:37
 msgid "Problem"
 msgstr "مشکل"
 
-#: src/Core/Diagnostics.php:37
+#: src/Core/Diagnostics.php:39
 msgid "Info"
 msgstr "اطلاعات"
 
 #. translators: 1: plugin version, 2: settings schema version.
-#: src/Core/Diagnostics.php:86
+#: src/Core/Diagnostics.php:89
 #, php-format
 msgid "Version %1$s, settings schema %2$d (beta)."
 msgstr "نسخهٔ %1$s، نسخهٔ طرح تنظیمات %2$d (بتا)."
 
 #. translators: 1: PHP version, 2: end-of-life date.
-#: src/Core/Diagnostics.php:99
+#: src/Core/Diagnostics.php:102
 #, php-format
 msgid "PHP %1$s reached end of life on %2$s and no longer gets security fixes. Ask your host to upgrade."
 msgstr "PHP %1$s در %2$s به پایان عمر رسیده و دیگر اصلاحیهٔ امنیتی دریافت نمی‌کند. از میزبان خود بخواهید آن را ارتقا دهد."
 
 #. translators: 1: PHP version, 2: end-of-life date.
-#: src/Core/Diagnostics.php:102
+#: src/Core/Diagnostics.php:105
 #, php-format
 msgid "PHP %1$s reaches end of life on %2$s. Plan an upgrade."
 msgstr "PHP %1$s در %2$s به پایان عمر می‌رسد. ارتقا را برنامه‌ریزی کنید."
 
 #. translators: 1: PHP version, 2: end-of-life date.
-#: src/Core/Diagnostics.php:105
+#: src/Core/Diagnostics.php:108
 #, php-format
 msgid "PHP %1$s, supported until %2$s."
 msgstr "PHP %1$s، با پشتیبانی تا %2$s."
 
 #. translators: %s: PHP version.
-#: src/Core/Diagnostics.php:108
+#: src/Core/Diagnostics.php:111
 #, php-format
 msgid "PHP %s (not in the end-of-life table)."
 msgstr "PHP %s (در جدول پایان عمر نیست)."
 
-#: src/Core/Diagnostics.php:110
+#: src/Core/Diagnostics.php:113
 msgid "PHP version"
 msgstr "نسخهٔ PHP"
 
 #. translators: %s: WordPress version.
-#: src/Core/Diagnostics.php:122
+#: src/Core/Diagnostics.php:125
 #, php-format
 msgid "WordPress %s."
 msgstr "وردپرس %s."
 
 #. translators: 1: WordPress version, 2: highest tested version.
-#: src/Core/Diagnostics.php:128
+#: src/Core/Diagnostics.php:131
 #, php-format
 msgid "WordPress %1$s is newer than the tested version (%2$s). Report any problem."
 msgstr "وردپرس %1$s جدیدتر از نسخهٔ آزمایش‌شده (%2$s) است. هر مشکلی را گزارش دهید."
 
-#: src/Core/Diagnostics.php:130
+#: src/Core/Diagnostics.php:133
 msgid "WordPress version"
 msgstr "نسخهٔ وردپرس"
 
-#: src/Core/Diagnostics.php:141 src/Core/Diagnostics.php:142
+#: src/Core/Diagnostics.php:144 src/Core/Diagnostics.php:145
 msgid "PHP mbstring"
 msgstr "mbstring در PHP"
 
-#: src/Core/Diagnostics.php:141 src/Core/Diagnostics.php:144 src/Core/Diagnostics.php:147
+#: src/Core/Diagnostics.php:144 src/Core/Diagnostics.php:147 src/Core/Diagnostics.php:150
 msgid "Available."
 msgstr "موجود است."
 
-#: src/Core/Diagnostics.php:142
+#: src/Core/Diagnostics.php:145
 msgid "Missing. Required for correct Persian/RTL text handling."
 msgstr "موجود نیست. برای پردازش درست متن فارسی و راست‌به‌چپ لازم است."
 
-#: src/Core/Diagnostics.php:144 src/Core/Diagnostics.php:145
+#: src/Core/Diagnostics.php:147 src/Core/Diagnostics.php:148
 msgid "PHP DOM"
 msgstr "DOM در PHP"
 
-#: src/Core/Diagnostics.php:145
+#: src/Core/Diagnostics.php:148
 msgid "Missing. The rendered head scan cannot run."
 msgstr "موجود نیست. بررسی head صفحه اجرا نمی‌شود."
 
-#: src/Core/Diagnostics.php:147 src/Core/Diagnostics.php:148
+#: src/Core/Diagnostics.php:150 src/Core/Diagnostics.php:151
 msgid "PHP intl"
 msgstr "intl در PHP"
 
-#: src/Core/Diagnostics.php:148
+#: src/Core/Diagnostics.php:151
 msgid "Missing. Internationalized domain names are not converted to ASCII (only matters for non-ASCII domains)."
 msgstr "موجود نیست. نام دامنه‌های بین‌المللی به ASCII تبدیل نمی‌شوند (فقط برای دامنه‌های غیر ASCII اهمیت دارد)."
 
-#: src/Core/Diagnostics.php:161
+#: src/Core/Diagnostics.php:164
 msgid "Plain permalinks (?p=ID)."
 msgstr "پیوند یکتای ساده (?p=ID)."
 
 #. translators: %s: permalink structure such as /%postname%/.
-#: src/Core/Diagnostics.php:164
+#: src/Core/Diagnostics.php:167
 #, php-format
 msgid "Structure %s"
 msgstr "ساختار %s"
 
-#: src/Core/Diagnostics.php:165
+#: src/Core/Diagnostics.php:168
 msgid "with trailing slash."
 msgstr "با اسلش پایانی."
 
-#: src/Core/Diagnostics.php:165
+#: src/Core/Diagnostics.php:168
 msgid "without trailing slash."
 msgstr "بدون اسلش پایانی."
 
-#: src/Core/Diagnostics.php:169
+#: src/Core/Diagnostics.php:172
 msgid "Subdirectory install."
 msgstr "نصب در زیرپوشه."
 
-#: src/Core/Diagnostics.php:172
+#: src/Core/Diagnostics.php:175
 msgid "Multisite."
 msgstr "چندسایتی."
 
-#: src/Core/Diagnostics.php:174
+#: src/Core/Diagnostics.php:177
 msgid "Permalinks"
 msgstr "پیوندهای یکتا"
 
 #. translators: 1: timezone, 2: January offset, 3: July offset, 4: PHP timezone database version.
-#: src/Core/Diagnostics.php:185
+#: src/Core/Diagnostics.php:188
 #, php-format
 msgid "%1$s. Offset in January %2$s, in July %3$s. PHP timezone database %4$s."
 msgstr "%1$s. اختلاف زمانی در ژانویه %2$s و در ژوئیه %3$s. نسخهٔ پایگاه‌دادهٔ منطقهٔ زمانی PHP: %4$s."
 
-#: src/Core/Diagnostics.php:189
-msgid "Iran no longer uses daylight saving time, so both offsets should be +03:30. Your server timezone data is outdated: ask your host to update PHP or tzdata, otherwise dates in structured data will be off by an hour."
-msgstr "ایران دیگر ساعت تابستانی ندارد، پس هر دو اختلاف زمانی باید +03:30 باشد. داده‌های منطقهٔ زمانی سرور شما قدیمی است: از میزبان بخواهید PHP یا tzdata را به‌روز کند، وگرنه تاریخ‌ها در داده‌های ساخت‌یافته یک ساعت اختلاف خواهند داشت."
+#. translators: %s: expected UTC offset such as +03:30.
+#: src/Core/Diagnostics.php:193
+#, php-format
+msgid "This time zone no longer changes for summer, so both offsets should be %s. Your server time zone data is outdated: ask your host to update PHP or tzdata, otherwise machine-readable dates will be off by an hour."
+msgstr "این منطقهٔ زمانی دیگر تغییر تابستانی ندارد، پس هر دو اختلاف زمانی باید %s باشد. داده‌های منطقهٔ زمانی سرور شما قدیمی است: از میزبان بخواهید PHP یا tzdata را به‌روز کند، وگرنه تاریخ‌های ماشین‌خوان یک ساعت اختلاف خواهند داشت."
 
-#: src/Core/Diagnostics.php:192
+#: src/Core/Diagnostics.php:196
 msgid "The timezone is UTC. Set your real timezone in Settings, General so published dates are correct."
 msgstr "منطقهٔ زمانی روی UTC است. منطقهٔ زمانی واقعی خود را در تنظیمات ← همگانی تنظیم کنید تا تاریخ انتشار درست باشد."
 
-#: src/Core/Diagnostics.php:194
+#: src/Core/Diagnostics.php:198
 msgid "Timezone"
 msgstr "منطقهٔ زمانی"
 
-#: src/Core/Diagnostics.php:211 src/Core/Diagnostics.php:215
+#: src/Core/Diagnostics.php:215 src/Core/Diagnostics.php:219
 msgid "Date functions"
 msgstr "توابع تاریخ"
 
-#: src/Core/Diagnostics.php:211
+#: src/Core/Diagnostics.php:215
 msgid "wp_date() returns standard Gregorian ISO dates."
 msgstr "wp_date() تاریخ‌های استاندارد ISO میلادی برمی‌گرداند."
 
 #. translators: 1: value from PHP, 2: value from wp_date().
-#: src/Core/Diagnostics.php:214
+#: src/Core/Diagnostics.php:218
 #, php-format
 msgid "A plugin or theme converts dates (calendar or digits). PHP gives %1$s but wp_date() gives %2$s. KhabarSEO bypasses these functions for machine-readable dates."
 msgstr "یک افزونه یا پوسته تاریخ‌ها را تبدیل می‌کند (تقویم یا ارقام). PHP مقدار %1$s را می‌دهد اما wp_date() مقدار %2$s را. KhabarSEO برای تاریخ‌های ماشین‌خوان از این توابع عبور می‌کند."
 
-#: src/Core/Diagnostics.php:231 src/Core/Diagnostics.php:250 src/Core/Diagnostics.php:252
+#: src/Core/Diagnostics.php:235 src/Core/Diagnostics.php:254 src/Core/Diagnostics.php:256
 msgid "Machine date check"
 msgstr "بررسی تاریخ ماشین‌خوان"
 
-#: src/Core/Diagnostics.php:231
+#: src/Core/Diagnostics.php:235
 msgid "No published post to check yet."
 msgstr "هنوز نوشتهٔ منتشرشده‌ای برای بررسی نیست."
 
 #. translators: 1: ISO date emitted by KhabarSEO, 2: value of get_the_date().
-#: src/Core/Diagnostics.php:249
+#: src/Core/Diagnostics.php:253
 #, php-format
 msgid "Newest post: KhabarSEO emits %1$s, identical to the stored GMT time. get_the_date() shows %2$s."
 msgstr "تازه‌ترین نوشته: KhabarSEO مقدار %1$s را تولید می‌کند که با زمان GMT ذخیره‌شده یکسان است. get_the_date() مقدار %2$s را نشان می‌دهد."
 
-#: src/Core/Diagnostics.php:252
+#: src/Core/Diagnostics.php:256
 msgid "The ISO date built from the newest post does not match its stored GMT time."
 msgstr "تاریخ ISO ساخته‌شده از تازه‌ترین نوشته با زمان GMT ذخیره‌شدهٔ آن نمی‌خواند."
 
-#: src/Core/Diagnostics.php:269
+#: src/Core/Diagnostics.php:273
 msgid "Detected. Its behavior is not verified: KhabarSEO still bypasses date functions for machine-readable dates."
 msgstr "شناسایی شد. رفتار آن تأیید نشده است: KhabarSEO همچنان برای تاریخ‌های ماشین‌خوان از توابع تاریخ عبور می‌کند."
 
-#: src/Core/Diagnostics.php:278
+#: src/Core/Diagnostics.php:282
 msgid "Date conversion is on: KhabarSEO never uses the converted date functions for machine-readable dates."
 msgstr "تبدیل تاریخ روشن است: KhabarSEO هرگز برای تاریخ‌های ماشین‌خوان از توابع تاریخِ تبدیل‌شده استفاده نمی‌کند."
 
-#: src/Core/Diagnostics.php:279
+#: src/Core/Diagnostics.php:283
 msgid "Date conversion is off."
 msgstr "تبدیل تاریخ خاموش است."
 
-#: src/Core/Diagnostics.php:283
+#: src/Core/Diagnostics.php:287
 msgid "It also converts permalinks and date archives to the Jalali calendar, and your permalink structure contains date parts, so URLs and canonical values may use Jalali numbers. Consider a permalink structure without dates."
 msgstr "این افزونه پیوندهای یکتا و بایگانی‌های تاریخی را هم به تقویم جلالی تبدیل می‌کند و ساختار پیوند یکتای شما بخش‌های تاریخ دارد؛ بنابراین نشانی‌ها و مقدار canonical ممکن است ارقام جلالی داشته باشند. ساختار پیوند یکتای بدون تاریخ را در نظر بگیرید."
 
-#: src/Core/Diagnostics.php:285
+#: src/Core/Diagnostics.php:289
 msgid "It also converts permalinks and archives, but your permalink structure has no date parts, so post URLs are not affected."
 msgstr "این افزونه پیوندهای یکتا و بایگانی‌ها را هم تبدیل می‌کند، اما ساختار پیوند یکتای شما بخش تاریخ ندارد؛ پس نشانی نوشته‌ها تأثیری نمی‌پذیرد."
 
-#: src/Core/Diagnostics.php:302
+#: src/Core/Diagnostics.php:306
 msgid "Persistent object cache"
 msgstr "حافظهٔ نهان پایدار شیء"
 
-#: src/Core/Diagnostics.php:304 src/Core/Diagnostics.php:329
+#: src/Core/Diagnostics.php:308 src/Core/Diagnostics.php:345
 msgid "Active."
 msgstr "فعال است."
 
-#: src/Core/Diagnostics.php:304
+#: src/Core/Diagnostics.php:308
 msgid "Not active. This is fine; KhabarSEO does not require one."
 msgstr "فعال نیست. اشکالی ندارد؛ KhabarSEO به آن نیاز ندارد."
 
-#: src/Core/Diagnostics.php:308
+#: src/Core/Diagnostics.php:312
 msgid "WP-Cron"
 msgstr "WP-Cron"
 
-#: src/Core/Diagnostics.php:310
+#: src/Core/Diagnostics.php:314
 msgid "Disabled in wp-config.php (a system cron should call it)."
 msgstr "در wp-config.php غیرفعال شده است (باید یک cron سیستمی آن را فراخوانی کند)."
 
-#: src/Core/Diagnostics.php:310
+#: src/Core/Diagnostics.php:314
 msgid "Traffic-triggered (default)."
 msgstr "بر پایهٔ بازدید اجرا می‌شود (پیش‌فرض)."
 
 #. translators: 1: current size in bytes, 2: maximum size in bytes.
-#: src/Core/Diagnostics.php:315
+#: src/Core/Diagnostics.php:319
 #, php-format
 msgid "%1$d of %2$d bytes used."
 msgstr "%1$d از %2$d بایت استفاده شده است."
 
-#: src/Core/Diagnostics.php:316
+#: src/Core/Diagnostics.php:320
 msgid "Autoloaded settings size"
 msgstr "حجم تنظیمات بارگذاری خودکار"
 
-#: src/Core/Diagnostics.php:329 src/Core/Diagnostics.php:343
+#: src/Core/Diagnostics.php:331 src/Core/Diagnostics.php:333
+msgid "Search engine visibility"
+msgstr "نمایش برای موتورهای جست‌وجو"
+
+#: src/Core/Diagnostics.php:331
+msgid "Search engines may index this site."
+msgstr "موتورهای جست‌وجو می‌توانند این سایت را ایندکس کنند."
+
+#: src/Core/Diagnostics.php:333
+msgid "Settings, Reading asks search engines not to index this site, so WordPress sets every page to noindex, nofollow. KhabarSEO never overrides this. Untick that option when the site goes live."
+msgstr "در تنظیمات ← خواندن از موتورهای جست‌وجو خواسته شده این سایت را ایندکس نکنند، بنابراین وردپرس همهٔ صفحه‌ها را noindex, nofollow می‌کند. KhabarSEO هرگز این را تغییر نمی‌دهد. هنگام راه‌اندازی سایت، تیک آن گزینه را بردارید."
+
+#: src/Core/Diagnostics.php:345 src/Core/Diagnostics.php:359
 msgid "Front-end output"
 msgstr "خروجی سمت بازدیدکننده (front-end)"
 
-#: src/Core/Diagnostics.php:334
+#: src/Core/Diagnostics.php:350
 msgid "The KHS_DISABLE constant is set in wp-config.php."
 msgstr "ثابت KHS_DISABLE در wp-config.php تنظیم شده است."
 
-#: src/Core/Diagnostics.php:336
+#: src/Core/Diagnostics.php:352
 msgid "The setup wizard has not been finished."
 msgstr "راهنمای راه‌اندازی هنوز تمام نشده است."
 
-#: src/Core/Diagnostics.php:343
+#: src/Core/Diagnostics.php:359
 msgid "Inactive."
 msgstr "غیرفعال."
 
 #. translators: %s: parent theme name.
-#: src/Core/Diagnostics.php:362
+#: src/Core/Diagnostics.php:378
 #, php-format
 msgid "(child of %s)"
 msgstr "(زیرپوستهٔ %s)"
 
-#: src/Core/Diagnostics.php:366
+#: src/Core/Diagnostics.php:384
+msgid "The theme has no title-tag support; KhabarSEO replaces wp_title() because the compatibility option is on. Check the result with Scan now."
+msgstr "پوسته از title-tag پشتیبانی نمی‌کند؛ چون گزینهٔ سازگاری روشن است، KhabarSEO خروجی wp_title() را جایگزین می‌کند. نتیجه را با «همین حالا بررسی کن» بررسی کنید."
+
+#: src/Core/Diagnostics.php:385
+msgid "The theme has no title-tag support and prints its own title, so KhabarSEO titles are not used. See Advanced, Theme compatibility."
+msgstr "پوسته از title-tag پشتیبانی نمی‌کند و عنوان را خودش چاپ می‌کند، بنابراین عنوان‌های KhabarSEO به‌کار نمی‌روند. پیشرفته ← سازگاری پوسته را ببینید."
+
+#: src/Core/Diagnostics.php:389
 msgid "KhabarSEO has a compatibility hint for this theme (shown after a head scan)."
 msgstr "KhabarSEO برای این پوسته یک راهنمای سازگاری دارد (پس از بررسی head نمایش داده می‌شود)."
 
-#: src/Core/Diagnostics.php:368
+#: src/Core/Diagnostics.php:391
 msgid "Active theme"
 msgstr "پوستهٔ فعال"
 
-#: src/Core/Schema.php:361
+#: src/Core/Schema.php:507
 msgid "Setup"
 msgstr "راه‌اندازی"
 
-#: src/Core/Schema.php:362
+#: src/Core/Schema.php:508
 msgid "Titles & Meta"
 msgstr "عنوان‌ها و متا"
 
-#: src/Core/Schema.php:363
+#: src/Core/Schema.php:509
 msgid "Indexing & Archives"
 msgstr "ایندکس و بایگانی‌ها"
 
-#: src/Core/Schema.php:364
+#: src/Core/Schema.php:510
 msgid "Social"
 msgstr "شبکه‌های اجتماعی"
 
-#: src/Core/Schema.php:365
+#: src/Core/Schema.php:511
 msgid "Advanced"
 msgstr "پیشرفته"
 
-#: src/Core/Schema.php:366
+#: src/Core/Schema.php:512
 msgid "Tools"
 msgstr "ابزارها"
 
-#: src/Core/Schema.php:367
+#: src/Core/Schema.php:513
 msgid "Status"
 msgstr "وضعیت"
 
-#: src/Core/Schema.php:378
+#: src/Core/Schema.php:524
 msgid "Publication"
 msgstr "رسانه"
 
-#: src/Core/Schema.php:379 src/Core/Schema.php:400
+#: src/Core/Schema.php:525 src/Core/Schema.php:567
 msgid "Language and news content"
 msgstr "زبان و محتوای خبری"
 
-#: src/Core/Schema.php:380
+#: src/Core/Schema.php:526
 msgid "Title format"
 msgstr "قالب عنوان"
 
-#: src/Core/Schema.php:381
+#: src/Core/Schema.php:528
+msgid "Articles, pages and other content"
+msgstr "مقاله‌ها، برگه‌ها و دیگر محتوا"
+
+#: src/Core/Schema.php:529
+msgid "Categories, tags and other taxonomies"
+msgstr "دسته‌ها، برچسب‌ها و دیگر طبقه‌بندی‌ها"
+
+#: src/Core/Schema.php:530
 msgid "Archives"
 msgstr "بایگانی‌ها"
 
-#: src/Core/Schema.php:382
+#: src/Core/Schema.php:531
+msgid "Author, date and content type archives"
+msgstr "بایگانی نویسنده، تاریخ و نوع محتوا"
+
+#: src/Core/Schema.php:532
+msgid "Search results and missing pages"
+msgstr "نتایج جست‌وجو و صفحه‌های ناموجود"
+
+#: src/Core/Schema.php:533
+msgid "Automatic descriptions"
+msgstr "توضیحات خودکار"
+
+#: src/Core/Schema.php:534
+msgid "Search snippets"
+msgstr "بُرش‌های جست‌وجو"
+
+#: src/Core/Schema.php:535
+msgid "Canonical URLs"
+msgstr "نشانی‌های canonical"
+
+#: src/Core/Schema.php:536
 msgid "Defaults"
 msgstr "پیش‌فرض‌ها"
 
-#: src/Core/Schema.php:383
+#: src/Core/Schema.php:537
 msgid "Link previews"
 msgstr "پیش‌نمایش پیوند"
 
-#: src/Core/Schema.php:384
+#: src/Core/Schema.php:538
+msgid "Theme compatibility"
+msgstr "سازگاری پوسته"
+
+#: src/Core/Schema.php:539
 msgid "Data"
 msgstr "داده‌ها"
 
-#: src/Core/Schema.php:396
+#: src/Core/Schema.php:550
+msgid "Open Graph and X (Twitter) tags are output from version 0.3 on. You can prepare the settings now."
+msgstr "برچسب‌های Open Graph و X (توییتر) از نسخهٔ ۰٫۳ به بعد تولید می‌شوند. اکنون می‌توانید تنظیمات را آماده کنید."
+
+#: src/Core/Schema.php:551
+msgid "These rules apply to every indexable page. They also limit what AI features in search can show from your pages."
+msgstr "این قواعد بر همهٔ صفحه‌های قابل‌ایندکس اعمال می‌شوند. آنچه قابلیت‌های هوش مصنوعی جست‌وجو از صفحه‌های شما نشان می‌دهند را هم محدود می‌کنند."
+
+#: src/Core/Schema.php:563
 msgid "Your publication"
 msgstr "رسانهٔ شما"
 
-#: src/Core/Schema.php:397
+#: src/Core/Schema.php:564
 msgid "Tell search engines who you are. The name must match how your publication appears, or will appear, in Google News / Publisher Center."
 msgstr "به موتورهای جست‌وجو بگویید چه کسی هستید. نام باید دقیقاً با نامی یکی باشد که رسانهٔ شما در Google News / Publisher Center دارد (یا خواهد داشت)."
 
-#: src/Core/Schema.php:401
+#: src/Core/Schema.php:568
 msgid "We detected these from your site language. Change them if they are wrong."
 msgstr "این موارد از زبان سایت شما تشخیص داده شده‌اند. اگر اشتباه‌اند، تغییرشان دهید."
 
-#: src/Core/Schema.php:404
+#: src/Core/Schema.php:571
 msgid "Indexing"
 msgstr "ایندکس"
 
-#: src/Core/Schema.php:405
+#: src/Core/Schema.php:572
 msgid "Choose which archive pages search engines may index. The recommended choices suit most news sites."
 msgstr "انتخاب کنید موتورهای جست‌وجو کدام صفحه‌های بایگانی را ایندکس کنند. گزینه‌های پیشنهادی برای بیشتر سایت‌های خبری مناسب‌اند."
 
-#: src/Core/Schema.php:408
+#: src/Core/Schema.php:575
 msgid "Titles and social previews"
 msgstr "عنوان‌ها و پیش‌نمایش اجتماعی"
 
-#: src/Core/Schema.php:409
+#: src/Core/Schema.php:576
 msgid "Set the title separator and the defaults used when a link is shared on social networks or Telegram."
 msgstr "جداکنندهٔ عنوان و پیش‌فرض‌های هنگام اشتراک‌گذاری پیوند در شبکه‌های اجتماعی یا تلگرام را تنظیم کنید."
 
-#: src/Core/Schema.php:412
+#: src/Core/Schema.php:579
 msgid "Review and finish"
 msgstr "مرور و پایان"
 
-#: src/Core/Schema.php:413
+#: src/Core/Schema.php:580
 msgid "Check your answers. Finishing applies the \"News site, recommended\" preset and switches KhabarSEO on. You can edit everything later."
 msgstr "پاسخ‌هایتان را بررسی کنید. با پایان دادن، پیکربندی «سایت خبری، پیشنهادی» اعمال و KhabarSEO روشن می‌شود. بعداً می‌توانید همه‌چیز را ویرایش کنید."
 
-#: src/Core/Schema.php:445
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:613
+#, php-format
+msgid "Lists continue on page 2, 3 and so on. %s adds \"Page 2 of 5\" there, so each page has its own title; it is empty on page 1."
+msgstr "فهرست‌ها در صفحهٔ ۲، ۳ و بعد ادامه می‌یابند. %s در آن صفحه‌ها «صفحهٔ ۲ از ۵» را اضافه می‌کند تا هر صفحه عنوان خودش را داشته باشد؛ در صفحهٔ نخست خالی است."
+
+#: src/Core/Schema.php:617
 msgid "Publication name"
 msgstr "نام رسانه"
 
-#: src/Core/Schema.php:446
-msgid "Exactly as it appears, or will appear, on Google News / Publisher Center."
-msgstr "دقیقاً همان‌طور که در Google News / Publisher Center نمایش داده می‌شود (یا خواهد شد)."
+#: src/Core/Schema.php:618
+msgid "Exactly as it appears, or will appear, in Google News Publisher Center."
+msgstr "باید دقیقاً با نامی که رسانهٔ شما در Google News Publisher Center دارد (یا خواهد داشت) یکی باشد."
 
-#: src/Core/Schema.php:447
+#: src/Core/Schema.php:619
 msgid "Google compares this name with your Publisher Center listing, so spelling, spacing and script must be identical. Leave out text in parentheses."
 msgstr "گوگل این نام را با فهرست شما در Publisher Center مقایسه می‌کند، پس املا، فاصله‌ها و خط باید کاملاً یکسان باشند. متن داخل پرانتز را نیاورید."
 
-#: src/Core/Schema.php:450
+#: src/Core/Schema.php:622
 msgid "Alternate name (optional)"
 msgstr "نام جایگزین (اختیاری)"
 
-#: src/Core/Schema.php:451
+#: src/Core/Schema.php:623
 msgid "A second name readers use, such as an abbreviation or the name in another script."
 msgstr "نام دومی که خوانندگان به کار می‌برند، مثل یک مخفف یا نام به خطی دیگر."
 
-#: src/Core/Schema.php:452
+#: src/Core/Schema.php:624
 msgid "Used later as the website alternate name in structured data. Leave empty if you have none."
 msgstr "بعداً به‌عنوان نام جایگزین وب‌سایت در داده‌های ساخت‌یافته استفاده می‌شود. اگر ندارید، خالی بگذارید."
 
-#: src/Core/Schema.php:455
+#: src/Core/Schema.php:627
 msgid "Language code"
 msgstr "کد زبان"
 
-#: src/Core/Schema.php:456
+#: src/Core/Schema.php:628
 msgid "Two- or three-letter ISO 639 code, for example fa or en. Empty means: detect from the site language."
 msgstr "کد دو یا سه حرفی ISO 639، مثلاً fa یا en. خالی یعنی: از زبان سایت تشخیص بده."
 
-#: src/Core/Schema.php:457
+#: src/Core/Schema.php:629
 msgid "Used for structured data and the news sitemap. The detected value is almost always right."
 msgstr "برای داده‌های ساخت‌یافته و نقشهٔ سایت خبری استفاده می‌شود. مقدار تشخیص‌داده‌شده تقریباً همیشه درست است."
 
-#: src/Core/Schema.php:460
+#: src/Core/Schema.php:632
 msgid "Locale for link previews"
 msgstr "محل (locale) برای پیش‌نمایش پیوند"
 
-#: src/Core/Schema.php:461
+#: src/Core/Schema.php:633
 msgid "Format language_COUNTRY, for example fa_IR or en_US. Empty means: detect from the site language."
 msgstr "قالب زبان_کشور، مثلاً fa_IR یا en_US. خالی یعنی: از زبان سایت تشخیص بده."
 
-#: src/Core/Schema.php:462
+#: src/Core/Schema.php:634
 msgid "Sent as og:locale so social networks and Telegram know the language of your pages."
 msgstr "به‌صورت og:locale ارسال می‌شود تا شبکه‌های اجتماعی و تلگرام زبان صفحه‌های شما را بدانند."
 
-#: src/Core/Schema.php:465
+#: src/Core/Schema.php:637
 msgid "News post types"
 msgstr "نوع‌های نوشتهٔ خبری"
 
-#: src/Core/Schema.php:466
+#: src/Core/Schema.php:638
 msgid "Content types that are published as news articles."
 msgstr "انواع محتوایی که به‌عنوان مقالهٔ خبری منتشر می‌شوند."
 
-#: src/Core/Schema.php:467
+#: src/Core/Schema.php:639
 msgid "Posts are news by default. Add another type only if it holds dated, bylined reports. Leave static pages out."
 msgstr "نوشته‌ها به‌طور پیش‌فرض خبری‌اند. نوع دیگری را فقط وقتی اضافه کنید که گزارش‌های تاریخ‌دار و دارای نام نویسنده باشد. برگه‌های ثابت را کنار بگذارید."
 
-#: src/Core/Schema.php:470
+#: src/Core/Schema.php:642
 msgid "Title separator"
 msgstr "جداکنندهٔ عنوان"
 
-#: src/Core/Schema.php:471
-msgid "The symbol between the article title and the site name."
-msgstr "نمادی میان عنوان مقاله و نام سایت."
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:643
+#, php-format
+msgid "The symbol that %s stands for, between the article title and the site name."
+msgstr "نمادی که %s جای آن می‌نشیند، میان عنوان مقاله و نام سایت."
 
-#: src/Core/Schema.php:472
-msgid "This is cosmetic: search engines treat all of these the same. A plain hyphen is the safest in right-to-left text."
-msgstr "این مورد ظاهری است: موتورهای جست‌وجو همهٔ این‌ها را یکسان می‌بینند. خط تیرهٔ ساده در متن راست‌به‌چپ امن‌ترین است."
+#: src/Core/Schema.php:644
+msgid "This is cosmetic: Google mentions hyphens, colons and pipes as typical delimiters. A plain hyphen is the safest in right-to-left text."
+msgstr "این مورد ظاهری است: گوگل خط تیره، دونقطه و خط عمودی را جداکننده‌های رایج می‌داند. خط تیرهٔ ساده در متن راست‌به‌چپ امن‌ترین است."
 
-#: src/Core/Schema.php:474
+#: src/Core/Schema.php:646
 msgid "Hyphen ( - )"
 msgstr "خط تیره ( - )"
 
-#: src/Core/Schema.php:475
+#: src/Core/Schema.php:647
 msgid "En dash ( – )"
 msgstr "خط تیرهٔ بلند ( – )"
 
-#: src/Core/Schema.php:476
+#: src/Core/Schema.php:648
 msgid "Vertical bar ( | )"
 msgstr "خط عمودی ( | )"
 
-#: src/Core/Schema.php:477
-msgid "Bullet ( • )"
-msgstr "نقطهٔ توپر ( • )"
+#: src/Core/Schema.php:649
+msgid "Middle dot ( · )"
+msgstr "نقطهٔ میانی ( · )"
 
-#: src/Core/Schema.php:481
+#: src/Core/Schema.php:653
+msgid "Home page title"
+msgstr "عنوان صفحهٔ اصلی"
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:654
+#, php-format
+msgid "On the home page, %s is the site name."
+msgstr "در صفحهٔ اصلی، %s همان نام سایت است."
+
+#: src/Core/Schema.php:655
+msgid "Your name plus your tagline tells searchers who you are. If the tagline is empty, only the name is used."
+msgstr "نام شما همراه با شعار سایت به جست‌وجوگران می‌گوید که هستید. اگر شعار خالی باشد، فقط نام به‌کار می‌رود."
+
+#: src/Core/Schema.php:658
+msgid "Home page description"
+msgstr "توضیحات صفحهٔ اصلی"
+
+#: src/Core/Schema.php:659
+msgid "Shown under your home page in search results, if the search engine uses it."
+msgstr "اگر موتور جست‌وجو از آن استفاده کند، زیر صفحهٔ اصلی شما در نتایج نمایش داده می‌شود."
+
+#: src/Core/Schema.php:660
+msgid "Describe your coverage in one or two plain sentences, for example the topics and region you report on."
+msgstr "پوشش خبری خود را در یک یا دو جملهٔ ساده توصیف کنید، مثلاً موضوع‌ها و منطقه‌ای که دربارهٔ آن گزارش می‌دهید."
+
+#: src/Core/Schema.php:663
+msgid "Title template per content type"
+msgstr "الگوی عنوان برای هر نوع محتوا"
+
+#: src/Core/Schema.php:664
+msgid "Used for each article, page or other content item. A title written in the editor box replaces it for that item."
+msgstr "برای هر مقاله، برگه یا دیگر محتوا به‌کار می‌رود. عنوانی که در جعبهٔ ویرایشگر بنویسید برای همان مورد جای آن را می‌گیرد."
+
+#: src/Core/Schema.php:665
+msgid "Put the article title first and the site name last: readers see the story first, and the name still identifies you. Google rewrites titles that look like boilerplate."
+msgstr "عنوان مقاله را اول و نام سایت را آخر بگذارید: خواننده اول خبر را می‌بیند و نام هم رسانه را معرفی می‌کند. گوگل عنوان‌هایی را که قالبی و تکراری به نظر برسند بازنویسی می‌کند."
+
+#: src/Core/Schema.php:668
+msgid "Description template per content type"
+msgstr "الگوی توضیحات برای هر نوع محتوا"
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:669
+#, php-format
+msgid "%s is the excerpt, or the start of the text when automatic descriptions are on."
+msgstr "%s همان چکیده است، یا وقتی توضیحات خودکار روشن است، آغاز متن."
+
+#: src/Core/Schema.php:670
+msgid "A short summary that matches the article works best. Identical descriptions on every page do not help."
+msgstr "خلاصه‌ای کوتاه که با مقاله بخواند بهترین است. توضیحات یکسان در همهٔ صفحه‌ها کمکی نمی‌کند."
+
+#: src/Core/Schema.php:673
+msgid "Title template per taxonomy"
+msgstr "الگوی عنوان برای هر طبقه‌بندی"
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:674
+#, php-format
+msgid "For category, tag and other taxonomy pages. %s is the term name."
+msgstr "برای صفحه‌های دسته، برچسب و دیگر طبقه‌بندی‌ها. %s نام همان اصطلاح است."
+
+#: src/Core/Schema.php:678
+msgid "Description template per taxonomy"
+msgstr "الگوی توضیحات برای هر طبقه‌بندی"
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:679
+#, php-format
+msgid "%s is the term description you write in WordPress."
+msgstr "%s توضیحی است که برای اصطلاح در وردپرس می‌نویسید."
+
+#: src/Core/Schema.php:680
+msgid "Write a description for your main categories; it helps readers understand what the section covers."
+msgstr "برای دسته‌های اصلی خود توضیح بنویسید؛ به خوانندگان کمک می‌کند بفهمند آن بخش چه چیزی را پوشش می‌دهد."
+
+#: src/Core/Schema.php:683
+msgid "Author page title"
+msgstr "عنوان صفحهٔ نویسنده"
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:684
+#, php-format
+msgid "%s is the author display name."
+msgstr "%s نام نمایشی نویسنده است."
+
+#: src/Core/Schema.php:688
+msgid "Author page description"
+msgstr "توضیحات صفحهٔ نویسنده"
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:689
+#, php-format
+msgid "%s is the biographical info from the user profile."
+msgstr "%s زندگی‌نامهٔ نوشته‌شده در نمایهٔ کاربر است."
+
+#: src/Core/Schema.php:690
+msgid "A real biography supports reader trust in your reporting."
+msgstr "زندگی‌نامهٔ واقعی اعتماد خوانندگان به گزارش‌های شما را بیشتر می‌کند."
+
+#: src/Core/Schema.php:693
+msgid "Content type archive title"
+msgstr "عنوان بایگانی نوع محتوا"
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:694
+#, php-format
+msgid "Lists of one content type (if your site has them). %s is the content type name."
+msgstr "فهرست‌های یک نوع محتوا (اگر سایت شما چنین فهرستی دارد). %s نام آن نوع محتواست."
+
+#: src/Core/Schema.php:698
+msgid "Date archive title"
+msgstr "عنوان بایگانی تاریخی"
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:699
+#, php-format
+msgid "%s is the year, month or day in your site date format."
+msgstr "%s سال، ماه یا روز به قالب تاریخ سایت شماست."
+
+#: src/Core/Schema.php:703
+msgid "Search results title"
+msgstr "عنوان نتایج جست‌وجو"
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:704
+#, php-format
+msgid "%s is \"Search results for\" plus the search terms."
+msgstr "%s عبارت «نتایج جست‌وجو برای» همراه با واژه‌های جست‌وجوشده است."
+
+#: src/Core/Schema.php:705
+msgid "Search result pages are never indexed, so this title is only seen by visitors."
+msgstr "صفحه‌های نتایج جست‌وجو هرگز ایندکس نمی‌شوند، پس این عنوان فقط برای بازدیدکنندگان است."
+
+#: src/Core/Schema.php:708
+msgid "Title of missing pages (404)"
+msgstr "عنوان صفحه‌های ناموجود (۴۰۴)"
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:709
+#, php-format
+msgid "%s is \"Page not found\"."
+msgstr "%s عبارت «صفحه پیدا نشد» است."
+
+#: src/Core/Schema.php:710
+msgid "Missing pages answer with status 404 and are never indexed; the title only helps visitors."
+msgstr "صفحه‌های ناموجود با وضعیت ۴۰۴ پاسخ می‌دهند و هرگز ایندکس نمی‌شوند؛ عنوان فقط به بازدیدکنندگان کمک می‌کند."
+
+#: src/Core/Schema.php:713
+msgid "When an article has no excerpt"
+msgstr "وقتی مقاله چکیده ندارد"
+
+#. translators: %s: template variable name, keep it as is.
+#: src/Core/Schema.php:714
+#, php-format
+msgid "Decides what %s contains for articles without a written excerpt."
+msgstr "تعیین می‌کند که %s برای مقاله‌های بدون چکیدهٔ نوشته‌شده چه چیزی داشته باشد."
+
+#: src/Core/Schema.php:715
+msgid "Google encourages generated descriptions for large sites where writing each one by hand is impossible. Sections hidden from snippets are never used."
+msgstr "گوگل برای سایت‌های بزرگی که نوشتن دستی همهٔ توضیحات ممکن نیست، ساخت خودکار توضیحات را تشویق می‌کند. بخش‌های پنهان از بُرش‌ها هرگز به‌کار نمی‌روند."
+
+#: src/Core/Schema.php:718
+msgid "Use the start of the article text"
+msgstr "از آغاز متن مقاله استفاده شود"
+
+#: src/Core/Schema.php:719
+msgid "Every article gets a description that matches its content, even when editors are in a hurry."
+msgstr "هر مقاله توضیحی متناسب با محتوایش می‌گیرد، حتی وقتی ویراستاران عجله دارند."
+
+#: src/Core/Schema.php:722
+msgid "Only use excerpts written by editors"
+msgstr "فقط چکیده‌هایی که ویراستاران نوشته‌اند"
+
+#: src/Core/Schema.php:723
+msgid "Articles without an excerpt get no description; search engines then pick text from the page themselves."
+msgstr "مقاله‌های بدون چکیده توضیحی نمی‌گیرند؛ آن‌گاه موتورهای جست‌وجو خودشان متنی از صفحه برمی‌دارند."
+
+#: src/Core/Schema.php:728
+msgid "Length of automatic descriptions (characters)"
+msgstr "طول توضیحات خودکار (نویسه)"
+
+#: src/Core/Schema.php:729
+msgid "Only used when KhabarSEO builds a description from the article text. Text is cut at a word boundary."
+msgstr "فقط وقتی به‌کار می‌رود که KhabarSEO توضیح را از متن مقاله می‌سازد. متن در مرز واژه بریده می‌شود."
+
+#: src/Core/Schema.php:730
+msgid "There is no length limit for descriptions; search engines shorten them to fit the screen. This only keeps automatic descriptions to a sensible size."
+msgstr "برای توضیحات محدودیت طولی وجود ندارد؛ موتورهای جست‌وجو آن‌ها را به اندازهٔ صفحه کوتاه می‌کنند. این فقط توضیحات خودکار را در اندازه‌ای معقول نگه می‌دارد."
+
+#: src/Core/Schema.php:733
 msgid "Tag pages"
 msgstr "صفحه‌های برچسب"
 
-#: src/Core/Schema.php:482
+#: src/Core/Schema.php:734
 msgid "Tag archives often become thin copies of category pages."
 msgstr "بایگانی برچسب‌ها اغلب به نسخه‌های کم‌محتوای صفحه‌های دسته‌بندی تبدیل می‌شود."
 
-#: src/Core/Schema.php:483
+#: src/Core/Schema.php:735
 msgid "Tags with only one or two articles add little value, so the middle option is best for most news sites."
 msgstr "برچسب‌هایی که فقط یک یا دو مقاله دارند ارزش چندانی ندارند؛ برای بیشتر سایت‌های خبری گزینهٔ میانی بهترین است."
 
-#: src/Core/Schema.php:486
+#: src/Core/Schema.php:738
 msgid "Do not index tag pages"
 msgstr "صفحه‌های برچسب ایندکس نشوند"
 
-#: src/Core/Schema.php:487
+#: src/Core/Schema.php:739
 msgid "Keeps all tag pages out of search. Choose this if you use tags loosely."
 msgstr "همهٔ صفحه‌های برچسب را از جست‌وجو بیرون نگه می‌دارد. اگر از برچسب‌ها آزادانه استفاده می‌کنید این را انتخاب کنید."
 
-#: src/Core/Schema.php:490
+#: src/Core/Schema.php:742
 msgid "Index only tags with enough articles"
 msgstr "فقط برچسب‌های دارای مقالهٔ کافی ایندکس شوند"
 
-#: src/Core/Schema.php:491
+#: src/Core/Schema.php:743
 msgid "Tags with several articles work as useful topic hubs; near-empty ones are kept out."
 msgstr "برچسب‌های دارای چند مقاله مثل مرکزهای موضوعی مفید عمل می‌کنند؛ برچسب‌های تقریباً خالی بیرون می‌مانند."
 
-#: src/Core/Schema.php:494
+#: src/Core/Schema.php:746
 msgid "Index all tag pages"
 msgstr "همهٔ صفحه‌های برچسب ایندکس شوند"
 
-#: src/Core/Schema.php:495
+#: src/Core/Schema.php:747
 msgid "Risky for news sites: many tags hold only one or two articles and can lower overall quality."
 msgstr "برای سایت‌های خبری پرخطر است: بسیاری از برچسب‌ها فقط یک یا دو مقاله دارند و می‌توانند کیفیت کلی را پایین بیاورند."
 
-#: src/Core/Schema.php:500
+#: src/Core/Schema.php:752
 msgid "Minimum articles for an indexable tag"
 msgstr "حداقل مقاله برای برچسب قابل‌ایندکس"
 
-#: src/Core/Schema.php:501
+#: src/Core/Schema.php:753
 msgid "Tags with fewer published articles are set to noindex."
 msgstr "برچسب‌هایی که مقالهٔ منتشرشدهٔ کمتری دارند noindex می‌شوند."
 
-#: src/Core/Schema.php:502
+#: src/Core/Schema.php:754
 msgid "Three is a good balance between useful hubs and thin pages."
 msgstr "سه عدد مناسبی میان مرکزهای موضوعی مفید و صفحه‌های کم‌محتواست."
 
-#: src/Core/Schema.php:505
+#: src/Core/Schema.php:757
 msgid "Category pages"
 msgstr "صفحه‌های دسته‌بندی"
 
-#: src/Core/Schema.php:506
-msgid "Categories are your main topic hubs."
-msgstr "دسته‌بندی‌ها مرکزهای اصلی موضوعی شما هستند."
+#: src/Core/Schema.php:758
+msgid "Categories are your main topic hubs. This also applies to other public taxonomies except tags."
+msgstr "دسته‌ها مرکزهای اصلی موضوعی شما هستند. این قاعده برای دیگر طبقه‌بندی‌های عمومی به‌جز برچسب‌ها هم اعمال می‌شود."
 
-#: src/Core/Schema.php:507
+#: src/Core/Schema.php:759
 msgid "Indexing them lets readers find your coverage of a topic from search."
 msgstr "ایندکس کردن آن‌ها به خوانندگان کمک می‌کند پوشش شما از یک موضوع را از طریق جست‌وجو پیدا کنند."
 
-#: src/Core/Schema.php:510
+#: src/Core/Schema.php:762
 msgid "Index category pages"
 msgstr "صفحه‌های دسته‌بندی ایندکس شوند"
 
-#: src/Core/Schema.php:511
+#: src/Core/Schema.php:763
 msgid "Categories usually deserve to appear in search as topic landing pages."
 msgstr "دسته‌بندی‌ها معمولاً شایستهٔ نمایش در جست‌وجو به‌عنوان صفحهٔ فرود موضوعی هستند."
 
-#: src/Core/Schema.php:514
+#: src/Core/Schema.php:766
 msgid "Do not index category pages"
 msgstr "صفحه‌های دسته‌بندی ایندکس نشوند"
 
-#: src/Core/Schema.php:515
+#: src/Core/Schema.php:767
 msgid "Choose this only if categories are internal and not meant as public landing pages."
 msgstr "این را فقط وقتی انتخاب کنید که دسته‌بندی‌ها داخلی‌اند و قرار نیست صفحهٔ فرود عمومی باشند."
 
-#: src/Core/Schema.php:520
+#: src/Core/Schema.php:772
 msgid "Author pages"
 msgstr "صفحه‌های نویسندگان"
 
-#: src/Core/Schema.php:521
+#: src/Core/Schema.php:773
 msgid "Author pages show who is behind your reporting."
 msgstr "صفحه‌های نویسندگان نشان می‌دهند چه کسی پشت گزارش‌های شماست."
 
-#: src/Core/Schema.php:522
+#: src/Core/Schema.php:774
 msgid "Showing real authors supports reader trust. Authors without articles stay out of search."
 msgstr "نمایش نویسندگان واقعی اعتماد خوانندگان را بیشتر می‌کند. نویسندگان بدون مقاله از جست‌وجو بیرون می‌مانند."
 
-#: src/Core/Schema.php:525
+#: src/Core/Schema.php:777
 msgid "Index authors who have published articles"
 msgstr "نویسندگانی که مقالهٔ منتشرشده دارند ایندکس شوند"
 
-#: src/Core/Schema.php:526
+#: src/Core/Schema.php:778
 msgid "Makes your bylines discoverable while keeping empty profiles out."
 msgstr "نام نویسندگان شما را قابل‌کشف می‌کند و پروفایل‌های خالی را بیرون نگه می‌دارد."
 
-#: src/Core/Schema.php:529
+#: src/Core/Schema.php:781
 msgid "Do not index author pages"
 msgstr "صفحه‌های نویسندگان ایندکس نشوند"
 
-#: src/Core/Schema.php:530
+#: src/Core/Schema.php:782
 msgid "Choose this if you prefer not to expose author profiles to search."
 msgstr "اگر نمی‌خواهید پروفایل نویسندگان در جست‌وجو دیده شود این را انتخاب کنید."
 
-#: src/Core/Schema.php:535
+#: src/Core/Schema.php:787
 msgid "Date archives"
 msgstr "بایگانی‌های تاریخی"
 
-#: src/Core/Schema.php:536
+#: src/Core/Schema.php:788
 msgid "Pages that list articles by year, month or day."
 msgstr "صفحه‌هایی که مقاله‌ها را بر اساس سال، ماه یا روز فهرست می‌کنند."
 
-#: src/Core/Schema.php:537
+#: src/Core/Schema.php:789
 msgid "They repeat content found elsewhere on your site, so keeping them out of search is better."
 msgstr "این صفحه‌ها محتوایی را تکرار می‌کنند که جای دیگر سایت هست؛ پس بهتر است از جست‌وجو بیرون بمانند."
 
-#: src/Core/Schema.php:540
+#: src/Core/Schema.php:792
 msgid "Do not index date archives"
 msgstr "بایگانی‌های تاریخی ایندکس نشوند"
 
-#: src/Core/Schema.php:541
+#: src/Core/Schema.php:793
 msgid "Avoids duplicate listings of the same articles."
 msgstr "از فهرست‌های تکراری مقاله‌های یکسان جلوگیری می‌کند."
 
-#: src/Core/Schema.php:544
+#: src/Core/Schema.php:796
 msgid "Index date archives"
 msgstr "بایگانی‌های تاریخی ایندکس شوند"
 
-#: src/Core/Schema.php:545
+#: src/Core/Schema.php:797
 msgid "Rarely useful; only if readers browse your news by date."
 msgstr "به‌ندرت مفید است؛ فقط اگر خوانندگان اخبار شما را بر اساس تاریخ مرور می‌کنند."
 
-#: src/Core/Schema.php:550
+#: src/Core/Schema.php:802
 msgid "Attachment pages"
 msgstr "صفحه‌های پیوست"
 
-#: src/Core/Schema.php:551
-msgid "The page WordPress can create for each uploaded image or file."
-msgstr "صفحه‌ای که وردپرس می‌تواند برای هر تصویر یا فایل بارگذاری‌شده بسازد."
+#: src/Core/Schema.php:803
+msgid "The page WordPress can create for each uploaded image or file. When one is shown, it is always set to noindex."
+msgstr "صفحه‌ای که وردپرس می‌تواند برای هر تصویر یا فایل بارگذاری‌شده بسازد. هر وقت چنین صفحه‌ای نمایش داده شود، همیشه noindex است."
 
-#: src/Core/Schema.php:552
+#: src/Core/Schema.php:804
 msgid "These pages are thin. Redirecting visitors to the article keeps all authority in one place."
 msgstr "این صفحه‌ها کم‌محتوا هستند. هدایت بازدیدکنندگان به مقاله، همهٔ اعتبار را یکجا نگه می‌دارد."
 
-#: src/Core/Schema.php:555
+#: src/Core/Schema.php:807
 msgid "Redirect to the parent article"
 msgstr "هدایت به مقالهٔ والد"
 
-#: src/Core/Schema.php:556
-msgid "Visitors and search engines land on the real article instead of a bare image page."
-msgstr "بازدیدکنندگان و موتورهای جست‌وجو به‌جای یک صفحهٔ خالی تصویر، به مقالهٔ اصلی می‌رسند."
+#: src/Core/Schema.php:808
+msgid "Visitors and search engines land on the published article. Files without a published article keep the WordPress behavior."
+msgstr "بازدیدکنندگان و موتورهای جست‌وجو به مقالهٔ منتشرشده می‌رسند. فایل‌هایی که مقالهٔ منتشرشده ندارند رفتار وردپرس را نگه می‌دارند."
 
-#: src/Core/Schema.php:559
+#: src/Core/Schema.php:811
 msgid "Leave WordPress behavior unchanged"
 msgstr "رفتار وردپرس بدون تغییر بماند"
 
-#: src/Core/Schema.php:560
-msgid "The result then depends on your WordPress version and settings."
-msgstr "نتیجه در این حالت به نسخه و تنظیمات وردپرس شما بستگی دارد."
+#: src/Core/Schema.php:812
+msgid "WordPress either shows the attachment page or sends visitors to the file, depending on its \"attachment pages\" setting."
+msgstr "وردپرس بسته به تنظیم «صفحه‌های پیوست» خود، یا صفحهٔ پیوست را نشان می‌دهد یا بازدیدکننده را به خود فایل می‌فرستد."
 
-#: src/Core/Schema.php:565
+#: src/Core/Schema.php:817
 msgid "Page 2 and later of lists"
 msgstr "صفحهٔ ۲ به بعد فهرست‌ها"
 
-#: src/Core/Schema.php:566
-msgid "Category, tag and author lists that continue on further pages."
-msgstr "فهرست‌های دسته، برچسب و نویسنده که در صفحه‌های بعدی ادامه می‌یابند."
+#: src/Core/Schema.php:818
+msgid "Category, tag, author and home page lists that continue on further pages."
+msgstr "فهرست‌های دسته، برچسب، نویسنده و صفحهٔ اصلی که در صفحه‌های بعدی ادامه می‌یابند."
 
-#: src/Core/Schema.php:567
-msgid "Each page lists different articles, so letting them be indexed helps older stories get discovered."
-msgstr "هر صفحه مقاله‌های متفاوتی را فهرست می‌کند؛ پس ایندکس شدنشان به کشف مطالب قدیمی‌تر کمک می‌کند."
+#: src/Core/Schema.php:819
+msgid "Google advises giving each page its own canonical URL, never page 1. Indexable deep pages help older stories get discovered."
+msgstr "گوگل توصیه می‌کند هر صفحه نشانی canonical خودش را داشته باشد، نه صفحهٔ ۱. صفحه‌های عمیق قابل‌ایندکس به کشف مطالب قدیمی‌تر کمک می‌کنند."
 
-#: src/Core/Schema.php:570
+#: src/Core/Schema.php:822
 msgid "Index page 2 and later"
 msgstr "صفحهٔ ۲ به بعد ایندکس شوند"
 
-#: src/Core/Schema.php:571
+#: src/Core/Schema.php:823
 msgid "Each page points to itself as canonical and can be crawled normally."
 msgstr "هر صفحه خودش را canonical معرفی می‌کند و می‌تواند عادی خزیده شود."
 
-#: src/Core/Schema.php:574
+#: src/Core/Schema.php:826
 msgid "Set page 2 and later to noindex"
 msgstr "صفحهٔ ۲ به بعد noindex شوند"
 
-#: src/Core/Schema.php:575
+#: src/Core/Schema.php:827
 msgid "Keeps deep pages out of search but can make older articles harder to discover."
 msgstr "صفحه‌های عمیق را از جست‌وجو بیرون نگه می‌دارد، اما ممکن است کشف مقاله‌های قدیمی را سخت‌تر کند."
 
-#: src/Core/Schema.php:580
+#: src/Core/Schema.php:832
+msgid "Maximum snippet length (max-snippet)"
+msgstr "بیشترین طول بُرش متنی (max-snippet)"
+
+#: src/Core/Schema.php:833
+msgid "-1 lets the search engine choose; 0 shows no text snippet; another number is a character limit."
+msgstr "‎-1 انتخاب را به موتور جست‌وجو می‌سپارد؛ 0 هیچ بُرش متنی نشان نمی‌دهد؛ هر عدد دیگر حداکثر شمار نویسه‌هاست."
+
+#: src/Core/Schema.php:834
+msgid "Limits also apply to normal search snippets and AI features. Keep -1 unless you have a legal or business reason."
+msgstr "این محدودیت‌ها بر بُرش‌های عادی جست‌وجو و قابلیت‌های هوش مصنوعی هم اعمال می‌شوند. ‎-1 را نگه دارید مگر دلیل حقوقی یا تجاری داشته باشید."
+
+#: src/Core/Schema.php:837
+msgid "Image preview size (max-image-preview)"
+msgstr "اندازهٔ پیش‌نمایش تصویر (max-image-preview)"
+
+#: src/Core/Schema.php:838
+msgid "The largest image preview search engines may show for your pages."
+msgstr "بزرگ‌ترین پیش‌نمایش تصویری که موتورهای جست‌وجو می‌توانند برای صفحه‌های شما نشان دهند."
+
+#: src/Core/Schema.php:839
+msgid "Google Discover recommends large previews; smaller previews make news cards less visible."
+msgstr "گوگل دیسکاور پیش‌نمایش بزرگ را توصیه می‌کند؛ پیش‌نمایش کوچک‌تر کارت‌های خبری را کم‌پیداتر می‌کند."
+
+#: src/Core/Schema.php:842
+msgid "Large"
+msgstr "بزرگ"
+
+#: src/Core/Schema.php:843
+msgid "Allows large images, as used by Google Discover."
+msgstr "اجازهٔ تصویرهای بزرگ، همان‌طور که گوگل دیسکاور به‌کار می‌برد."
+
+#: src/Core/Schema.php:846
+msgid "Standard"
+msgstr "استاندارد"
+
+#: src/Core/Schema.php:847
+msgid "Only a default-size preview."
+msgstr "فقط پیش‌نمایش با اندازهٔ پیش‌فرض."
+
+#: src/Core/Schema.php:851
+msgid "No image preview at all."
+msgstr "بدون هیچ پیش‌نمایش تصویری."
+
+#: src/Core/Schema.php:856
+msgid "Maximum video preview (max-video-preview, seconds)"
+msgstr "بیشترین پیش‌نمایش ویدئو (max-video-preview، ثانیه)"
+
+#: src/Core/Schema.php:857
+msgid "-1 means no limit; 0 allows at most a still image."
+msgstr "‎-1 یعنی بدون محدودیت؛ 0 حداکثر یک تصویر ثابت را مجاز می‌کند."
+
+#: src/Core/Schema.php:858
+msgid "Keep -1 so video reports can show a preview."
+msgstr "‎-1 را نگه دارید تا گزارش‌های ویدئویی بتوانند پیش‌نمایش نشان دهند."
+
+#: src/Core/Schema.php:861
+msgid "Tracking parameters removed from canonical URLs"
+msgstr "پارامترهای ردیابی که از نشانی canonical حذف می‌شوند"
+
+#: src/Core/Schema.php:862
+msgid "One per line. A trailing * matches a prefix, for example utm_*."
+msgstr "هر مورد در یک سطر. ستاره در پایان یعنی پیشوند، مثلاً utm_*."
+
+#: src/Core/Schema.php:863
+msgid "Campaign tags must never become part of a canonical URL. Canonicals are built from the real article address, so this mainly cleans URLs entered by hand."
+msgstr "برچسب‌های کارزار هرگز نباید بخشی از نشانی canonical شوند. canonical از نشانی واقعی مقاله ساخته می‌شود، پس این گزینه بیشتر نشانی‌هایی را که دستی وارد شده‌اند پاک می‌کند."
+
+#: src/Core/Schema.php:866
+msgid "Also output a canonical on noindex pages"
+msgstr "در صفحه‌های noindex هم canonical نوشته شود"
+
+#: src/Core/Schema.php:867
+msgid "By default, pages set to noindex get no canonical link."
+msgstr "به‌طور پیش‌فرض، صفحه‌های noindex پیوند canonical ندارند."
+
+#: src/Core/Schema.php:868
+msgid "A canonical says \"index this URL\", which contradicts noindex. Leave this off unless a search engine tool asks for it."
+msgstr "canonical یعنی «این نشانی را ایندکس کن» که با noindex تناقض دارد. این را خاموش بگذارید مگر ابزار یک موتور جست‌وجو آن را بخواهد."
+
+#: src/Core/Schema.php:871
 msgid "Output Open Graph tags"
 msgstr "خروجی برچسب‌های Open Graph"
 
-#: src/Core/Schema.php:581
+#: src/Core/Schema.php:872
 msgid "Tags that Facebook, Telegram and LinkedIn use to build link previews."
 msgstr "برچسب‌هایی که فیس‌بوک، تلگرام و لینکدین برای ساخت پیش‌نمایش پیوند به‌کار می‌برند."
 
-#: src/Core/Schema.php:582
+#: src/Core/Schema.php:873
 msgid "Turn off only if your theme already outputs them and you cannot disable the theme version."
 msgstr "فقط وقتی خاموش کنید که پوسته‌تان از قبل آن‌ها را تولید می‌کند و نمی‌توانید نسخهٔ پوسته را غیرفعال کنید."
 
-#: src/Core/Schema.php:585
+#: src/Core/Schema.php:876
 msgid "Output X (Twitter) card tags"
 msgstr "خروجی برچسب‌های کارت X (توییتر)"
 
-#: src/Core/Schema.php:586
+#: src/Core/Schema.php:877
 msgid "Tags that X uses to build link previews."
 msgstr "برچسب‌هایی که X برای ساخت پیش‌نمایش پیوند به‌کار می‌برد."
 
-#: src/Core/Schema.php:587
+#: src/Core/Schema.php:878
 msgid "Keep this on unless your theme already outputs them."
 msgstr "این را روشن نگه دارید مگر اینکه پوسته‌تان از قبل آن‌ها را تولید کند."
 
-#: src/Core/Schema.php:590
+#: src/Core/Schema.php:881
 msgid "Default social image"
 msgstr "تصویر اجتماعی پیش‌فرض"
 
-#: src/Core/Schema.php:591
+#: src/Core/Schema.php:882
 msgid "Used when an article has no suitable image. At least 1200 px wide is recommended."
 msgstr "وقتی مقاله‌ای تصویر مناسب نداشته باشد استفاده می‌شود. عرض دست‌کم ۱۲۰۰ پیکسل توصیه می‌شود."
 
-#: src/Core/Schema.php:592
+#: src/Core/Schema.php:883
 msgid "Use a photo or neutral artwork, not your logo. Google Discover prefers large, representative images."
 msgstr "از یک عکس یا طرح خنثی استفاده کنید، نه لوگو. گوگل دیسکاور تصویرهای بزرگ و نماینده را ترجیح می‌دهد."
 
-#: src/Core/Schema.php:595
+#: src/Core/Schema.php:886
 msgid "X (Twitter) card type"
 msgstr "نوع کارت X (توییتر)"
 
-#: src/Core/Schema.php:596
+#: src/Core/Schema.php:887
 msgid "How links to your articles look on X."
 msgstr "نحوهٔ نمایش پیوند مقاله‌های شما در X."
 
-#: src/Core/Schema.php:597
+#: src/Core/Schema.php:888
 msgid "The large image card gives news headlines more visual weight."
 msgstr "کارت تصویر بزرگ به تیترهای خبری وزن بصری بیشتری می‌دهد."
 
-#: src/Core/Schema.php:600
+#: src/Core/Schema.php:891
 msgid "Large image card"
 msgstr "کارت تصویر بزرگ"
 
-#: src/Core/Schema.php:601
+#: src/Core/Schema.php:892
 msgid "Shows a wide image above the headline. Best for news."
 msgstr "یک تصویر عریض بالای تیتر نشان می‌دهد. برای اخبار بهترین است."
 
-#: src/Core/Schema.php:604
+#: src/Core/Schema.php:895
 msgid "Small card"
 msgstr "کارت کوچک"
 
-#: src/Core/Schema.php:605
+#: src/Core/Schema.php:896
 msgid "Shows a small thumbnail beside the text. Useful if your images are small."
 msgstr "یک تصویر کوچک کنار متن نشان می‌دهد. اگر تصویرهای شما کوچک‌اند مفید است."
 
-#: src/Core/Schema.php:610
+#: src/Core/Schema.php:901
 msgid "X (Twitter) account"
 msgstr "حساب X (توییتر)"
 
-#: src/Core/Schema.php:611
+#: src/Core/Schema.php:902
 msgid "Optional, for example @yournews."
 msgstr "اختیاری، مثلاً @yournews."
 
-#: src/Core/Schema.php:612
+#: src/Core/Schema.php:903
 msgid "Adds your publication account to link previews."
 msgstr "حساب رسانهٔ شما را به پیش‌نمایش پیوند اضافه می‌کند."
 
-#: src/Core/Schema.php:615
+#: src/Core/Schema.php:906
+msgid "Control titles in themes without title-tag support"
+msgstr "کنترل عنوان در پوسته‌های بدون پشتیبانی title-tag"
+
+#: src/Core/Schema.php:907
+msgid "Only matters for older themes that print the title themselves with wp_title(). The Status page tells you if yours does."
+msgstr "فقط برای پوسته‌های قدیمی که عنوان را خودشان با wp_title() چاپ می‌کنند مهم است. صفحهٔ وضعیت به شما می‌گوید پوستهٔ شما چنین است یا نه."
+
+#: src/Core/Schema.php:908
+msgid "Such themes often add the site name again after wp_title(), which would show it twice. Turn this on only after checking the result with Status, Scan now."
+msgstr "این پوسته‌ها اغلب پس از wp_title() نام سایت را دوباره اضافه می‌کنند و نام دو بار نمایش داده می‌شود. فقط پس از بررسی نتیجه با وضعیت ← همین حالا بررسی کن روشنش کنید."
+
+#: src/Core/Schema.php:911
 msgid "Keep my data when the plugin is deleted"
 msgstr "هنگام حذف افزونه، داده‌هایم نگه داشته شود"
 
-#: src/Core/Schema.php:616
+#: src/Core/Schema.php:912
 msgid "Settings and logs stay in the database after deletion."
 msgstr "تنظیمات و گزارش‌ها پس از حذف در پایگاه داده می‌مانند."
 
-#: src/Core/Schema.php:617
+#: src/Core/Schema.php:913
 msgid "Keeping data protects you from accidental loss. Turn it off to remove everything when the plugin is deleted."
 msgstr "نگه داشتن داده‌ها از از دست رفتن تصادفی جلوگیری می‌کند. برای پاک شدن همه‌چیز هنگام حذف افزونه، آن را خاموش کنید."
 
+#. translators: %s: search terms.
+#: src/Output/Context.php:312
+#, php-format
+msgid "Search results for “%s”"
+msgstr "نتایج جست‌وجو برای «%s»"
+
+#: src/Output/Context.php:314
+msgid "Page not found"
+msgstr "صفحه پیدا نشد"
+
+#. translators: 1: current page number, 2: total number of pages.
+#: src/Output/Context.php:405
+#, php-format
+msgid "Page %1$s of %2$s"
+msgstr "صفحهٔ %1$s از %2$s"
+
+#: assets/blocks/nosnippet/block.json
+msgctxt "block title"
+msgid "Hidden from search snippets"
+msgstr "پنهان از بُرش‌های جست‌وجو"
+
+#: assets/blocks/nosnippet/block.json
+msgctxt "block description"
+msgid "Search engines will not quote the blocks inside in result snippets (data-nosnippet). Use it for sensitive or paywalled passages."
+msgstr "موتورهای جست‌وجو بلوک‌های درون آن را در بُرش‌های نتایج نقل نمی‌کنند (data-nosnippet). برای بخش‌های حساس یا پولی به‌کار ببرید."
+
+#: assets/blocks/nosnippet/block.json
+msgctxt "block keyword"
+msgid "nosnippet"
+msgstr "nosnippet"
+
+#: assets/blocks/nosnippet/block.json
+msgctxt "block keyword"
+msgid "snippet"
+msgstr "بُرش"
+
+#: assets/blocks/nosnippet/block.json
+msgctxt "block keyword"
+msgid "seo"
+msgstr "سئو"

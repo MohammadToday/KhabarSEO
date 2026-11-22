@@ -26,7 +26,7 @@ jobs:
           ini-values: error_reporting=-1, display_errors=On
       - name: Lint every PHP file
         run: find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l > /dev/null
-      - name: Smoke tests (no deprecations allowed)
+      - name: Smoke tests (deprecations fail the run)
         run: php tests/smoke.php
 
   phpcs:
@@ -44,6 +44,13 @@ jobs:
       - name: PHP 8.1 to 8.5 compatibility sniffs
         run: composer compat
 
+  generality:
+    name: No hardcoded theme or plugin names in code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash bin/check-generality
+
   i18n:
     name: Translations are up to date
     runs-on: ubuntu-latest
@@ -56,7 +63,7 @@ jobs:
       - name: POT is current
         run: |
           php bin/make-pot.php
-          git diff --exit-code languages/khabar-seo.pot
+          git diff --ignore-matching-lines='^"POT-Creation-Date' --exit-code languages/khabar-seo.pot
       - name: Every .po fully translated and .mo current
         run: |
           php bin/build-mo.php

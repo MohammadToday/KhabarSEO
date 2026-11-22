@@ -6,7 +6,9 @@
  * pages over a loopback request, never an external host, and never on public
  * page loads. parse() is pure and unit-testable.
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 namespace KhabarSEO\Conflicts;
@@ -110,19 +112,20 @@ final class HeadScanner {
 		$head = false === $end ? substr( $html, 0, self::MAX_BYTES ) : substr( $html, 0, min( $end + 7, self::MAX_BYTES ) );
 
 		$out = array(
-			'title'     => array(),
-			'canonical' => array(),
-			'robots'    => array(),
-			'og'        => array(),
-			'twitter'   => array(),
-			'jsonld'    => array(
+			'title'       => array(),
+			'canonical'   => array(),
+			'robots'      => array(),
+			'description' => array(),
+			'og'          => array(),
+			'twitter'     => array(),
+			'jsonld'      => array(
 				'count'   => 0,
 				'types'   => array(),
 				'invalid' => 0,
 			),
-			'generator' => array(),
-			'links'     => array(),
-			'marker'    => 1 === preg_match( '/<!--\s*KhabarSEO/i', $head ),
+			'generator'   => array(),
+			'links'       => array(),
+			'marker'      => 1 === preg_match( '/<!--\s*KhabarSEO/i', $head ),
 		);
 
 		$previous = libxml_use_internal_errors( true );
@@ -148,6 +151,8 @@ final class HeadScanner {
 			$content  = self::clip( $node->getAttribute( 'content' ) );
 			if ( 'robots' === $name ) {
 				$out['robots'][] = $content;
+			} elseif ( 'description' === $name ) {
+				$out['description'][] = $content;
 			} elseif ( 'generator' === $name ) {
 				$out['generator'][] = $content;
 			} elseif ( 0 === strpos( $property, 'og:' ) || 0 === strpos( $property, 'article:' ) ) {
@@ -182,7 +187,7 @@ final class HeadScanner {
 	 */
 	public static function findings( array $parsed ): array {
 		$out = array();
-		foreach ( array( 'title', 'canonical', 'robots' ) as $tag ) {
+		foreach ( array( 'title', 'canonical', 'robots', 'description' ) as $tag ) {
 			$count = count( $parsed[ $tag ] ?? array() );
 			if ( $count > 1 ) {
 				$out[] = array(
@@ -190,7 +195,7 @@ final class HeadScanner {
 					'code'   => 'dup_' . $tag,
 					'detail' => (string) $count,
 				);
-			} elseif ( 0 === $count && 'title' !== $tag ) {
+			} elseif ( 0 === $count && in_array( $tag, array( 'canonical', 'robots' ), true ) ) {
 				$out[] = array(
 					'level'  => 'info',
 					'code'   => 'none_' . $tag,

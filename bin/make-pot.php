@@ -9,7 +9,9 @@
  * gettext functions with the "khabar-seo" text domain, plus "translators:"
  * comments. Calls with non-literal arguments are reported and skipped.
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 // phpcs:disable -- Developer CLI script.
@@ -172,17 +174,53 @@ foreach ( $files as $path ) {
 	}
 }
 
+// block.json files: title, description and keywords, translated by core with fixed contexts.
+$block_files = glob( $root . '/assets/blocks/*/block.json' ) ?: array();
+foreach ( $block_files as $path ) {
+	$rel  = ltrim( str_replace( $root, '', $path ), '/' );
+	$json = json_decode( (string) file_get_contents( $path ), true );
+	if ( ! is_array( $json ) || ( $json['textdomain'] ?? '' ) !== $domain ) {
+		continue;
+	}
+	$strings = array();
+	foreach ( array( 'title' => 'block title', 'description' => 'block description' ) as $field => $context ) {
+		if ( isset( $json[ $field ] ) && is_string( $json[ $field ] ) ) {
+			$strings[] = array( $json[ $field ], $context );
+		}
+	}
+	foreach ( (array) ( $json['keywords'] ?? array() ) as $keyword ) {
+		$strings[] = array( (string) $keyword, 'block keyword' );
+	}
+	foreach ( $strings as list( $msgid, $context ) ) {
+		$key = $context . "\x04" . $msgid;
+		if ( ! isset( $entries[ $key ] ) ) {
+			$entries[ $key ] = array(
+				'msgid'   => $msgid,
+				'plural'  => null,
+				'context' => $context,
+				'refs'    => array(),
+				'comment' => '',
+			);
+		}
+		$entries[ $key ]['refs'][] = $rel;
+	}
+}
+
+$header  = (string) file_get_contents( $root . '/khabar-seo.php' );
+$version = preg_match( '/^\s*\*\s*Version:\s*(\S+)/m', $header, $vm ) ? $vm[1] : '0.0.0';
+
 $out   = array();
-$out[] = '# Copyright (C) KhabarSEO contributors';
+$out[] = '# Copyright (C) 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors'; 
 $out[] = '# This file is distributed under the GPL-2.0-or-later.';
 $out[] = 'msgid ""';
 $out[] = 'msgstr ""';
-$out[] = '"Project-Id-Version: KhabarSEO 0.1.0\\n"';
-$out[] = '"Report-Msgid-Bugs-To: https://github.com/OWNER/khabar-seo/issues\\n"';
+$out[] = '"Project-Id-Version: KhabarSEO ' . $version . '\\n"';
+$out[] = '"Report-Msgid-Bugs-To: https://github.com/MohammadToday/KhabarSEO/issues\\n"';
+$out[] = '"Last-Translator: KhabarSEO contributors\\n"';
 $out[] = '"MIME-Version: 1.0\\n"';
 $out[] = '"Content-Type: text/plain; charset=UTF-8\\n"';
 $out[] = '"Content-Transfer-Encoding: 8bit\\n"';
-$out[] = '"Language-Team: LANGUAGE <LL@li.org>\\n"';
+$out[] = '"Language-Team: KhabarSEO contributors\\n"';
 $out[] = '"Plural-Forms: nplurals=2; plural=(n != 1);\\n"';
 $out[] = '"X-Domain: ' . $domain . '\\n"';
 $out[] = '';

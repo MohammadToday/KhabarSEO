@@ -5,7 +5,9 @@
  * To change the schema: bump Schema::VERSION and add a step keyed by the new
  * version number. Steps receive the nested stored array and must return it.
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 namespace KhabarSEO\Core;
@@ -25,6 +27,7 @@ final class Migrations {
 	private static function steps(): array {
 		return array(
 			1 => array( self::class, 'to_v1' ),
+			2 => array( self::class, 'to_v2' ),
 		);
 	}
 
@@ -50,13 +53,15 @@ final class Migrations {
 
 	/**
 	 * Migrates an imported flat map (key => value) to the current schema.
-	 * No renamed keys exist yet, so this is the extension point for future ones.
 	 *
 	 * @param array $flat Flat settings from an export.
 	 * @param int   $from Schema version of the export.
 	 * @return array
 	 */
 	public static function migrate_flat( array $flat, int $from ): array {
+		if ( $from < 2 && isset( $flat['titles.separator'] ) && '•' === $flat['titles.separator'] ) {
+			$flat['titles.separator'] = '·';
+		}
 		return (array) apply_filters( 'khs_migrate_import', $flat, $from );
 	}
 
@@ -69,6 +74,19 @@ final class Migrations {
 	public static function to_v1( array $stored ): array {
 		if ( ! isset( $stored['state'] ) || ! is_array( $stored['state'] ) ) {
 			$stored['state'] = array();
+		}
+		return $stored;
+	}
+
+	/**
+	 * Version 2 (0.2.0): the bullet separator became a middle dot.
+	 *
+	 * @param array $stored Nested stored settings.
+	 * @return array
+	 */
+	public static function to_v2( array $stored ): array {
+		if ( isset( $stored['titles']['separator'] ) && '•' === $stored['titles']['separator'] ) {
+			$stored['titles']['separator'] = '·';
 		}
 		return $stored;
 	}

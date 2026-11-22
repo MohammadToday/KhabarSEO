@@ -3,7 +3,9 @@
  * Renders schema fields with native WordPress markup and classes.
  * Every choice shows a Recommended badge and a short plain-language guide.
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 namespace KhabarSEO\Admin;
@@ -60,18 +62,40 @@ final class FieldRenderer {
 			case 'int':
 				self::label( $ui['label'], $id, false );
 				printf(
-					'<input type="number" class="small-text" id="%1$s" name="khs[%2$s]" value="%3$d" min="%4$d" max="%5$d" aria-describedby="%1$s-help" />',
+					'<input type="number" class="small-text" id="%1$s" name="khs[%2$s]" value="%3$d"%4$s%5$s aria-describedby="%1$s-help" />',
 					esc_attr( $id ),
 					esc_attr( $key ),
 					(int) $value,
-					(int) $spec['min'],
-					(int) $spec['max']
+					null !== $spec['min'] ? ' min="' . (int) $spec['min'] . '"' : '', // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Integer attribute.
+					null !== $spec['max'] ? ' max="' . (int) $spec['max'] . '"' : '' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Integer attribute.
 				);
 				self::texts( $ui, $id );
-				if ( null !== $spec['recommended'] ) {
-					/* translators: %s: recommended value. */
-					printf( '<p class="khs-recommended"><span class="khs-badge">%s</span></p>', esc_html( sprintf( __( 'Recommended: %s', 'khabar-seo' ), (string) $spec['recommended'] ) ) );
-				}
+				self::recommended_value( $spec );
+				break;
+			case 'template':
+				self::label( $ui['label'], $id, false );
+				printf(
+					'<input type="text" class="large-text code khs-template" id="%1$s" name="khs[%2$s]" value="%3$s" dir="auto" maxlength="%4$d" aria-describedby="%1$s-help" />',
+					esc_attr( $id ),
+					esc_attr( $key ),
+					esc_attr( (string) $value ),
+					(int) ( $spec['max'] ?? 300 )
+				);
+				self::texts( $ui, $id );
+				self::recommended_value( $spec );
+				break;
+			case 'tpl_map':
+				self::template_map( $key, $spec, $ui, is_array( $value ) ? $value : array(), $id );
+				break;
+			case 'list':
+				self::label( $ui['label'], $id, false );
+				printf(
+					'<textarea class="regular-text code" rows="5" id="%1$s" name="khs[%2$s]" dir="ltr" aria-describedby="%1$s-help">%3$s</textarea>',
+					esc_attr( $id ),
+					esc_attr( $key ),
+					esc_textarea( implode( "\n", array_map( 'strval', (array) $value ) ) )
+				);
+				self::texts( $ui, $id );
 				break;
 			default:
 				$ltr = in_array( $spec['type'], array( 'lang', 'locale', 'handle' ), true );
@@ -82,11 +106,65 @@ final class FieldRenderer {
 					esc_attr( $key ),
 					esc_attr( (string) $value ),
 					$ltr ? ' dir="ltr"' : '', // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static attribute.
-					$spec['max'] > 0 ? ' maxlength="' . (int) $spec['max'] . '"' : '' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Integer attribute.
+					(int) $spec['max'] > 0 ? ' maxlength="' . (int) $spec['max'] . '"' : '' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Integer attribute.
 				);
 				self::texts( $ui, $id );
 		}
 		echo '</div>';
+	}
+
+	/**
+	 * "Recommended: value" line for numbers and templates.
+	 *
+	 * @param array $spec Definition.
+	 * @return void
+	 */
+	private static function recommended_value( array $spec ): void {
+		if ( null === $spec['recommended'] || '' === (string) $spec['recommended'] ) {
+			return;
+		}
+		/* translators: %s: recommended value. */
+		$text = sprintf( __( 'Recommended: %s', 'khabar-seo' ), (string) $spec['recommended'] );
+		printf( '<p class="khs-recommended"><span class="khs-badge" dir="auto">%s</span></p>', esc_html( $text ) );
+	}
+
+	/**
+	 * One template input per post type or taxonomy.
+	 *
+	 * @param string $key   Field key.
+	 * @param array  $spec  Definition.
+	 * @param array  $ui    UI strings.
+	 * @param array  $value Stored overrides (slug => template).
+	 * @param string $id    Base id.
+	 * @return void
+	 */
+	private static function template_map( string $key, array $spec, array $ui, array $value, string $id ): void {
+		$objects = 'taxonomies' === $spec['source'] ? Sanitizer::selectable_taxonomies() : Sanitizer::selectable_post_types();
+		echo '<fieldset class="khs-choice khs-map">';
+		printf( '<legend class="khs-label">%s</legend>', esc_html( $ui['label'] ) );
+		printf( '<p class="description" id="%1$s-help">%2$s</p>', esc_attr( $id ), esc_html( $ui['help'] ) );
+		echo '<table class="form-table khs-map__table" role="presentation"><tbody>';
+		foreach ( $objects as $slug => $object ) {
+			$input_id = $id . '-' . sanitize_html_class( $slug );
+			printf(
+				'<tr><th scope="row"><label for="%1$s">%2$s</label> <code>%3$s</code></th><td><input type="text" class="large-text code khs-template" id="%1$s" name="khs[%4$s][%3$s]" value="%5$s" dir="auto" maxlength="%6$d" aria-describedby="%7$s-help" /></td></tr>',
+				esc_attr( $input_id ),
+				esc_html( $object->labels->name ),
+				esc_attr( $slug ),
+				esc_attr( $key ),
+				esc_attr( isset( $value[ $slug ] ) && is_string( $value[ $slug ] ) ? $value[ $slug ] : (string) $spec['item_default'] ),
+				(int) ( $spec['max'] ?? 300 ),
+				esc_attr( $id )
+			);
+		}
+		echo '</tbody></table>';
+		if ( '' !== $ui['guide'] ) {
+			printf( '<p class="khs-guide">%s</p>', esc_html( $ui['guide'] ) );
+		}
+		/* translators: %s: default template. */
+		$text = sprintf( __( 'Recommended: %s', 'khabar-seo' ), (string) $spec['item_default'] );
+		printf( '<p class="khs-recommended"><span class="khs-badge" dir="auto">%s</span></p>', esc_html( $text ) );
+		echo '</fieldset>';
 	}
 
 	/**

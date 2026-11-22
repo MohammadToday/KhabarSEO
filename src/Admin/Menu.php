@@ -2,7 +2,9 @@
 /**
  * Admin menu, assets and handler registration.
  *
- * @package KhabarSEO
+ * @package   KhabarSEO
+ * @copyright 2026 Mohammad Ahmadi Akbari and KhabarSEO contributors
+ * @license   GPL-2.0-or-later
  */
 
 namespace KhabarSEO\Admin;
@@ -83,16 +85,21 @@ final class Menu {
 	}
 
 	/**
-	 * Loads admin CSS and JS on KhabarSEO screens only.
+	 * Loads admin CSS and JS on KhabarSEO screens and on post and term edit
+	 * screens (for the override fields) only.
 	 *
 	 * @param string $hook_suffix Current admin page hook.
 	 * @return void
 	 */
 	public function enqueue( string $hook_suffix ): void {
-		if ( ! in_array( $hook_suffix, $this->screens, true ) ) {
+		$ours   = in_array( $hook_suffix, $this->screens, true );
+		$editor = in_array( $hook_suffix, array( 'post.php', 'post-new.php', 'term.php' ), true );
+		if ( ! $ours && ! $editor ) {
 			return;
 		}
-		wp_enqueue_media();
+		if ( $ours ) {
+			wp_enqueue_media();
+		}
 		wp_enqueue_style( 'khs-admin', KHS_URL . 'assets/admin/admin.css', array(), KHS_VERSION );
 		wp_enqueue_script( 'khs-admin', KHS_URL . 'assets/admin/admin.js', array(), KHS_VERSION, true );
 	}
