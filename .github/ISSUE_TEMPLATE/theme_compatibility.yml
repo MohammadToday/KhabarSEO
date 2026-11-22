@@ -1,0 +1,27 @@
+name: Theme or plugin compatibility report
+description: Tell us which tags your theme or plugin outputs and which option disables them
+labels: [ compatibility ]
+body:
+  - type: input
+    id: theme
+    attributes:
+      label: Theme or plugin name and version
+    validations:
+      required: true
+  - type: textarea
+    id: scan
+    attributes:
+      label: Result of Status, Scan now
+      description: Copy the table (title, canonical, robots, Open Graph, JSON-LD counts) for the home page and a news post.
+    validations:
+      required: true
+  - type: textarea
+    id: option
+    attributes:
+      label: Where can the duplicate tags be switched off?
+      description: Menu path or setting name, and the version you checked.
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      render: text
